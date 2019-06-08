@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Шаблонизатори</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>    
+    <div class="container">
+    <h1>Шаблонизатори</h1>
+    <h2>Загальна інформація</h2>
+    <p>
+      Шаблонизатор (або препроцесор обробки коду шаблону) - це модуль, що
+      дозволяє використовувати спрощений і більш потужний синтаксис для
+      написання html.
+    </p>
+    <p>
+      Шаблонизатор відокремлює уявлення даних від виконуваного коду, дає
+      можливість розділяти шаблони на блоки, використовувати їх кілька разів,
+      виділяти макроси, успадковувати шаблони і т.д., як результат - процес
+      верстки прискорюється, код стає коротшим. Препроцесори, як і будь-який
+      інший інструмент, має свої плюси і мінуси.
+    </p>
+    <p><strong>Позитивні сторони:</strong></p>
+    <ul>
+      <li>Модульність і структурованість.</li>
+      <li>Підвищення продуктивності.</li>
+      <li>Читабельність для розробника.</li>
+    </ul>
+    <p><strong>Негативні сторони:</strong></p>
+    <ul>
+      <li>Велика кількість інструментів.</li>
+      <li>Високий рівень абстракції для простих елементів.</li>
+      <li>
+        Додаткові можливості мають обмеження, якщо використовуються нерозумно.
+      </li>
+    </ul>
+    <p>
+      На сьогоднішній час є велика кількість шаблонизатор. Ось тільки деякі з
+      них:
+    </p>
+    <ul>
+      <li>Pug (колишній jade) - наш вибір</li>
+      <li>Ejs</li>
+      <li>Handlebars</li>
+      <li>Twig можна використовувати і на фронтенді</li>
+      <li>Aptl</li>
+      <li>Over 9000</li>
+    </ul>
+
+    <p>
+      Деякі з них сумісні з Express з коробки, наприклад, Pug. Ця можливість
+      доступна через експорт функції
+      <strong>__express (filePath, options, callback)</strong>, яка викликається
+      за допомогою функції <strong>res.render()</strong> для виведення коду
+      шаблону.
+    </p>
+    <p>
+      Це правило діє не для всіх шаблонизаторів. Але використовуючи сторонні
+      бібліотеки, наприклад Consolidate.js можна "перетворити" практично
+      будь-який шаблонизатор для роботи з Express і Node.js.
+    </p>
+
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #008800; font-weight: bold">const</span> express = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;express&#39;</span>)
+<span style="color: #008800; font-weight: bold">const</span> app = express()
+
+<span style="color: #008800; font-weight: bold">const</span> engines = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;consolidate&#39;</span>)
+app.engine(<span style="color: #dd2200; background-color: #fff0f0">&#39;haml&#39;</span>, engines.haml)
+app.engine(<span style="color: #dd2200; background-color: #fff0f0">&#39;html&#39;</span>, engines.hogan)
+</pre>
+    </div>
+
+    <h2>EJS</h2>
+
+    <p>
+      «E» означає «ефективний». EJS - це проста мова шаблонів, який дозволяє
+      створювати розмітку HTML за допомогою простого JavaScript
+    </p>
+    <ul>
+      <li>
+        <a href="https://github.com/mde/ejs">https://github.com/mde/ejs</a>
+      </li>
+      <li>
+        <a href="https://ionicabizau.github.io/ejs-playground/"
+          >https://ionicabizau.github.io/ejs-playground/</a
+        >
+        пісочниця on-line
+      </li>
+    </ul>
+    <p><strong>Установка</strong></p>
+    <p><em>npm install ejs</em></p>
+    <p>
+      Також можна склонувати останній реліз
+      <a href="https://github.com/mde/ejs/releases/latest"
+        >https://github.com/mde/ejs/releases/latest</a
+      >
+      і зібрати у себе локально підключивши файл &lt;script
+      src="ejs.min.js"&gt;&lt;/script&gt;
+    </p>
+
+    <p><strong>додатково</strong></p>
+    <ul>
+      <li>gulp-ejs-precompiler</li>
+      <li>EJS for Atom</li>
+      <li>EJS for Sublime</li>
+      <li>EJS for Vim</li>
+    </ul>
+
+    <p>
+      <strongg>Плюси</strongg>
+    </p>
+    <ul>
+      <li>
+        Робота з простим HTML, просте написання JavaScript практично без
+        обмежень.
+      </li>
+      <li>
+        Може використовуватися для речей, відмінних від HTML, наприклад
+        конфігураційних файлів, JSON.
+      </li>
+      <li>Підтримка фільтрів.</li>
+      <li>нтуїтивно зрозумілий для людей, що використовують JS.</li>
+    </ul>
+
+    <p>
+      <strong>Мінуси</strong>
+    </p>
+    <ul>
+      <li>Немає підтримки async.</li>
+      <li>Дуже докладний, схожий на PHP синтаксис.</li>
+      <li>
+        Includes завантажуються з локальної файлової системи (питання про
+        підтримку на стороні клієнта?).
+      </li>
+    </ul>
+
+    <p>
+      <strong>Особливості</strong>
+    </p>
+    <ul>
+      <li>Швидка компіляція і рендеринг.</li>
+      <li>Прості теги шаблону: <%%></li>
+      <li>
+        Можливість використання призначених для користувача роздільників
+        (наприклад,
+        <??>
+        замість <%%>)
+      </li>
+      <li>Робота на стороні сервера і клієнта.</li>
+      <li>Статичне кешування проміжного JavaScript.</li>
+      <li>Статичне кешування шаблонів.</li>
+      <li>Підтримує роботу з Express.</li>
+    </ul>
+
+    <p>
+      <strog>Стандартні Tags</strog>
+    </p>
+    <ul>
+      <li>Тег <% 'Scriptlet', для потоку управління, без виведення.</li>
+      <li><% = Виводить значення в шаблон (з екранованим HTML).</li>
+      <li><% - Виводить незмінне значення в шаблон.</li>
+      <li><% # Тег коментарів, без виконання, без виведення</li>
+      <li><%% Виводить літерал '<%'</li>
+      <li>%> Кінцевий тег.</li>
+      <li>
+        -%> Тег Trim-mode ( 'newline slurp'), обрізає прогалини наступного
+        рядка.
+      </li>
+    </ul>
+
+    <p class="label">Компіляція шаблону (Node.js):</p>
+    <!-- HTML generated using hilite.me -->
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #008800; font-weight: bold">var</span> template = ejs.compile(str, options);
+template(data);
+<span style="color: #888888">// =&gt; Rendered HTML string</span>
+
+ejs.render(str, data, options);
+<span style="color: #888888">// =&gt; Rendered HTML string</span>
+
+ejs.renderFile(filename, data, options, <span style="color: #008800; font-weight: bold">function</span>(err, str){
+  <span style="color: #888888">// str =&gt; Rendered HTML string</span>
+});
+</pre>
+    </div>
+
+    <p class="label">Приклад компіляції на клієнті:</p>
+    <!-- HTML generated using hilite.me -->
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">id=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;output&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;script </span><span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;ejs.min.js&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/script&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;script&gt;</span>
+    <span style="color: #008800; font-weight: bold">var</span> people = [<span style="color: #dd2200; background-color: #fff0f0">&#39;geddy&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;neil&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;alex&#39;</span>],
+        html = ejs.render(<span style="color: #dd2200; background-color: #fff0f0">&#39;&lt;%= people.join(&quot;, &quot;); %&gt;&#39;</span>, {people: people});
+    <span style="color: #888888">// With jQuery:</span>
+    $(<span style="color: #dd2200; background-color: #fff0f0">&#39;#output&#39;</span>).html(html);
+    <span style="color: #888888">// Vanilla JS:</span>
+    <span style="color: #003388">document</span>.getElementById(<span style="color: #dd2200; background-color: #fff0f0">&#39;output&#39;</span>).innerHTML = html;
+  <span style="color: #bb0066; font-weight: bold">&lt;/script&gt;</span>
+  </pre>
+    </div>
+    <p class="label">Приклад використання шаблону:</p>
+
+    <!-- HTML generated using hilite.me -->
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #888888">//Вихідний код</span>
+
+&lt;% <span style="color: #008800; font-weight: bold">const</span> topics = [<span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #0000DD; font-weight: bold">2</span>, <span style="color: #0000DD; font-weight: bold">3</span>]
+topics.forEach((elem) =&gt; { %&gt;
+&lt;li&gt;&lt;%= elem %&gt;&lt;<span>/li&gt;</span>
+&lt;% })%&gt;
+
+<span style="color: #888888">//Виведення шаблонізатора</span>
+
+&lt;li&gt;<span style="color: #0000DD; font-weight: bold">1</span>&lt;<span>/li&gt;</span>
+&lt;li&gt;<span style="color: #0000DD; font-weight: bold">2</span>&lt;<span>/li&gt;</span>
+&lt;li&gt;<span style="color: #0000DD; font-weight: bold">3</span>&lt;<span>/li&gt;</span>
+</pre>
+    </div>
+
+    <p>
+      EJS спеціально не підтримує блоки, але макети можуть бути реалізовані
+      шляхом включення блоків наприклад таким чином:
+    </p>
+
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #888888">// index.ejs</span>
+
+&lt;ul&gt;
+&lt;% <span style="color: #008800; font-weight: bold">const</span> pets = [
+        { name: <span style="color: #dd2200; background-color: #fff0f0">&quot;Hazel&quot;</span> },
+        { name: <span style="color: #dd2200; background-color: #fff0f0">&quot;Crystal&quot;</span>},
+        { name: <span style="color: #dd2200; background-color: #fff0f0">&quot;Catcher&quot;</span>}
+]%&gt;
+&lt;%  pets.forEach((pet) =&gt; { %&gt;
+        &lt;%- include(<span style="color: #dd2200; background-color: #fff0f0">&#39;included&#39;</span>, {
+            pet: pet
+        }) %&gt;
+&lt;%  }) %&gt;
+&lt;<span>/ul&gt;</span>
+
+<span style="color: #888888">// included.ejs</span>
+
+&lt;li&gt;&lt;%= pet.name %&gt;&lt;<span>/li&gt;</span>
+</pre>
+    </div>
+
+    <p><strong>Використання кешування</strong></p>
+    <a href="https://www.npmjs.com/package/lru-cache"
+      >https://www.npmjs.com/package/lru-cache</a
+    >
+    <p>
+      LRU - Least Recently Used -
+      <a
+        href="https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D1%8B_%D0%BA%D1%8D%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F#Least_recently_used_.28.D0.92.D1.8B.D1.82.D0.B5.D1.81.D0.BD.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B4.D0.B0.D0.B2.D0.BD.D0.BE_.D0.BD.D0.B5.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D1.83.D0.B5.D0.BC.D1.8B.D1.85.29"
+        >Витіснення давно невикористовуваних</a
+      >.
+    </p>
+    <p>
+      В даному прикладі в кеші є 100 позицій. Коли не залишається вільного місця
+      для нового запису, для звільнення місця видаляється один з наявних
+      записів:
+    </p>
+
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      >ejs.clearCache <span style="color: #888888">// очищення кеша</span>
+</pre>
+    </div>
+
+    <h2>Handlebars</h2>
+    <a href="http://handlebarsjs.com/">http://handlebarsjs.com/</a>
+    <p>
+      Handlebars - потужний шаблонизатор, який дозволяє створювати семантичні
+      шаблони.
+    </p>
+    <p><strong>Установка:</strong></p>
+    <p><em>npm install --save handlebars </em></p>
+    <p>Два варіанти підключення:</p>
+    <ul>
+      <li>require ( 'handlebars');</li>
+      <li>require ( 'handlebars / runtime'); // for the runtime only:</li>
+    </ul>
+
+    <p><strong>На клієнті:</strong></p>
+    <p>CDN:</p>
+    <ul>
+      <li>cdnjs</li>
+      <li>jsDelivr.</li>
+    </ul>
+
+    <p><strong>Плюси</strong></p>
+    <ul>
+      <li>На основі популярної мови шаблонів Mustache.</li>
+      <li>Робота з простим HTML.</li>
+      <li>Чистий, стиснений синтаксис змінних і циклів.</li>
+      <li>
+        Може використовуватися для речей, відмінних від HTML, наприклад,
+        конфігураційних файлів, JSON.
+      </li>
+      <li>Досить низький вхідний поріг.</li>
+    </ul>
+
+    <p><strong>Мінуси</strong></p>
+    <ul>
+      <li>Система partials вимагає реєстрації відразу всіх partials.</li>
+      <li>
+        За замовчуванням глобальний простір імен, тобто можлива колізія імен
+        хелперів і виразів-змінних.
+      </li>
+      <li>Немає вбудованої системи компоновки.</li>
+      <li>Немає потокової підтримки.</li>
+    </ul>
+    <p class="label">Приклад використання шаблону:</p>
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #888888">&lt;!-- звичайний HTML, з вбудованими виразами всередині дескрипторів - {{вираз}} --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>{{title}}<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;body&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  {{body}}
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+
+<span style="color: #888888">&lt;!-- Також можна використовувати шаблонне написання  --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;script </span><span style="color: #336699">id=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry-template&quot;</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;text/x-handlebars-template&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+&lt;div <span style="color: #008800; font-weight: bold">class</span>=<span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span>&gt;
+  &lt;h1&gt;{{title}}&lt;<span>/h1&gt;</span>
+  &lt;div <span style="color: #008800; font-weight: bold">class</span>=<span style="color: #dd2200; background-color: #fff0f0">&quot;body&quot;</span>&gt;
+    {{body}}
+  &lt;<span>/div&gt;</span>
+&lt;<span>/div&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/script&gt;</span>
+</pre>
+    </div>
+
+    <p class="label">Компіляція шаблону:</p>
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #008800; font-weight: bold">var</span> source   = <span style="color: #003388">document</span>.getElementById(<span style="color: #dd2200; background-color: #fff0f0">&quot;entry-template&quot;</span>).innerHTML;
+<span style="color: #008800; font-weight: bold">var</span> template = Handlebars.compile(source);
+</pre>
+    </div>
+    <br />
+    <!-- HTML generated using hilite.me -->
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre
+        style="margin: 0; line-height: 125%"
+      ><span style="color: #888888">// Найпростіший handlebars-вираз являє собою простий ідентифікатор: </span>
+
+{{some_contents}}
+
+<span style="color: #888888">// Ідентифікатором може бути будь-який символ Unicode за винятком таких:</span>
+
+<span>Пробіл</span> ! <span>&quot;</span> <span>#</span> % &amp; <span>&#39;</span> ( ) * + , . / ; &lt; = &gt; <span>@</span> [ <span>\</span> ] ^ <span>`</span> { | } ~
+</pre>
+    </div>
+    <p>
+      Handlebars-вирази можуть мати шляхи, розділені крапками. Вони дозволяють
+      шукати властивості, вкладені нижче поточного контексту:
+    </p>
+
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre style="margin: 0; line-height: 125%">
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>{{title}}<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;h2&gt;</span>{{author.name}}<span style="color: #bb0066; font-weight: bold">&lt;/h2&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span></pre>
+    </div>
+
+    <p>
+      При виконанні шаблону буде взята властивість author у поточного контексту,
+      потім у результаті буде взята властивість name.
+    </p>
+    <p>
+      Шляхи також можуть включати ../ сегменти, що дозволяють вказати шлях щодо
+      батьківського контексту.
+    </p>
+    <p>
+      Handlebars екранує вираження, поміщені в подвійні дужки
+      {{}}. Щоб уникнути цього, необхідно помістити вираз в потрійні дужки {{{
+
+
+      }}}. також для цього можна використовувати new Handlebars.SafeString
+      (result)
+    </p>
+
+    <p><strong>Хелпери</strong></p>
+
+    <p>
+      Handlebars-хелпером є простий ідентифікатор, за яким слідують нуль або
+      більше параметрів (через пробіл). Кожен параметр являє собою
+      handlebars-вираз, простий рядок, число або логічне значення. Хелпер
+      виробляє певні операції з параметрами і повертає HTML код.
+    </p>
+    <div
+      style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+    >
+      <pre style="margin: 0; line-height: 125%"
+        >{{{link “More...” book.url}}}
+</pre
+      >
+    </div>
+
+    <p>Хелпери доступні в шаблоні з будь-якого контексту.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #bb0066; font-weight: bold">&lt;div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>{{book.title}}<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+  {{link ”More...” book.url}}
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+
+<p>Реєстрація хелпера відбувається за допомогою методу Handlebars.registerHelper.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> context = {
+  book: {
+    title: <span style="color: #dd2200; background-color: #fff0f0">&quot;Book of Css&quot;</span>,
+    url: <span style="color: #dd2200; background-color: #fff0f0">&quot;book_css.html&quot;</span>
+  }
+};
+
+Handlebars.registerHelper(<span style="color: #dd2200; background-color: #fff0f0">&#39;link&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(text, url) {
+  url = Handlebars.escapeExpression(url);      <span style="color: #888888">//екранування вираження</span>
+  text = Handlebars.escapeExpression(text);
+  <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> Handlebars.SafeString(<span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;a href=&#39;&quot;</span> + url + <span style="color: #dd2200; background-color: #fff0f0">&quot;&#39;&gt;&quot;</span> + text + <span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;/a&gt;&quot;</span>);
+});
+</pre></div>
+
+<p>Отримаємо наступний результат:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #bb0066; font-weight: bold">&lt;div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>Book of Css<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;book_css.html&#39;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>More...<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+
+<p>Handlebars-хелперам також можна передати послідовність пар ключ-значення після всіх непарних параметрів. Ключі повинні бути простими ідентифікаторами, а значення - handlebars-виразами (тобто значення можуть бути ідентифікаторами, шляхами, або рядками).</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{{link <span style="color: #dd2200; background-color: #fff0f0">&quot;More...&quot;</span> href=book.url <span style="color: #008800; font-weight: bold">class</span>=<span style="color: #dd2200; background-color: #fff0f0">&quot;book&quot;</span>}}
+
+
+Handlebars.registerHelper(<span style="color: #dd2200; background-color: #fff0f0">&#39;link&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(text, options) {
+  console.log(options.hash[<span style="color: #dd2200; background-color: #fff0f0">&#39;href&#39;</span>]);   <span style="color: #888888">//значення, що лежить в book.url</span>
+  console.log(options.hash[<span style="color: #dd2200; background-color: #fff0f0">&#39;class&#39;</span>]); <span style="color: #888888">//&quot;book&quot;</span>
+  <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> Handlebars.SafeString(<span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;a href=\&quot;&quot;</span> + options.hash[<span style="color: #dd2200; background-color: #fff0f0">&#39;href&#39;</span>] + <span style="color: #dd2200; background-color: #fff0f0">&quot;\&quot;&gt;&quot;</span> + Handlebars.escapeExpression(text) + <span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;/a&gt;&quot;</span>);
+});</pre></div>
+
+<p><strong>Блокові хелпери</strong></p>
+
+<p>Блокові хелпери дозволяють визначати призначені для користувача ітератори, а також іншу функціональність, за допомогою якої можна викликати переданий блок у новому контексті.</p>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{{#helper_name}}some_block{{/helper_name}}
+
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+{{author}}
+{{#with book}}
+  <span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;title&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>{{title}}<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;author&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>{{../author}}<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;year&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>{{year}}<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+{{/with}}
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span></pre></div>
+
+  <p>Виконати цей шаблон ми могли б з наступним JSON, що має вкладені в об'єкт poem ключі title і year:</p>
+
+  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{
+  author: <span style="color: #dd2200; background-color: #fff0f0">&quot;Addy Osmani&quot;</span>,
+  book: {
+    title: <span style="color: #dd2200; background-color: #fff0f0">&quot;Learning JS Design Patterns&quot;</span>,
+    year: <span style="color: #0000DD; font-weight: bold">2017</span>
+  }
+}
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+Handlebars.registerHelper(<span style="color: #dd2200; background-color: #fff0f0">&#39;with&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(context, options) {
+  console.log(context);   <span style="color: #888888">//{title: &quot;Learning JS Design Patterns&quot;, year: 2017}</span>
+  <span style="color: #008800; font-weight: bold">return</span> options.fn(context);
+});</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  Сергій Єсєнін
+  <span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;title&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>Learning JS Design Patterns<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;author&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>Addy Osmani<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;year&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>2017<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+
+  <p><strong>Вбудовані хелпери</strong></p>
+  <p><strong>if</strong> - для виведення блоку за умовою.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  {{#if author}}
+    <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>{{firstName}} {{lastName}}<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+  {{else}}
+    <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>Автор невідомий<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+  {{/if}}
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+<p><strong>unless</strong> - зворотний хелперу if.
+  Блок буде виведений, якщо вираз поверне помилкове значення.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;entry&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  {{#unless license}}
+  <span style="color: #bb0066; font-weight: bold">&lt;h3</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;warning&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>УВАГА: Цей запис не має ліцензії!<span style="color: #bb0066; font-weight: bold">&lt;/h3&gt;</span>
+  {{/unless}}
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span></pre></div>
+  <p><strong>each</strong> - для перебору списків. Усередині блоку ви можете використовувати this для посилання на елемент списку.</p>  
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">context = {
+  writers: [
+    &quot;А. С. Пушкін&quot;,
+    &quot;Ф. М. Достоєвський&quot;,
+    &quot;Сергій Єсєнін&quot;
+  ]
+}
+</pre></div>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Вихідний код --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;ul</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;writers_list&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  {{#each writers}}
+    <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>{{@index}}: {{this}}<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  {{else}}
+    <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Список пуст<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  {{/each}}
+<span style="color: #bb0066; font-weight: bold">&lt;/ul&gt;</span>
+
+<span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;ul</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;writers_list&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>0: А. С. Пушкин<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>1: Ф. М. Достоевский<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>2: Сергей Есенин<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/ul&gt;</span>
+</pre></div>
+
+<p>Блок, наступний за секцією {{else}}, виводиться тільки коли список порожній.</p>
+<p><strong>log</strong> - дозволяє залогувати стан контексту під час виконання шаблону.
+</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{{log &quot;Прізвище: &quot; lastName &quot;; ім&#39;я: &quot; firstName}}
+</pre></div>
+
+<p>Делегується в Handlebars.logger.log, який може бути перевизначений для виконання призначеного для користувача логування. Більш детальна інформація про вбудовані хелпери з прикладами знаходиться за цим <a href="http://handlebarsjs.com/builtin_helpers.html">посиланням</a>.</p> 
+
+<p><strong>Повторне використання шаблонів (Partials)</strong></p>
+<p>Partials дозволяють повторно використовувати код шляхом створення спільних шаблонів.</p>
+<p>Partials - це звичайні handlebars-шаблони, які можуть бути безпосередньо викликані через інші шаблони. Partial може бути попередньо скомпільований - в такому випадку попередньо скомпільований шаблон передається в якості другого параметру.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">Handlebars.registerPartial(&#39;myPartial&#39;, &#39;{{name}}&#39;)
+</pre></div>
+
+<p>Підтримують динамічне виконання.</p>
+
+<p class="label">Отримати значення whichPartial, а потім відобразити дані, які повертаються цією функцією.</p> 
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{{&gt; (whichPartial) }}
+</pre></div>
+
+<p>Виклик Partial:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">{{&gt; myPartial }}
+</pre></div>
+
+<p>Partial виконується в поточному контексті. Є також можливість виконати Partial в призначеному для користувача контексті, передаючи контекст при виклику Partial:</p>
+
+<h2>Pug (Jade)</h2>
+<a href="https://pugjs.org/api/getting-started.html">https://pugjs.org/api/getting-started.html</a>
+<p><strong>Установка</strong></p>
+<p>Доступний через npm
+  Для установки необхідно виконати команду:</p>
+<p><em>$ Npm install pug</em></p>
+<p>Можливий доступ через CDN:</p>
+<ul>
+  <li>jsdeliv</li>
+</ul>
+<p>Онлайн-пісочниця: <a href="http://html2jade.org/"> http://html2jade.org/</a></p>
+
+<p><strong>Плюси:</strong></p>
+<ul>
+  <li>Немає закриваючих тегів.</li>
+  <li>Зручна система успадкування та експорту шаблонів.</li>
+  <li>Підтримка макросів.</li>
+  <li>Вбудована підтримка Markdown, CoffeeScript та інших.</li>
+  <li>Доступні реалізації в php, scala, ruby, python і Javа</li>
+</ul>
+
+<p><strong>Мінуси:</strong></p>
+<ul>
+  <li>Інлайновий JavaScript може стати громіздким в разі більш складної логіки.</li>
+  <li>Потрібен проміжний етап для використання попередньо скомпільованих шаблонів на клієнті.</li>
+  <li>Не підходить для виведення без HTML.</li>
+  <li>Немає потокової підтримки.</li>
+  <li>Декілька вищий поріг входження.</li>
+</ul>
+
+<p>Загальний процес рендерингу Pug простий - pug.compile () скомпілює вихідний код Pug в функцію JavaScript, яка в якості аргументу бере об'єкт даних (званий «locals»). Виклик цієї результуючої функції з вашими даними повертає рядок HTML, що відображається з цими даними.</p>
+
+<p>Скомпільовану функцію можна повторно використовувати і викликати з різними наборами даних.</p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #888888">//- template.pug</span>
+<span style="color: #bb0066; font-weight: bold">p</span> <span style="color: #3333bb; background-color: #fff0f0">#{</span>name<span style="color: #3333bb; background-color: #fff0f0">}</span>&#39;s Pug source code!
+  
+<span style="color: #bb0066; font-weight: bold">const</span> pug = require(&#39;pug&#39;);
+  
+<span style="color: #888888">// Compile the source code</span>
+<span style="color: #bb0066; font-weight: bold">const</span> compiledFunction = pug.compileFile(&#39;template.pug&#39;);
+  
+<span style="color: #888888">// Render a set of data</span>
+<span style="color: #bb0066; font-weight: bold">console.log</span>(<span style="color: #336699">compiledFunction</span><span></span>({</span>
+  <span style="color: #336699">name:</span> <span>&#39;</span><span style="color: #336699">Timothy</span><span >&#39;</span>
+<span >}</span>));</pre></div>
+  <br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;p&gt;</span>Timothy&#39;s Pug source code!<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span>
+</pre></div>
+
+<p><strong>Атрибути</strong></p>
+<p>Атрибуты тега похожи на HTML (с необязательными запятыми), но их значения — обычный JavaScript. 
+</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">a</span>(<span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;button&#39;</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;google.com&#39;</span>) Google
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;button&quot;</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;google.com&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>Google<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span>
+</pre></div>
+
+<p>Нормальні вираження JavaScript відмінно працюють:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">- var</span> authenticated = true
+<span style="color: #bb0066; font-weight: bold">body</span>(<span style="color: #336699">class=authenticated</span> <span style="color: #a61717; background-color: #e3d2d2">?</span> <span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #336699">authed</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span> <span style="color: #336699">:</span> <span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #336699">anon</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span>)</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;body</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;authed&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/body&gt;</span>
+</pre></div>
+
+<p><strong>Багаторядкові атрибути</strong></p>
+<p>Якщо у вас багато атрибутів, ви також можете розподілити їх по кількох рядках:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">input</span>(
+  <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;checkbox&#39;</span>
+  <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;agreement&#39;</span>
+  <span style="color: #336699">checked</span>
+)</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;checkbox&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;agreement&quot;</span> <span style="color: #336699">checked=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;checked&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+</pre></div>
+
+<p>Також можна використовувати ES2015 template strings</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+<span style="color: #bb0066; font-weight: bold">input</span>(<span style="color: #336699">data-json=</span><span>`</span>
+  <span>{</span>
+    <span>&quot;</span><span style="color: #bb0066; font-weight: bold">very-long</span>&quot;: &quot;piece of &quot;,
+    <span>&quot;</span><span style="color: #bb0066; font-weight: bold">data</span>&quot;: true
+  <span>}</span>
+<span>`)</span>
+</pre></div>
+
+<p><strong>Інтерполяція антрібутів</strong></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+- <span style="color: #008800; font-weight: bold">var</span> btnType <span style="color: #008800; font-weight: bold">=</span> &#39;info<span>&#39;</span>
+- <span style="color: #008800; font-weight: bold">var</span> btnSize <span style="color: #008800; font-weight: bold">=</span> &#39;lg<span>&#39;</span>
+<span style="color: #bb0066; font-weight: bold">button</span>(<span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;button&#39;</span> <span style="color: #336699">class=</span><span>`</span><span style="color: #336699">btn</span> <span style="color: #336699">btn-</span><span>${</span><span style="color: #336699">btnType</span><span>}</span> <span style="color: #336699">btn-</span>>${</span><span style="color: #336699">btnSize</span><span>}`</span>)</pre></div>
+  <br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;button</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;btn btn-info btn-lg&quot;</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;button&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/button&gt;</span>
+</pre></div>
+
+<p><strong>Булеві атрибути</strong></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">input</span>(<span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;checkbox&#39;</span> <span style="color: #336699">checked</span>)
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;checkbox&quot;</span> <span style="color: #336699">checked=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;checked&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+</pre></div>
+
+<p><strong>Стильові атрибути</strong></p>
+
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">a</span>(<span style="color: #336699">style=</span><spa">{</span><span style="color: #336699">color:</span> <span>&#39;</span><span style="color: #336699">red</span><span>&#39;,</span> <span style="color: #336699">background:</span> <span>&#39;</span><span style="color: #336699">green</span><span>&#39;}</span>)
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">style=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;color:red;background:green;&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/a&gt;</span>
+</pre></div>
+
+<p><strong>Атрибути класів</strong></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+- <span style="color: #008800; font-weight: bold">var</span> currentUrl <span style="color: #008800; font-weight: bold">=</span> <span>&#39;</span>/about<span>&#39;</span>
+<span style="color: #bb0066; font-weight: bold">a</span>(<span style="color: #336699">class=</span><span>{</span><span style="color: #336699">active:</span> <span style="color: #336699">currentUrl =</span><span>==</span> <span style="color: #dd2200; background-color: #fff0f0">&#39;/&#39;</span><span>}</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/&#39;</span>) Home
+<span style="color: #bb0066; font-weight: bold">a</span>(<span style="color: #336699">class=</span><span>{</span><span style="color: #336699">active:</span> <span style="color: #336699">currentUrl =</span><span>==</span> <span style="color: #dd2200; background-color: #fff0f0">&#39;/about&#39;</span><span>}</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/about&#39;</span>) About</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>Home<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;active&quot;</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/about&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>About<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span></pre></div>
+  
+<p><strong>Додати клас або id до блоку</strong></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">div</span><span style="color: #0066bb; font-weight: bold">#foo</span>
+<span style="color: #bb0066; font-weight: bold">div.bazz</span></pre></div>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">id=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;foo&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/div&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;baz&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/div&gt;</span> </pre></div>
+  
+<p><strong>Оператор case</strong></p>
+<p>Є скороченням для оператора switch JavaScript.
+  Він приймає наступний вигляд:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+- <span style="color: #008800; font-weight: bold">var</span> friends <span style="color: #008800; font-weight: bold">=</span> <span style="color: #0000DD; font-weight: bold">10</span>
+<span style="color: #bb0066; font-weight: bold">case</span> friends
+  <span style="color: #bb0066; font-weight: bold">when</span> 0
+    <span style="color: #bb0066; font-weight: bold">p</span> you have no friends
+  <span style="color: #bb0066; font-weight: bold">when</span> 1
+    <span style="color: #bb0066; font-weight: bold">p</span> you have a friend
+  <span style="color: #bb0066; font-weight: bold">default</span>
+    <span style="color: #bb0066; font-weight: bold">p</span> you have <span style="color: #3333bb; background-color: #fff0f0">#{</span>friends<span style="color: #3333bb; background-color: #fff0f0">}</span> friends
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;p&gt;</span>you have 10 friends<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span>
+</pre></div>
+<p><strong>Вбудований JS</strong></p>
+<p>Pug дозволяє писати вбудований код JavaScript в шаблонах.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+  -
+  <span style="color: #bb0066; font-weight: bold">var</span> list = [&quot;Uno&quot;, &quot;Dos&quot;, &quot;Tres&quot;,
+          <span>&quot;</span><span style="color: #bb0066; font-weight: bold">Cuatro</span>&quot;, &quot;Cinco&quot;, &quot;Seis&quot;]
+<span style="color: #bb0066; font-weight: bold">each</span> item in list
+  <span style="color: #bb0066; font-weight: bold">li</span>= item
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Uno<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Dos<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Tres<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Cuatro<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Cinco<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Seis<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span></pre></div>
+  
+<p><strong>Коментарі</strong></p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">body</span>
+<span style="color: #888888">//-</span>
+  <span style="color: #888888">Comments for your template writers.</span>
+  <span style="color: #888888">Use as much text as you want.</span>
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;body&gt;</span>
+<span style="color: #888888">&lt;!--Comments for your HTML readers.</span>
+<span style="color: #888888">Use as much text as you want.--&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/body&gt;</span>
+</pre></div>
+
+<p><strong>Умовний синтаксис</strong></p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+  - <span style="color: #008800; font-weight: bold">var</span> user <span style="color: #008800; font-weight: bold">=</span> { description<span style="color: #008800; font-weight: bold">:</span> <span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #888888; font-weight: bold">foo</span> <span style="color: #888888; font-weight: bold">bar</span> <span style="color: #888888; font-weight: bold">baz</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span> }
+  - <span style="color: #008800; font-weight: bold">var</span> authorised <span style="color: #008800; font-weight: bold">=</span> <span style="color: #008800; font-weight: bold">false</span>
+  <span style="color: #0066bb; font-weight: bold">#user</span>
+    <span style="color: #bb0066; font-weight: bold">if</span> user.description
+      <span style="color: #bb0066; font-weight: bold">h2.green</span> Description
+      <span style="color: #bb0066; font-weight: bold">p.description</span>= user.description
+    <span style="color: #bb0066; font-weight: bold">else</span> authorised
+      <span style="color: #bb0066; font-weight: bold">h2.blue</span> Description
+      <span style="color: #bb0066; font-weight: bold">p.description</span>.
+        <span style="color: #bb0066; font-weight: bold">User</span> has no description,
+        <span style="color: #bb0066; font-weight: bold">why</span> not add one…</pre></div>
+  <br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;div</span> <span style="color: #336699">id=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;user&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;h2</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;green&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>Description<span style="color: #bb0066; font-weight: bold">&lt;/h2&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;p</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;description&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>foo bar baz<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+
+<p><strong>Часткове застосування шаблону</strong></p>
+<p>Існує можливість вставки вмісту одного файлу Pug в інший.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+  <span style="color: #888888">//- index.pug</span>
+  <span style="color: #bb0066; font-weight: bold">doctype</span> html
+  <span style="color: #bb0066; font-weight: bold">html</span>
+    <span style="color: #bb0066; font-weight: bold">include</span> includes/head.pug
+    <span style="color: #bb0066; font-weight: bold">body</span>
+      <span style="color: #bb0066; font-weight: bold">h1</span> My Site
+      <span style="color: #bb0066; font-weight: bold">p</span> Welcome to my super lame site.
+      
+  <span style="color: #888888">//- includes/head.pug</span>
+  <span style="color: #bb0066; font-weight: bold">head</span>
+    <span style="color: #bb0066; font-weight: bold">title</span> My Site
+    <span style="color: #bb0066; font-weight: bold">script</span>(<span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/javascripts/jquery.js&#39;</span>)
+    <span style="color: #bb0066; font-weight: bold">script</span>(<span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/javascripts/app.js&#39;</span>)
+  </pre></div>
+  <br>
+  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #cc0000; font-weight: bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;html&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;head&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;title&gt;</span>My Site<span style="color: #bb0066; font-weight: bold">&lt;/title&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;script </span><span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/javascripts/jquery.js&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/script&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;script </span><span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/javascripts/app.js&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/script&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/head&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;body&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>My Site<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;p&gt;</span>Welcome to my super lame site.<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/body&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;/html&gt;</span>
+</pre></div>
+
+  <p><strong>Успадкування шаблонів</strong></p>
+  <p>Pug підтримує успадкування шаблонів. Успадкування шаблонів працює через ключові слова block і extends.</p>
+  <p>У шаблоні блок - це просто «блок» Pug, який може замінити дочірній шаблон. Цей процес є рекурсивним.</p>
+  <p>Блоки Pug можуть надавати вміст за замовчуванням, якщо це необхідно. Однак надання вмісту за замовчуванням є необов'язковим.</p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+<span style="color: #888888">//- layout.pug</span>
+<span style="color: #bb0066; font-weight: bold">html</span>
+  <span style="color: #bb0066; font-weight: bold">head</span>
+    <span style="color: #bb0066; font-weight: bold">title</span> My Site - <span style="color: #3333bb; background-color: #fff0f0">#{</span>title<span style="color: #3333bb; background-color: #fff0f0">}</span>
+    <span style="color: #bb0066; font-weight: bold">block</span> scripts
+      <span style="color: #bb0066; font-weight: bold">script</span>(<span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/jquery.js&#39;</span>)
+  <span style="color: #bb0066; font-weight: bold">body</span>
+    <span style="color: #bb0066; font-weight: bold">block</span> content
+    <span style="color: #bb0066; font-weight: bold">block</span> foot
+      <span style="color: #0066bb; font-weight: bold">#footer</span>
+        <span style="color: #bb0066; font-weight: bold">p</span> some footer content
+
+
+<span style="color: #888888">//- page-a.pug</span>
+<span style="color: #bb0066; font-weight: bold">extends</span> layout.pug
+
+<span style="color: #bb0066; font-weight: bold">block</span> scripts
+  <span style="color: #bb0066; font-weight: bold">script</span>(<span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/jquery.js&#39;</span>)
+  <span style="color: #bb0066; font-weight: bold">script</span>(<span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;/pets.js&#39;</span>)
+
+<span style="color: #bb0066; font-weight: bold">block</span> content
+  <span style="color: #bb0066; font-weight: bold">h1</span>= title
+  - <span style="color: #008800; font-weight: bold">var</span> pets <span style="color: #008800; font-weight: bold">=</span> [<span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #888888; font-weight: bold">cat</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span>, <span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #888888; font-weight: bold">dog</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span>]
+  <span style="color: #bb0066; font-weight: bold">each</span> petName in pets
+    <span style="color: #bb0066; font-weight: bold">include</span> pet.pug
+	
+<span style="color: #888888">//- pet.pug</span>
+<span style="color: #bb0066; font-weight: bold">p</span>= petName
+</pre></div>
+
+<p><strong>Інтерполяція</strong></p>
+
+<p>Pug надає різноманітні можливості для використання інтерполяції.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+  - <span style="color: #008800; font-weight: bold">var</span> msg <span style="color: #008800; font-weight: bold">=</span> <span style="color: #dd2200; background-color: #fff0f0">&quot;not my inside voice&quot;</span>;
+  <span style="color: #bb0066; font-weight: bold">p</span> This is <span style="color: #3333bb; background-color: #fff0f0">#{</span>msg.toUpperCase()<span style="color: #3333bb; background-color: #fff0f0">}</span>
+  </pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;p&gt;</span>This is NOT MY INSIDE VOICE<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span>
+</pre></div>
+
+<p><strong>Ітерація блоків</strong></p>
+<p>Pug підтримує два основні методи ітерації: each and while.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">ul</span>
+  <span style="color: #bb0066; font-weight: bold">each</span> val in [1, 2, 3, 4, 5]
+    <span style="color: #bb0066; font-weight: bold">li</span>= <span style="color: #008800; font-weight: bold">val</span>
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;ul&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>1<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>2<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>3<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>4<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>5<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/ul&gt;</span>
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+  - <span style="color: #008800; font-weight: bold">var</span> n <span style="color: #008800; font-weight: bold">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+  <span style="color: #bb0066; font-weight: bold">ul</span>
+    <span style="color: #bb0066; font-weight: bold">while</span> n &lt; 4
+      <span style="color: #bb0066; font-weight: bold">li</span>= n++
+  </pre></div>
+  <br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;ul&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>0<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>1<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>2<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>3<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/ul&gt;</span>
+</pre></div>
+<p><strong>Перевикористання блоків</strong></p>
+<p>Mixins дозволяють перевикористати блоки Pug.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+
+<span style="color: #bb0066; font-weight: bold">mixin</span> link(href, name)
+<span style="color: #888888">//- attributes == {class: &quot;btn&quot;}</span>
+<span style="color: #bb0066; font-weight: bold">a</span>(<span style="color: #336699">class</span><span>!=</span><span style="color: #336699">attributes</span><span>.</span><span style="color: #336699">class</span> <span style="color: #336699">href=href</span>)= name
+
+<span>+</span><span style="color: #bb0066; font-weight: bold">link</span>(<span>&#39;/</span><span style="color: #336699">foo</span><span>&#39;,</span> <span>&#39;</span><span style="color: #336699">foo</span><span>&#39;</span>)(<span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;btn&quot;</span>)
+<span>+</span><span style="color: #bb0066; font-weight: bold">link</span>(<span>&#39;/</span><span style="color: #336699">bazz</span><span>&#39;,</span> <span>&#39;</span><span style="color: #336699">bazz</span><span>&#39;</span>)(<span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;btn&quot;</span>)
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;btn&quot;</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/foo&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>foo<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">class=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;btn&quot;</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/bazz&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>bazz<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span></pre></div>
+  
+<p><strong>Вставка тексту або коду</strong></p>
+<p>Приклади вставки простого тексту і лістинг коду</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+ 
+<span style="color: #bb0066; font-weight: bold">p</span>
+  | The pipe always goes at the beginning of its own line,
+  | not counting indentation.
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;p&gt;</span>The pipe always goes at the beginning of its own line, 
+not counting indentation.<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span></pre></div>
+  
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+ 
+<span style="color: #bb0066; font-weight: bold">script</span>.
+  <span style="color: #bb0066; font-weight: bold">if</span> (usingPug)
+    <span style="color: #bb0066; font-weight: bold">console.log</span>(<span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #336699">you</span> <span style="color: #336699">are</span> <span style="color: #336699">awesome</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span>)
+  <span style="color: #bb0066; font-weight: bold">else</span>
+    <span style="color: #bb0066; font-weight: bold">console.log</span>(<span style="color: #a61717; background-color: #e3d2d2">&#39;</span><span style="color: #336699">use</span> <span style="color: #336699">pug</span><span style="color: #a61717; background-color: #e3d2d2">&#39;</span>)
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;script&gt;</span>
+  <span style="color: #008800; font-weight: bold">if</span> (usingPug)
+    console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;you are awesome&#39;</span>)
+  <span style="color: #008800; font-weight: bold">else</span>
+    console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;use pug&#39;</span>)
+<span style="color: #bb0066; font-weight: bold">&lt;/script&gt;</span>
+</pre></div>
+
+<p>За замовчуванням текст на початку рядка (або тільки пробіл) являє собою HTML-тег. Теги з відступом є вкладеними, створюючи при цьому деревоподібну структуру HTML.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+ 
+<span style="color: #bb0066; font-weight: bold">ul</span>
+  <span style="color: #bb0066; font-weight: bold">li</span> Item A
+  <span style="color: #bb0066; font-weight: bold">li</span> Item B
+  <span style="color: #bb0066; font-weight: bold">li</span> Item C
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;ul&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Item A<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Item B<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;li&gt;</span>Item C<span style="color: #bb0066; font-weight: bold">&lt;/li&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/ul&gt;</span>
+</pre></div>
+<br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// Вихідний код</span>
+ 
+<span style="color: #bb0066; font-weight: bold">foo</span>/
+<span style="color: #bb0066; font-weight: bold">foo</span>(<span style="color: #336699">bar=</span><span style="color: #dd2200; background-color: #fff0f0">&#39;baz&#39;</span>)/</pre></div>
+  <br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">&lt;!-- Виведення шаблонізатора --&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;foo/&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;foo</span> <span style="color: #336699">bar=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;baz&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+</pre></div>
+</div>
+  </body>
+</html>
