@@ -8,58 +8,64 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <h1>Модулі та файлова система</h1>
-    <h2>Вступ</h2>
-    <p>
-      До 2009 року JavaScript сприймався як мова сценаріїв для браузерів. У 2009
-      році розробник Райан Дал (Ryan Dahl) створив Node.js. Платформа Node була
-      прийнята блискавично і стала популярною навіть на досить консервативному
-      корпоративному ринку.
-    </p>
-    <p>
-      Тим, кому JavaScript подобався як мова, платформа Node дозволила
-      використовувати його для задач, традиційно пов'язаних з іншими мовами. Для
-      веб-розробників привабливість виявилася куди сильнішою, ніж просто вибір
-      мови. Можливість писати серверний код на JavaScript означає однакову
-      середу програмування. Більше не потрібно в розумі перемикати контексти
-      виконання програм, не потрібні фахівці з інших серверних технологій і один
-      і той же код можна запускати як на сервері, так і на клієнті.
-    </p>
-    <p>
-      Хоча платформа Node замислювалася для розробки веб-додатків, її
-      перенесення на сервер несподівано забезпечило інше нетрадиційне
-      використання, таке як розробка додатків для робочого столу і системних
-      сценаріїв. У певному сенсі платформа Node дозволила мові JavaScript
-      подорослішати і зміцнитися.
-    </p>
-    <p>
-      Написання програм для Node нічим не відрізняється від написання будь-яких
-      інших додатків на JavaScript. Але в Node немає ніякого DOM і є свій
-      інтерфейс API, який специфічний для Node і не підтримується в браузері.
-      Деякі речі, такі як прямі виклики функцій операційної і файлової системи,
-      недоступні в браузері з міркувань безпеки.
-    </p>
-    <p>
-      Інші можливості, такі як створення веб-сервера, для браузера просто зайві.
-      Важливо зрозуміти, що становить основу JavaScript, а що є частиною API.
-      Програміст, який завжди писав код для браузера, міг би цілком резонно
-      вважати, що об'єкти window і document - це просто частина JavaScript.
-      Однак це частини API, що надаються середовищем браузера.
-    </p>
-    <h2>Модулі</h2>
-    <p><strong>Існує кілька підходів до написання тестів.</strong></p>
-    <p>
-      <strong>Модуль</strong> - це механізм для пакування коду і застосування в
-      ньому просторів імен.
-    </p>
-    <p>
-      <strong>Простори імен</strong> (namespacing) - це засіб для запобігання
-      конфліктів імен.
-    </p>
-    <p>Давайте розглянемо, як модулі Node вирішують цю проблему.</p>
+    <div class="container">
+      <h1>Модулі та файлова система</h1>
+      <h2>Вступ</h2>
+      <p>
+        До 2009 року JavaScript сприймався як мова сценаріїв для браузерів. У
+        2009 році розробник Райан Дал (Ryan Dahl) створив Node.js. Платформа
+        Node була прийнята блискавично і стала популярною навіть на досить
+        консервативному корпоративному ринку.
+      </p>
+      <p>
+        Тим, кому JavaScript подобався як мова, платформа Node дозволила
+        використовувати його для задач, традиційно пов'язаних з іншими мовами.
+        Для веб-розробників привабливість виявилася куди сильнішою, ніж просто
+        вибір мови. Можливість писати серверний код на JavaScript означає
+        однакову середу програмування. Більше не потрібно в розумі перемикати
+        контексти виконання програм, не потрібні фахівці з інших серверних
+        технологій і один і той же код можна запускати як на сервері, так і на
+        клієнті.
+      </p>
+      <p>
+        Хоча платформа Node замислювалася для розробки веб-додатків, її
+        перенесення на сервер несподівано забезпечило інше нетрадиційне
+        використання, таке як розробка додатків для робочого столу і системних
+        сценаріїв. У певному сенсі платформа Node дозволила мові JavaScript
+        подорослішати і зміцнитися.
+      </p>
+      <p>
+        Написання програм для Node нічим не відрізняється від написання
+        будь-яких інших додатків на JavaScript. Але в Node немає ніякого DOM і є
+        свій інтерфейс API, який специфічний для Node і не підтримується в
+        браузері. Деякі речі, такі як прямі виклики функцій операційної і
+        файлової системи, недоступні в браузері з міркувань безпеки.
+      </p>
+      <p>
+        Інші можливості, такі як створення веб-сервера, для браузера просто
+        зайві. Важливо зрозуміти, що становить основу JavaScript, а що є
+        частиною API. Програміст, який завжди писав код для браузера, міг би
+        цілком резонно вважати, що об'єкти window і document - це просто частина
+        JavaScript. Однак це частини API, що надаються середовищем браузера.
+      </p>
+      <h2>Модулі</h2>
+      <p><strong>Існує кілька підходів до написання тестів.</strong></p>
+      <p>
+        <strong>Модуль</strong> - це механізм для пакування коду і застосування
+        в ньому просторів імен.
+      </p>
+      <p>
+        <strong>Простори імен</strong> (namespacing) - це засіб для запобігання
+        конфліктів імен.
+      </p>
+      <p>Давайте розглянемо, як модулі Node вирішують цю проблему.</p>
 
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-    <pre style="margin: 0; line-height: 125%">  <span style="color: #888888">// Створимо модуль a.js:</span>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >  <span style="color: #888888">// Створимо модуль a.js:</span>
 
   <span style="color: #008800; font-weight: bold">function</span> calculate(a, b) {
     <span style="color: #008800; font-weight: bold">return</span> a + b;
@@ -74,36 +80,45 @@
   }
   
   module.exports = calculate;
-</pre></div>
+</pre>
+      </div>
 
-    </div>
-
-    <p>
-      Важливий рядок в обох цих файлах module.exports = calculate. Конструкція
-      module - спеціальний об'єкт, який введений в Node заради реалізації
-      модулів. Все те, що буде присвоєно його властивості exports, буде
-      експортуватися з цього модуля. Тепер давайте подивимося, як їх можна
-      використовувати в іншій програмі. Давайте створимо файл арр.js, в якому
-      імпортуємо ці модулі:
-    </p>
-    <p>Давайте создадим файл арр.js, в котором импортируем эти модули:</p>
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"> <span style="color: #008800; font-weight: bold">const</span> sum = require(<span style="color: #dd2200; ">&#39;./a&#39;</span>);
+      <p>
+        Важливий рядок в обох цих файлах module.exports = calculate. Конструкція
+        module - спеціальний об'єкт, який введений в Node заради реалізації
+        модулів. Все те, що буде присвоєно його властивості exports, буде
+        експортуватися з цього модуля. Тепер давайте подивимося, як їх можна
+        використовувати в іншій програмі. Давайте створимо файл арр.js, в якому
+        імпортуємо ці модулі:
+      </p>
+      <p>Давайте создадим файл арр.js, в котором импортируем эти модули:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        > <span style="color: #008800; font-weight: bold">const</span> sum = require(<span style="color: #dd2200; ">&#39;./a&#39;</span>);
  <span style="color: #008800; font-weight: bold">const</span> mul = require(<span style="color: #dd2200; ">&#39;./b&#39;</span>);
       
  console.log(sum(<span style="color: #0000DD; font-weight: bold">2</span>, <span style="color: #0000DD; font-weight: bold">3</span>));
  console.log(mul(<span style="color: #0000DD; font-weight: bold">2</span>, <span style="color: #0000DD; font-weight: bold">3</span>));
-</pre></div>
-    <p>
-      Модулі можуть експортувати значення будь-якого типу (навіть базового, хоча
-      для цього є небагато причин). Зазвичай ваш модуль буде містити не одну
-      функцію, а декілька. В цьому випадку ви повинні експортувати об'єкт з
-      властивостями функції.
-    </p>
+</pre>
+      </div>
+      <p>
+        Модулі можуть експортувати значення будь-якого типу (навіть базового,
+        хоча для цього є небагато причин). Зазвичай ваш модуль буде містити не
+        одну функцію, а декілька. В цьому випадку ви повинні експортувати об'єкт
+        з властивостями функції.
+      </p>
 
-    <p>Припустимо, що ми вирішили об'єднати два модуля в один calculate.js:</p>
+      <p>
+        Припустимо, що ми вирішили об'єднати два модуля в один calculate.js:
+      </p>
 
-   <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-    <pre style="margin: 0; line-height: 125%">module.exports = {
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">module.exports = {
   sum(a, b) {
     <span style="color: #008800; font-weight: bold">return</span> a + b;
   }, 
@@ -112,155 +127,292 @@
   }
 }
 </pre>
-</div>
+      </div>
 
-  <p>Це призводить до більш традиційного підходу до просторів імен - ми присвоюємо ім'я того, що повертається з модуля, але значення (об'єкт), що повертається, містить власні імена:</p>
+      <p>
+        Це призводить до більш традиційного підходу до просторів імен - ми
+        присвоюємо ім'я того, що повертається з модуля, але значення (об'єкт),
+        що повертається, містить власні імена:
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-  <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> calculate = require(<span style="color: #dd2200;">&#39;./calculate&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> calculate = require(<span style="color: #dd2200;">&#39;./calculate&#39;</span>);
 
 console.log(calculate.sum(<span style="color: #0000DD; font-weight: bold">2</span>, <span style="color: #0000DD; font-weight: bold">3</span>));
 console.log(calculate.mul(<span style="color: #0000DD; font-weight: bold">2</span>, <span style="color: #0000DD; font-weight: bold">3</span>));</pre>
-</div>
+      </div>
 
-  <p>Тут модуль просто експортує звичайний об'єкт з функціональними властивостями. Дана парадигма настільки поширена, що для неї був передбачений скорочений синтаксис, який використовує спеціальну змінну exports. Ми можемо переписати експортований модуль так:</p>
+      <p>
+        Тут модуль просто експортує звичайний об'єкт з функціональними
+        властивостями. Дана парадигма настільки поширена, що для неї був
+        передбачений скорочений синтаксис, який використовує спеціальну змінну
+        exports. Ми можемо переписати експортований модуль так:
+      </p>
 
-  <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-    <pre style="margin: 0; line-height: 125%">exports.sum = <span style="color: #008800; font-weight: bold">function</span>(a, b) {
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >exports.sum = <span style="color: #008800; font-weight: bold">function</span>(a, b) {
     <span style="color: #008800; font-weight: bold">return</span> a + b;
   };
 
 exports.mul = <span style="color: #008800; font-weight: bold">function</span>(a, b) {
     <span style="color: #008800; font-weight: bold">return</span> a * b;
   };</pre>
-</div>
-  
-  <p>Скорочення exports працює тільки при експорті об'єктів; якщо ви хочете експортувати функцію або якесь інше значення, використовуйте module.exports. Крім того, ви не можете їх змішувати - використовуйте або одне, або інше.</p>
+      </div>
 
-  <h2>Базові, файлові і nрm-модулі</h2>
+      <p>
+        Скорочення exports працює тільки при експорті об'єктів; якщо ви хочете
+        експортувати функцію або якесь інше значення, використовуйте
+        module.exports. Крім того, ви не можете їх змішувати - використовуйте
+        або одне, або інше.
+      </p>
 
-  <p>Модули относятся к трем категориям: </p>
+      <h2>Базові, файлові і nрm-модулі</h2>
 
-  <ol>
-    <li>базові (core module)</li>
-    <li>файлові (file module)</li>
-    <li>npm-модулі (npm module)</li>
-  </ol>
+      <p>Модули относятся к трем категориям:</p>
 
-  <p>Імена базових модулів зарезервовані; ці модулі, наприклад, fs і os, надає саме середовище Node. Файловий модуль - це коли вами створюється файл з експортованою функцією, в якому присвоювалося щось (функція, об'єкт і т.д.) властивості module.exports, а потім цей файл використовується в інших файлах вашої програми. </p>
+      <ol>
+        <li>базові (core module)</li>
+        <li>файлові (file module)</li>
+        <li>npm-модулі (npm module)</li>
+      </ol>
 
-  <p>Модулі npm - це звичайні файлові модулі, які знаходяться в спеціальній папці, яка називається node_modules. Коли ви використовуєте функцію require, Node визначає тип модуля з переданого рядка. </p>
+      <p>
+        Імена базових модулів зарезервовані; ці модулі, наприклад, fs і os,
+        надає саме середовище Node. Файловий модуль - це коли вами створюється
+        файл з експортованою функцією, в якому присвоювалося щось (функція,
+        об'єкт і т.д.) властивості module.exports, а потім цей файл
+        використовується в інших файлах вашої програми.
+      </p>
 
-  <p>Базовий модуль або npm модуль:</p>
+      <p>
+        Модулі npm - це звичайні файлові модулі, які знаходяться в спеціальній
+        папці, яка називається node_modules. Коли ви використовуєте функцію
+        require, Node визначає тип модуля з переданого рядка.
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">require(<span style="color: #dd2200; ">&#39;fs&#39;</span>)
+      <p>Базовий модуль або npm модуль:</p>
+
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >require(<span style="color: #dd2200; ">&#39;fs&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;os&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;http&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;debug&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;express&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;koa&#39;</span>)
-</pre></div>
+</pre>
+      </div>
 
-<p>Файловий модуль (важливо! - починається з '/', './' або '../')</p>
+      <p>Файловий модуль (важливо! - починається з '/', './' або '../')</p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
 require(<span style="color: #dd2200; ">&#39;./logger&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;/full/path/to/module&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;../a&#39;</span>)
 require(<span style="color: #dd2200; ">&#39;../../а&#39;</span>)
-</pre></div>
+</pre>
+      </div>
 
-  <p>Деякі базові модулі, такі як process і buffer, є глобальними. Вони доступні завжди і не вимагають явного оператора require</p>
-  
-  <p>Це:</p>
-  
-  <ul>
-    <li>buffer - використовується для операцій введення-виведення (I / O)(Перш за все, в файл і мережу)</li>
-    <li>stream - передача потокових даних</li>
-    <li>url - утиліти аналізу URL</li>
-  </ul>
+      <p>
+        Деякі базові модулі, такі як process і buffer, є глобальними. Вони
+        доступні завжди і не вимагають явного оператора require
+      </p>
 
-  <p>Глобальні модулі, які треба підключати через require:</p>
+      <p>Це:</p>
 
-  <ul>
-    <li>assert - використовується в перевірочних цілях для тестування</li>
-    <li>child_process - функції для запуску зовнішніх програм (Node та ін.)</li>
-    <li>cluster - дозволяє використовувати кілька процесів для підвищення продуктивності вашого додатка</li>
-    <li>crypto - вбудовані криптографічні бібліотеки</li>
-    <li>dns - функції системи доменних імен (DNS) для перетворення мережевих імен</li>
-    <li>domain - дозволяє групувати введення-виведення та інші асинхронні операції для ізоляції помилок</li>
-    <li>events - утиліти для підтримки асинхронних подій</li>
-    <li>fs - операції файлової системи</li>
-    <li>http - сервер НТТР і пов'язані з ним утиліти</li>
-    <li>https - сервер НТТРS і пов'язані з ним утиліти</li>
-    <li>net - асинхронне мережеве API на базі сокетів</li>
-    <li>os - утиліти операційної системи</li>
-    <li>path - утиліти імен та шляхів файлової системи</li>
-    <li>querystring - утиліти для аналізу і створення рядків запитів URL</li>
-    <li>readline - інтерактивні утиліти введення-виведення; в першу чергу, для програм командного рядка</li>
-    <li>smalloc - забезпечує явний розподіл пам'яті для буферів</li>
-    <li>string_decoder - перетворення буфера в рядки</li>
-    <li>util - внутрішні утиліти Node</li>
-    <li>zlib - утиліта стиснення</li>
-  </ul>
+      <ul>
+        <li>
+          buffer - використовується для операцій введення-виведення (I / O)(Перш
+          за все, в файл і мережу)
+        </li>
+        <li>stream - передача потокових даних</li>
+        <li>url - утиліти аналізу URL</li>
+      </ul>
 
-  <p>Детальна документація для цих модулів доступна в <a href="https://nodejs.org/api/">документації</a> API Node</p>
-  
-  <p>Якщо ви підключаєте деякий модуль moduleName (де moduleName - НЕ базовий модуль), то Node буде шукати в поточному каталозі підкаталог node_modules.</p>
+      <p>Глобальні модулі, які треба підключати через require:</p>
 
-  <p>Якщо він його знайде, то буде шукати модуль moduleName в цьому каталозі. Якщо він його не знайде, то перейде до батьківського каталогу, і знову почне шукати каталог node_modules, продовживши пошук в ньому.</p>
+      <ul>
+        <li>assert - використовується в перевірочних цілях для тестування</li>
+        <li>
+          child_process - функції для запуску зовнішніх програм (Node та ін.)
+        </li>
+        <li>
+          cluster - дозволяє використовувати кілька процесів для підвищення
+          продуктивності вашого додатка
+        </li>
+        <li>crypto - вбудовані криптографічні бібліотеки</li>
+        <li>
+          dns - функції системи доменних імен (DNS) для перетворення мережевих
+          імен
+        </li>
+        <li>
+          domain - дозволяє групувати введення-виведення та інші асинхронні
+          операції для ізоляції помилок
+        </li>
+        <li>events - утиліти для підтримки асинхронних подій</li>
+        <li>fs - операції файлової системи</li>
+        <li>http - сервер НТТР і пов'язані з ним утиліти</li>
+        <li>https - сервер НТТРS і пов'язані з ним утиліти</li>
+        <li>net - асинхронне мережеве API на базі сокетів</li>
+        <li>os - утиліти операційної системи</li>
+        <li>path - утиліти імен та шляхів файлової системи</li>
+        <li>
+          querystring - утиліти для аналізу і створення рядків запитів URL
+        </li>
+        <li>
+          readline - інтерактивні утиліти введення-виведення; в першу чергу, для
+          програм командного рядка
+        </li>
+        <li>smalloc - забезпечує явний розподіл пам'яті для буферів</li>
+        <li>string_decoder - перетворення буфера в рядки</li>
+        <li>util - внутрішні утиліти Node</li>
+        <li>zlib - утиліта стиснення</li>
+      </ul>
 
-  <p>Процес буде повторюватися, поки не буде знайдений модуль або досягнутий кореневий каталог.</p>
+      <p>
+        Детальна документація для цих модулів доступна в
+        <a href="https://nodejs.org/api/">документації</a> API Node
+      </p>
 
-  <p>Наприклад, якщо ваш проект знаходиться в каталозі /home/webDir/project і в своєму файлі програми ви викликаєте функцію require ( 'moduleName'), Node буде шукати модуль moduleName в перерахованих нижче каталогах в такому порядку:</p>
+      <p>
+        Якщо ви підключаєте деякий модуль moduleName (де moduleName - НЕ базовий
+        модуль), то Node буде шукати в поточному каталозі підкаталог
+        node_modules.
+      </p>
 
-  <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span ">/home /webDir/project/node_modules/moduleName </span>
+      <p>
+        Якщо він його знайде, то буде шукати модуль moduleName в цьому каталозі.
+        Якщо він його не знайде, то перейде до батьківського каталогу, і знову
+        почне шукати каталог node_modules, продовживши пошук в ньому.
+      </p>
+
+      <p>
+        Процес буде повторюватися, поки не буде знайдений модуль або досягнутий
+        кореневий каталог.
+      </p>
+
+      <p>
+        Наприклад, якщо ваш проект знаходиться в каталозі /home/webDir/project і
+        в своєму файлі програми ви викликаєте функцію require ( 'moduleName'),
+        Node буде шукати модуль moduleName в перерахованих нижче каталогах в
+        такому порядку:
+      </p>
+
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span >/home /webDir/project/node_modules/moduleName </span>
 /home /WebDir/node_modules/moduleName 
 /home/node_modules/moduleName 
 /node_modules/moduleName 
-</pre></div>
+</pre>
+      </div>
 
-<p>Для більшості проектів створюється один каталог <em>node_modules</em>  в кореневому каталозі програми. Крім того, ви не повинні нічого додавати або видаляти з того каталогу вручну - це повинна робити утиліта npm самостійно. Однак треба знати, як Node шукає імпортовані модулі, бо рано чи пізно настане проблема пошуку помилок в модулях стороннього розробника.</p>
+      <p>
+        Для більшості проектів створюється один каталог <em>node_modules</em> в
+        кореневому каталозі програми. Крім того, ви не повинні нічого додавати
+        або видаляти з того каталогу вручну - це повинна робити утиліта npm
+        самостійно. Однак треба знати, як Node шукає імпортовані модулі, бо рано
+        чи пізно настане проблема пошуку помилок в модулях стороннього
+        розробника.
+      </p>
 
-<p>Ніколи не кладіть ті модулі, які ви пишете самі, в каталог <em>node_modules</em>  вручну. Каталог <em>node_modules</em>  видаляється і створюється утилітою npm із залежностей, що перераховані у файлі  <em>package.json</em> вашого проекту.</p>
+      <p>
+        Ніколи не кладіть ті модулі, які ви пишете самі, в каталог
+        <em>node_modules</em> вручну. Каталог <em>node_modules</em> видаляється
+        і створюється утилітою npm із залежностей, що перераховані у файлі
+        <em>package.json</em> вашого проекту.
+      </p>
 
-<h2>Доступ до файлової системи</h2>
+      <h2>Доступ до файлової системи</h2>
 
-<p>У прикладах мається на увазі, що кореневий каталог проекту \ WebDir \ Node_exp \ intro. Щоб створити файл, використовуйте метод fs.writeFile.</p>
+      <p>
+        У прикладах мається на увазі, що кореневий каталог проекту \ WebDir \
+        Node_exp \ intro. Щоб створити файл, використовуйте метод fs.writeFile.
+      </p>
 
-<p class="label">Створіть в кореневому каталозі проекту файл write.js:</p>
+      <p class="label">Створіть в кореневому каталозі проекту файл write.js:</p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 
 fs.writeFile(<span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>, (err) =&gt; {
   <span style="color: #008800; font-weight: bold">if</span> (err) {
     console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Error write to file!&#39;</span>);
   }
 });</pre>
-</div>
+      </div>
 
-<p>Цей код створить файл hello.txt в тому каталозі, в якому ви перебували під час запуску програми write.js. Тут мається на увазі, що ви маєте права доступу по запису до цього каталогу і що в каталозі немає заздалегідь створеного файлу тільки для читання hello.txt.</p>
+      <p>
+        Цей код створить файл hello.txt в тому каталозі, в якому ви перебували
+        під час запуску програми write.js. Тут мається на увазі, що ви маєте
+        права доступу по запису до цього каталогу і що в каталозі немає
+        заздалегідь створеного файлу тільки для читання hello.txt.
+      </p>
 
-<p>У Node існує спеціальна змінна, __dirname, яка завжди містить шлях до каталогу, в якому розташовується файл вихідного коду.</p>
+      <p>
+        У Node існує спеціальна змінна, __dirname, яка завжди містить шлях до
+        каталогу, в якому розташовується файл вихідного коду.
+      </p>
 
-<p class="label">Наприклад, ми можемо змінити свій приклад так:</p>
+      <p class="label">Наприклад, ми можемо змінити свій приклад так:</p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 
 fs.writeFile(__dirname + <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>, (err) =&gt; {
   <span style="color: #008800; font-weight: bold">if</span> (err) {
     console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Error write to file!&#39;</span>);
   }
 });
-</pre></div>
+</pre>
+      </div>
 
-<p>Тепер додаток write.js завжди буде створювати файл hello.txt в каталозі \ WebDir \ Node_exp \ intro (де знаходиться write.js). Використання конкатенації рядків для об'єднання змінної __dirname і імені файлу - не дуже гарна ідея. Це може викликати проблеми на комп'ютері під керуванням різних операційних системи, оскільки роздільник імен каталогів в них різний.</p>
+      <p>
+        Тепер додаток write.js завжди буде створювати файл hello.txt в каталозі
+        \ WebDir \ Node_exp \ intro (де знаходиться write.js). Використання
+        конкатенації рядків для об'єднання змінної __dirname і імені файлу - не
+        дуже гарна ідея. Це може викликати проблеми на комп'ютері під керуванням
+        різних операційних системи, оскільки роздільник імен каталогів в них
+        різний.
+      </p>
 
-<p>Тому в Node в модулі path передбачені незалежні від платформи утиліти для роботи з іменами файлів і шляхами. Таким чином, ми можемо переписати цей модуль так, щоб він без проблем працював на будь-якій платформі:</p>
+      <p>
+        Тому в Node в модулі path передбачені незалежні від платформи утиліти
+        для роботи з іменами файлів і шляхами. Таким чином, ми можемо переписати
+        цей модуль так, щоб він без проблем працював на будь-якій платформі:
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> path = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;path&#39;</span>);
 
 fs.writeFile(path.join(__dirname, <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>), <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>, (err) =&gt; {
@@ -268,15 +420,24 @@ fs.writeFile(path.join(__dirname, <span style="color: #dd2200; background-color:
     console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Error write to file!&#39;</span>);
   }
 });</pre>
-</div>
+      </div>
 
-<p>Метод path.join об'єднує елементи шляху, використовуючи той роздільник каталогів, який прийнятий в поточній операційній системі, що є хорошою практикою.</p>
+      <p>
+        Метод path.join об'єднує елементи шляху, використовуючи той роздільник
+        каталогів, який прийнятий в поточній операційній системі, що є хорошою
+        практикою.
+      </p>
 
-<p>Щоб прочитати вміст файлу використовуємо метод fs.readFile.</p>
+      <p>Щоб прочитати вміст файлу використовуємо метод fs.readFile.</p>
 
-<p class="label">Створіть файл read.js:</p>
-  
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <p class="label">Створіть файл read.js:</p>
+
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
   <span style="color: #008800; font-weight: bold">const</span> path = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;path&#39;</span>);
 
   fs.readFile(path.join(__dirname, <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>), (err, data) =&gt; {
@@ -285,18 +446,31 @@ fs.writeFile(path.join(__dirname, <span style="color: #dd2200; background-color:
   }
   console.log(data);
 });</pre>
-</div>
-  
-  <p>Якщо запустити цей приклад, то результат буде не зовсім очікуваним:</p>
+      </div>
 
-  <img src="#" alt="Picture 1">
+      <p>Якщо запустити цей приклад, то результат буде не зовсім очікуваним:</p>
 
-  <p>Проблема в тому, що якщо при виклику методу fs.readFile ви не вкажете, яку саме кодування потрібно використовувати, то він поверне буфер, що містить "сирі" двійкові дані. Хоча ми не визначали кодування символів в write.js явно, стандартним кодуванням для символьних рядків в JavaScript є UTF-8 (кодування Unicode).</p>
-  
-  <p class="label">Ми можемо змінити файл read.js, визначивши UTF-8, і отримати очікуваний результат</p>
+      <img src="#" alt="Picture 1" />
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <p>
+        Проблема в тому, що якщо при виклику методу fs.readFile ви не вкажете,
+        яку саме кодування потрібно використовувати, то він поверне буфер, що
+        містить "сирі" двійкові дані. Хоча ми не визначали кодування символів в
+        write.js явно, стандартним кодуванням для символьних рядків в JavaScript
+        є UTF-8 (кодування Unicode).
+      </p>
+
+      <p class="label">
+        Ми можемо змінити файл read.js, визначивши UTF-8, і отримати очікуваний
+        результат
+      </p>
+
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> path = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;path&#39;</span>);
 
 fs.readFile(path.join(__dirname, <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>), {encoding: <span style="color: #dd2200; background-color: #fff0f0">&#39;utf8&#39;</span>}, (err, data) =&gt; {
@@ -305,33 +479,70 @@ fs.readFile(path.join(__dirname, <span style="color: #dd2200; background-color: 
   }
   console.log(data);
 });</pre>
-</div>
+      </div>
 
-<img src="#" alt="Picture 2">
+      <img src="#" alt="Picture 2" />
 
-<p>Майже у всіх функцій модуля fs є синхронні еквіваленти (їх імена завершуються суфіксом "Sync"). У write.js ми можемо використовувати синхронний еквівалент:</p>
+      <p>
+        Майже у всіх функцій модуля fs є синхронні еквіваленти (їх імена
+        завершуються суфіксом "Sync"). У write.js ми можемо використовувати
+        синхронний еквівалент:
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">fs.writeFileSync(path.join(__dirname, <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>), <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>);
-</pre></div>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >fs.writeFileSync(path.join(__dirname, <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>), <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>);
+</pre>
+      </div>
 
-<p>Оскільки в синхронних версіях функцій обробка помилок виконується з використанням винятків, щоб зробити наші приклади надійніше, укладемо їх в блоки try / catch, наприклад, так:</p>
+      <p>
+        Оскільки в синхронних версіях функцій обробка помилок виконується з
+        використанням винятків, щоб зробити наші приклади надійніше, укладемо їх
+        в блоки try / catch, наприклад, так:
+      </p>
 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">try</span> {
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">try</span> {
   fs.writeFileSync(path.join(__dirname, <span style="color: #dd2200; background-color: #fff0f0">&#39;hello.txt&#39;</span>), <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>);
 } <span style="color: #008800; font-weight: bold">catch</span>(err) {
   console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Error write to file!&#39;</span>);
 }
-</pre></div>
+</pre>
+      </div>
 
-<p>Синхронні функції файлової системи заманливо зручні. Але якщо ви пишете веб-сервер або мережевий додаток, пам'ятайте, що швидкість його роботи буде максимальною при асинхронному виконанні. У цих випадках завжди слід використовувати асинхронні версії функцій вводу-виводу.</p>
+      <p>
+        Синхронні функції файлової системи заманливо зручні. Але якщо ви пишете
+        веб-сервер або мережевий додаток, пам'ятайте, що швидкість його роботи
+        буде максимальною при асинхронному виконанні. У цих випадках завжди слід
+        використовувати асинхронні версії функцій вводу-виводу.
+      </p>
 
-<p>Якщо ви пишете утиліту командного рядка, використання синхронних версій функцій зазвичай не представляє особливої проблеми.</p>
+      <p>
+        Якщо ви пишете утиліту командного рядка, використання синхронних версій
+        функцій зазвичай не представляє особливої проблеми.
+      </p>
 
-<p>Використовуючи метод fs.readdir, ви можете вивести список файлів в каталозі.</p>
+      <p>
+        Використовуючи метод fs.readdir, ви можете вивести список файлів в
+        каталозі.
+      </p>
 
-<p class="label">Створіть файл ls.js:</p>
+      <p class="label">Створіть файл ls.js:</p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 
 fs.readdir(__dirname, (err, files) =&gt; {
   <span style="color: #008800; font-weight: bold">if</span> (err) {
@@ -340,36 +551,105 @@ fs.readdir(__dirname, (err, files) =&gt; {
   files.forEach((item) =&gt; {
     console.log(item);
   })
-})</pre></div>
+})</pre>
+      </div>
 
-  <img src="#" alt="Picture 3">
-<p>У модулі fs міститься досить багато функцій файлової системи; ви можете видаляти файли (fs.unlink), переміщати або перейменовувати їх (fs.rename), отримувати інформацію про файлах і каталогах (fs.stat) і багато іншого. Більш детальна інформація з цієї теми приведена в документації по Node API (<a href="https://nodejs.org/api/fs.html">https://nodejs.org/api/fs.html</a>).</p>>
+      <img src="#" alt="Picture 3" />
+      <p>
+        У модулі fs міститься досить багато функцій файлової системи; ви можете
+        видаляти файли (fs.unlink), переміщати або перейменовувати їх
+        (fs.rename), отримувати інформацію про файлах і каталогах (fs.stat) і
+        багато іншого. Більш детальна інформація з цієї теми приведена в
+        документації по Node API (<a href="https://nodejs.org/api/fs.html"
+          >https://nodejs.org/api/fs.html</a
+        >).
+      </p>
+      >
 
-<h2>Змінна process</h2> 
-<p>Кожна програма, що виконується Node має доступ до змінної process, яка дозволяє отримувати інформацію про виконання поточного процесу і керувати ним. Наприклад, якщо ваш додаток зустрічається з помилкою настільки серйозною, що продовження виконання стає недоцільним або безглуздим (невиправна помилка (fatal error)), ви можете негайно зупинити її виконання, викликавши метод process.exit.</p>  
-<p>Можна також передати числовий код завершення (exit code), який використовується сценаріями для визначення, чи успішно завершилася програма. Традиційно код завершення 0 означає "відсутність помилки ', а відмінний від нуля код означає ту чи іншу помилку.</p>
-<p>Наприклад, сценарій обробляє файли .txt в підкаталозі data: якщо ніяких файлів для обробки немає і робити нічого, то програма завершує роботу негайно, хоча це не помилка. З іншого боку, якщо підкаталог data не існуватиме, то ця проблема буде вважатися більш серйозною, і програма повинна повернути код помилки.</p>
-<p>Об'єкт process також дозволяє звертатися до масиву, який містить аргументи командного рядка, передані програмі. Запускаючи додаток Node, ви можете передати йому необов'язкові аргументи командного рядка. Наприклад, ми могли написати програму, якій передаються у вигляді аргументів командного рядка кілька імен файлів, а вона виводить кількість рядків тексту в кожному файлі.</p>
-<p class="label">Ми могли б викликати програму так:</p>
+      <h2>Змінна process</h2>
+      <p>
+        Кожна програма, що виконується Node має доступ до змінної process, яка
+        дозволяє отримувати інформацію про виконання поточного процесу і
+        керувати ним. Наприклад, якщо ваш додаток зустрічається з помилкою
+        настільки серйозною, що продовження виконання стає недоцільним або
+        безглуздим (невиправна помилка (fatal error)), ви можете негайно
+        зупинити її виконання, викликавши метод process.exit.
+      </p>
+      <p>
+        Можна також передати числовий код завершення (exit code), який
+        використовується сценаріями для визначення, чи успішно завершилася
+        програма. Традиційно код завершення 0 означає "відсутність помилки ', а
+        відмінний від нуля код означає ту чи іншу помилку.
+      </p>
+      <p>
+        Наприклад, сценарій обробляє файли .txt в підкаталозі data: якщо ніяких
+        файлів для обробки немає і робити нічого, то програма завершує роботу
+        негайно, хоча це не помилка. З іншого боку, якщо підкаталог data не
+        існуватиме, то ця проблема буде вважатися більш серйозною, і програма
+        повинна повернути код помилки.
+      </p>
+      <p>
+        Об'єкт process також дозволяє звертатися до масиву, який містить
+        аргументи командного рядка, передані програмі. Запускаючи додаток Node,
+        ви можете передати йому необов'язкові аргументи командного рядка.
+        Наприклад, ми могли написати програму, якій передаються у вигляді
+        аргументів командного рядка кілька імен файлів, а вона виводить
+        кількість рядків тексту в кожному файлі.
+      </p>
+      <p class="label">Ми могли б викликати програму так:</p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">$ node linecount.js file1.txt file2.txt fileЗ.txt
-</pre></div>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+$ node linecount.js file1.txt file2.txt fileЗ.txt
+</pre
+        >
+      </div>
 
-<p>Аргументи командного рядка містяться в масиві process.argv. Перш ніж підраховувати рядки в наших файлах, давайте виведемо значення властивості process.argv, щоб зрозуміти, що нам передається:</p>
+      <p>
+        Аргументи командного рядка містяться в масиві process.argv. Перш ніж
+        підраховувати рядки в наших файлах, давайте виведемо значення
+        властивості process.argv, щоб зрозуміти, що нам передається:
+      </p>
 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">console.log(process.argv);
-</pre></div>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+console.log(process.argv);
+</pre
+        >
+      </div>
 
-<p>Поряд з параметрами ви повинні побачити кілька додаткових елементів на початку масиву:</p>
+      <p>
+        Поряд з параметрами ви повинні побачити кілька додаткових елементів на
+        початку масиву:
+      </p>
 
-<img src="#" alt="Picture 4">
+      <img src="#" alt="Picture 4" />
 
-<p>Перший елемент - це інтерпретатор або програма, яка інтерпретує файл вихідного коду (в даному випадку - node).</p>
-<p>Другий елемент - це повний шлях до сценарію, що виконується, а інша частина елементів є усіма переданими програмі аргументами.</p>
-<p>Оскільки нам не потрібні ці додаткові елементи, скористаємося методом Array.slice і позбудемося них, перш ніж почати підрахунок рядків у наших файлах:</p>
+      <p>
+        Перший елемент - це інтерпретатор або програма, яка інтерпретує файл
+        вихідного коду (в даному випадку - node).
+      </p>
+      <p>
+        Другий елемент - це повний шлях до сценарію, що виконується, а інша
+        частина елементів є усіма переданими програмі аргументами.
+      </p>
+      <p>
+        Оскільки нам не потрібні ці додаткові елементи, скористаємося методом
+        Array.slice і позбудемося них, перш ніж почати підрахунок рядків у наших
+        файлах:
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 
 <span style="color: #008800; font-weight: bold">const</span> filenames = process.argv.slice(<span style="color: #0000DD; font-weight: bold">2</span>);
 
@@ -384,92 +664,215 @@ fs.readdir(__dirname, (err, files) =&gt; {
     
 counts.forEach(item =&gt; {
   onsole.log(item);
-})</pre></div>
-  
+})</pre>
+      </div>
 
-  <img src="#" alt="Picture 5">
+      <img src="#" alt="Picture 5" />
 
-  <p>Об'єкт process дозволяє також звертатися до змінних середовища оточення через об'єкт process.env. Змінні середовища оточення називають системними змінними, які головним чином використовуються для програм командного рядка.</p>
-  <p>У більшості систем Unix ви можете встановити змінну середовища оточення, просто ввівши команду export ІМ'Я = Значення (традиційно імена змінних оточення пишуться прописними буквами). У Windows для цього використовується команда set ІМ'Я = Значення. Змінні оточення найчастіше використовуються для зміни поведінки якогось аспекту вашої програми, коли небажано передавати значення в командному рядку кожен раз при запуску програми.</p>
-  <p>Наприклад, ми могли б використовувати середовище оточення для відключення виведення налагоджувальної інформації. Для управління поведінкою програми використовується змінна середовища оточення DEBUG, яку ми встановлюємо рівною 1, якщо хочемо, щоб програма виводила зневадження (будь-яке інше значення відключить налагодження).</p>
+      <p>
+        Об'єкт process дозволяє також звертатися до змінних середовища оточення
+        через об'єкт process.env. Змінні середовища оточення називають
+        системними змінними, які головним чином використовуються для програм
+        командного рядка.
+      </p>
+      <p>
+        У більшості систем Unix ви можете встановити змінну середовища оточення,
+        просто ввівши команду export ІМ'Я = Значення (традиційно імена змінних
+        оточення пишуться прописними буквами). У Windows для цього
+        використовується команда set ІМ'Я = Значення. Змінні оточення найчастіше
+        використовуються для зміни поведінки якогось аспекту вашої програми,
+        коли небажано передавати значення в командному рядку кожен раз при
+        запуску програми.
+      </p>
+      <p>
+        Наприклад, ми могли б використовувати середовище оточення для
+        відключення виведення налагоджувальної інформації. Для управління
+        поведінкою програми використовується змінна середовища оточення DEBUG,
+        яку ми встановлюємо рівною 1, якщо хочемо, щоб програма виводила
+        зневадження (будь-яке інше значення відключить налагодження).
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> debug = process.env.DEBUG === <span style="color: #dd2200; background-color: #fff0f0">&#39;1&#39;</span> ? console.log : <span style="color: #008800; font-weight: bold">function</span>() {};
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> debug = process.env.DEBUG === <span style="color: #dd2200; background-color: #fff0f0">&#39;1&#39;</span> ? console.log : <span style="color: #008800; font-weight: bold">function</span>() {};
 
 debug(<span style="color: #dd2200; background-color: #fff0f0">&#39;Выводится в если переменная окружения DEBUG == 1&#39;</span>);
-</pre></div>
+</pre>
+      </div>
 
-<p>У цьому прикладі ми створюємо функцію debug, яка просто є псевдонімом для console.log, якщо змінна оточення DEBUG встановлена, і порожньою функцією (яка не робить нічого) в іншому випадку. Для користувачів Windows виконуйте її в консолі cmd.</p>
-<p>Вище ми говорили про поточний робочий каталог __dirname, яким за замовчуванням є каталог запуску програми (а не каталог, в якому програма розташована). Метод process.cwd вказує поточний робочий каталог, а process.chdir дозволяє його змінити.</p>
+      <p>
+        У цьому прикладі ми створюємо функцію debug, яка просто є псевдонімом
+        для console.log, якщо змінна оточення DEBUG встановлена, і порожньою
+        функцією (яка не робить нічого) в іншому випадку. Для користувачів
+        Windows виконуйте її в консолі cmd.
+      </p>
+      <p>
+        Вище ми говорили про поточний робочий каталог __dirname, яким за
+        замовчуванням є каталог запуску програми (а не каталог, в якому програма
+        розташована). Метод process.cwd вказує поточний робочий каталог, а
+        process.chdir дозволяє його змінити.
+      </p>
 
-<h2>Інформація про операційну систему</h2>
-<p>Модуль os предоставляет некую специфическую для платформы информацию о компьютере, на котором выполняется приложение. Вот пример, демонстрирующий самую полезную информацию, предоставляемую модулем os и их значения, полученные на моем компьютере: 
-</p>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> os = require(<span>&#39;os&#39;</span>);
+      <h2>Інформація про операційну систему</h2>
+      <p>
+        Модуль os предоставляет некую специфическую для платформы информацию о
+        компьютере, на котором выполняется приложение. Вот пример,
+        демонстрирующий самую полезную информацию, предоставляемую модулем os и
+        их значения, полученные на моем компьютере:
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> os = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;os&#39;</span>);
 
-  console.log(<span>`Ім</span><span>&#39;я хоста: ${os.hostname()}`);</span>
-  <span>console.log(`Тип ОС: ${os.type()}`);</span>
-  <span>console.log(`Платформа: ${os.platform()}`);</span>
-  <span>console.log(`Версія: ${os.release()}`);</span>
-  <span>console.log(`Час роботи: ${(os.uptime()/60/60).toFixed(2)} годин</span>`);</span>
-  <span>console.log(`Архітектура процесора: ${os.arch()}`);</span>
-  <span>console.log(`Кількість процесорів: ${os.cpus().length}`);</span>
-  <span>console.log(`Пам&#39;</span><span>ять</span>: ${(os.totalmem()/<span style="color: #0000DD; font-weight: bold">1</span>e9).toFixed(<span style="color: #0000DD; font-weight: bold">2</span>)} <span>Гб`</span>);
-  console.log(<span >`Вільно</span> <span">пам&#39;яті</span">: ${(os.freemem()/<span style="color: #0000DD; font-weight: bold">1</span>e9).toFixed(<span style="color: #0000DD; font-weight: bold">2</span>)} <span>Гб`</span>);</pre></div>
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Найменування</span> <span style="color: #a61717; background-color: #e3d2d2">хоста</span>: ${os.hostname()}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Тип</span> <span style="color: #a61717; background-color: #e3d2d2">ОС</span>: ${os.type()}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Платформа</span>: ${os.platform()}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Версія</span>: ${os.release()}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Час</span> <span style="color: #a61717; background-color: #e3d2d2">роботи</span>: ${(os.uptime()/<span style="color: #0000DD; font-weight: bold">60</span>/<span style="color: #0000DD; font-weight: bold">60</span>).toFixed(<span style="color: #0000DD; font-weight: bold">2</span>)} <span style="color: #a61717; background-color: #e3d2d2">годин`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Архітектура</span> <span style="color: #a61717; background-color: #e3d2d2">процесора</span>: ${os.arch()}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Кількість</span> <span style="color: #a61717; background-color: #e3d2d2">процесорів</span>: ${os.cpus().length}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Память</span>: ${(os.totalmem()/<span style="color: #0000DD; font-weight: bold">1</span>e9).toFixed(<span style="color: #0000DD; font-weight: bold">2</span>)} <span style="color: #a61717; background-color: #e3d2d2">Гб`</span>);
+  console.log(<span style="color: #a61717; background-color: #e3d2d2">`Вільно</span> <span style="color: #a61717; background-color: #e3d2d2">памяті</span>: ${(os.freemem()/<span style="color: #0000DD; font-weight: bold">1</span>e9).toFixed(<span style="color: #0000DD; font-weight: bold">2</span>)} <span style="color: #a61717; background-color: #e3d2d2">Гб`</span>);
+  </pre>
+      </div>
 
-  <img src="#" alt="Picture 6">
+      <img src="#" alt="Picture 6" />
 
-  <h2>Потоки</h2>  
+      <h2>Потоки</h2>
 
-  <p>Концепція потоку (stream) важлива для Node. Потоки можуть бути потоками читання, запису або того й іншого одночасно (дуплексні потоки). Вони мають сенс, якщо передача даних здійснюється протягом деякого часу.</p>
+      <p>
+        Концепція потоку (stream) важлива для Node. Потоки можуть бути потоками
+        читання, запису або того й іншого одночасно (дуплексні потоки). Вони
+        мають сенс, якщо передача даних здійснюється протягом деякого часу.
+      </p>
 
-  <p>Прикладами можуть служити введення користувачем даних з клавіатури або веб-служби з двостороннім зв'язком з клієнтом. При доступі до файлів також часто використовуються потоки. Ми будемо використовувати файлові потоки для демонстрації створення потоків, читання з них і запису, а також створення каналу (pipe) між ними.</p>
+      <p>
+        Прикладами можуть служити введення користувачем даних з клавіатури або
+        веб-служби з двостороннім зв'язком з клієнтом. При доступі до файлів
+        також часто використовуються потоки. Ми будемо використовувати файлові
+        потоки для демонстрації створення потоків, читання з них і запису, а
+        також створення каналу (pipe) між ними.
+      </p>
 
-  <p class="label">Почнемо зі створення потоку запису і запишемо в нього дані:</p>
+      <p class="label">
+        Почнемо зі створення потоку запису і запишемо в нього дані:
+      </p>
 
-  <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 
 <span style="color: #008800; font-weight: bold">const</span> ws = fs.createWriteStream(<span style="color: #dd2200; background-color: #fff0f0">&#39;stream.txt&#39;</span>, {encoding: <span style="color: #dd2200; background-color: #fff0f0">&#39;utf8&#39;</span>});
 
 ws.write(<span style="color: #dd2200; background-color: #fff0f0">&#39;First\n&#39;</span>);
 ws.write(<span style="color: #dd2200; background-color: #fff0f0">&#39;Second\n&#39;</span>);
 ws.end(<span style="color: #dd2200; background-color: #fff0f0">&#39;End&#39;</span>);
-</pre></div>
+</pre>
+      </div>
 
-<p>Якщо потрібно вивести дані тільки один раз, можна просто викликати метод end з тими даними, які треба записати. У наш потік запису (write stream - ws) можна виводити дані за допомогою методу write до виклику методу end, після чого потік буде закритий, і подальші виклики методу write призведуть до помилки.</p>
+      <p>
+        Якщо потрібно вивести дані тільки один раз, можна просто викликати метод
+        end з тими даними, які треба записати. У наш потік запису (write stream
+        - ws) можна виводити дані за допомогою методу write до виклику методу
+        end, після чого потік буде закритий, і подальші виклики методу write
+        призведуть до помилки.
+      </p>
 
-<p class="label">Точно так само можна створити потік читання, щоб читати дані по мірі їх надходження:</p>
+      <p class="label">
+        Точно так само можна створити потік читання, щоб читати дані по мірі їх
+        надходження:
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> rs = fs.createReadStream(<span style="color: #dd2200; background-color: #fff0f0">&#39;stream.txt&#39;</span>, {encoding:<span style="color: #dd2200; background-color: #fff0f0">&#39;utf8&#39;</span>});
 rs.on(<span style="color: #dd2200; background-color: #fff0f0">&#39;data&#39;</span>, data =&gt; {
   console.log(data);
 });
 rs.on(<span style="color: #dd2200; background-color: #fff0f0">&#39;end&#39;</span>, data =&gt; {
   console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;The end&#39;</span>);
-})</pre></div>
-  
-<img src="#" alt="Picture 7">
-<p>У цьому прикладі ми просто виводимо вміст файлу stream.txt на консоль.</p>
+})</pre>
+      </div>
 
-<p>Оскільки дані в потоках «течуть», цілком резонно взяти дані, що виходять з потоку читання, і перенаправити їх в потік запису. Цей процес називається конвеєром (piping). Наприклад, можна перенаправити потік читання в потік запису, щоб скопіювати вміст одного файлу в інший:</p>
+      <img src="#" alt="Picture 7" />
+      <p>
+        У цьому прикладі ми просто виводимо вміст файлу stream.txt на консоль.
+      </p>
 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
+      <p>
+        Оскільки дані в потоках «течуть», цілком резонно взяти дані, що виходять
+        з потоку читання, і перенаправити їх в потік запису. Цей процес
+        називається конвеєром (piping). Наприклад, можна перенаправити потік
+        читання в потік запису, щоб скопіювати вміст одного файлу в інший:
+      </p>
+
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> fs = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;fs&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> rs = fs.createReadStream(<span style="color: #dd2200; background-color: #fff0f0">&#39;stream.txt&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> ws = fs.createWriteStream(<span style="color: #dd2200; background-color: #fff0f0">&#39;stream_copy.txt&#39;</span>);
-rs.pipe(ws);</pre></div>
+rs.pipe(ws);</pre>
+      </div>
 
- <p>Зверніть увагу, що в цьому прикладі ми не визначали кодування символів: rs просто пересилає байти з файлу stream.txt в потік ws (що призводить до їх запису в файл stream_сору.txt); кодування символів має значення, тільки якщо ми намагаємося інтерпретувати дані.</p>
+      <p>
+        Зверніть увагу, що в цьому прикладі ми не визначали кодування символів:
+        rs просто пересилає байти з файлу stream.txt в потік ws (що призводить
+        до їх запису в файл stream_сору.txt); кодування символів має значення,
+        тільки якщо ми намагаємося інтерпретувати дані.
+      </p>
 
- <p>Конвеєрна обробка - це загальна методика для переміщення даних. Наприклад, можна переслати вміст файлу у вигляді відповіді веб-сервера. Або ви могли б переслати стислі дані процесору розпакування, який, в свою чергу, перешле дані програмі запису в файл.</p>
+      <p>
+        Конвеєрна обробка - це загальна методика для переміщення даних.
+        Наприклад, можна переслати вміст файлу у вигляді відповіді веб-сервера.
+        Або ви могли б переслати стислі дані процесору розпакування, який, в
+        свою чергу, перешле дані програмі запису в файл.
+      </p>
 
- <h2>Веб-сервери</h2> 
-<p>Хоча Node зараз використовується в багатьох додатках, його первинна мета полягала в наданні послуг веб-сервера.</p>
-<p>У порівнянні з налаштуванням сервера Apache (або будь-якого іншого веб-сервера), настройка веб-сервера в Node дуже проста. Модуль http (і його захищений дублікат, модуль https) надає метод createServer, який створює простий веб-сервер.</p>
-<p>Все, що ви повинні зробити - це вказати функцію зворотного виклику, яка буде обробляти вхідні запити.</p>
-<p>Щоб запустити сервер, потрібно просто викликати його метод listen і вказати номер порту, що прослуховується:</p>
+      <h2>Веб-сервери</h2>
+      <p>
+        Хоча Node зараз використовується в багатьох додатках, його первинна мета
+        полягала в наданні послуг веб-сервера.
+      </p>
+      <p>
+        У порівнянні з налаштуванням сервера Apache (або будь-якого іншого
+        веб-сервера), настройка веб-сервера в Node дуже проста. Модуль http (і
+        його захищений дублікат, модуль https) надає метод createServer, який
+        створює простий веб-сервер.
+      </p>
+      <p>
+        Все, що ви повинні зробити - це вказати функцію зворотного виклику, яка
+        буде обробляти вхідні запити.
+      </p>
+      <p>
+        Щоб запустити сервер, потрібно просто викликати його метод listen і
+        вказати номер порту, що прослуховується:
+      </p>
 
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> http = require(<span>&#39;http&#39;</span>);
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> http = require(<span>&#39;http&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> port = <span style="color: #0000DD; font-weight: bold">3000</span>;
 <span style="color: #008800; font-weight: bold">const</span> server = http.createServer((req, res) =&gt; {
   console.log(<span>`Метод</span>: ${req.method}<span>`</span>);
@@ -479,23 +882,69 @@ rs.pipe(ws);</pre></div>
   
 server.listen(port, () =&gt; {
   console.log(<span>`</span>Server running on port: ${port}<span>`</span>);
-})</pre></div>
+})</pre>
+      </div>
 
-<p>З міркувань безпеки в більшості операційних систем заборонено прослуховувати стандартний порт НТТР (80) без запиту на підвищення прав. Фактично підвищені права необхідні для прослуховування будь-якого порту нижче 1024. Для цілей розробки і налагодження зазвичай використовуються порти вище 1024 і вибирають такі номери, як 3000, 8000, 3030 і 8080, оскільки їх легше запам'ятати:</p>
+      <p>
+        З міркувань безпеки в більшості операційних систем заборонено
+        прослуховувати стандартний порт НТТР (80) без запиту на підвищення прав.
+        Фактично підвищені права необхідні для прослуховування будь-якого порту
+        нижче 1024. Для цілей розробки і налагодження зазвичай використовуються
+        порти вище 1024 і вибирають такі номери, як 3000, 8000, 3030 і 8080,
+        оскільки їх легше запам'ятати:
+      </p>
 
-<img src="#" alt="Picture 8">
+      <img src="#" alt="Picture 8" />
 
-<p>Якщо ви запустите цю програму і перейдете в браузер за адресою http: // localhost: 3000 /, то побачите рядок 'Hello world!' . В консоль ми виводимо всі запити, які складаються з методу та шляху URL. Кожен раз при переході в браузері з цього URL, на сервер відправляється два запити:</p>
+      <p>
+        Якщо ви запустите цю програму і перейдете в браузер за адресою http: //
+        localhost: 3000 /, то побачите рядок 'Hello world!' . В консоль ми
+        виводимо всі запити, які складаються з методу та шляху URL. Кожен раз
+        при переході в браузері з цього URL, на сервер відправляється два
+        запити:
+      </p>
 
-<img src="#" alt="Picture 9">
+      <img src="#" alt="Picture 9" />
 
-<p>Більшість браузерів неявно запитують піктограму, яку вони потім відображають на панелі URL або заголовку вкладки. Тому ми бачимо цей запит в нашій консолі.</p>
-<p>В основі веб-сервера Node лежить функція зворотного виклику (її ви повинні вказати при створенні сервера). Саме вона обробляє всі вхідні запити.</p>
-<p>Їй передається два аргументи: об'єкт IncomingMessage (найчастіше для нього вибирається змінна req) і об'єкт ServerRequest (найчастіше для нього вибирається змінна res).</p>
-<p>Об'єкт IncomingMessage містить всю інформацію про НТТР-запит: який URL затребуваний, всі надіслані заголовки, всі передані в тілі дані і т.д. Об'єкт ServerResponse містить властивості та методи для управління відповіддю, яка відсилається назад клієнту (зазвичай браузеру). Об'єкт ServerResponse реалізує інтерфейс потоку запису, що визначає те, як саме дані пересилаються клієнту.</p>
-<p>Оскільки об'єкт ServerResponse - це потік запису, він полегшує передачу файла, але нам ніщо не заважає створити потік для читання файла і переслати його в якості відповіді НТТР-сервера. Наприклад, якщо у вас є файл favicon.ico, що поліпшує зовнішній вигляд вашого веб-сайту, ви можете виділити цей запит і відправити вміст даного файлу безпосередньо клієнту (не забудьте покласти файл поруч з виконуваним файлом скрипта):</p>
+      <p>
+        Більшість браузерів неявно запитують піктограму, яку вони потім
+        відображають на панелі URL або заголовку вкладки. Тому ми бачимо цей
+        запит в нашій консолі.
+      </p>
+      <p>
+        В основі веб-сервера Node лежить функція зворотного виклику (її ви
+        повинні вказати при створенні сервера). Саме вона обробляє всі вхідні
+        запити.
+      </p>
+      <p>
+        Їй передається два аргументи: об'єкт IncomingMessage (найчастіше для
+        нього вибирається змінна req) і об'єкт ServerRequest (найчастіше для
+        нього вибирається змінна res).
+      </p>
+      <p>
+        Об'єкт IncomingMessage містить всю інформацію про НТТР-запит: який URL
+        затребуваний, всі надіслані заголовки, всі передані в тілі дані і т.д.
+        Об'єкт ServerResponse містить властивості та методи для управління
+        відповіддю, яка відсилається назад клієнту (зазвичай браузеру). Об'єкт
+        ServerResponse реалізує інтерфейс потоку запису, що визначає те, як саме
+        дані пересилаються клієнту.
+      </p>
+      <p>
+        Оскільки об'єкт ServerResponse - це потік запису, він полегшує передачу
+        файла, але нам ніщо не заважає створити потік для читання файла і
+        переслати його в якості відповіді НТТР-сервера. Наприклад, якщо у вас є
+        файл favicon.ico, що поліпшує зовнішній вигляд вашого веб-сайту, ви
+        можете виділити цей запит і відправити вміст даного файлу безпосередньо
+        клієнту (не забудьте покласти файл поруч з виконуваним файлом скрипта):
+      </p>
 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">const</span> http = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;http&#39;</span>);
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> http = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;http&#39;</span>);
 <span style="color: #008800; font-weight: bold">const</span> port = <span style="color: #0000DD; font-weight: bold">3000</span>;
 
 <span style="color: #008800; font-weight: bold">const</span> server = http.createServer((req, res) =&gt; {
@@ -510,16 +959,38 @@ server.listen(port, () =&gt; {
   
 server.listen(port, () =&gt; {
   console.log(<span style="color: #a61717; background-color: #e3d2d2">`</span>Server running on port: ${port}<span style="color: #a61717; background-color: #e3d2d2">`</span>);
-});</pre></div>
+});</pre>
+      </div>
 
- <p>Вище наведено мінімально можливий веб-сервер. Аналізуючи інформацію, що міститься в об'єкті IncomingRequest, ви можете розширити наведену вище модель і створити будь-який вид веб-сайту за своїм бажанням.</p>
- <p>Але для обслуговування веб-сайтів використовують фреймворки, такі як Express або Коа, які візьмуть на себе частину роботи по побудові веб-сервера з нуля.</p>
- <p>Коа - це наступник вельми популярного каркасу Express, і це не випадково: обидва написані Ті Джей Головайчуком. У Koa застосовується підхід до веб-розробки більш орієнтований на ЕS6.</p>
+      <p>
+        Вище наведено мінімально можливий веб-сервер. Аналізуючи інформацію, що
+        міститься в об'єкті IncomingRequest, ви можете розширити наведену вище
+        модель і створити будь-який вид веб-сайту за своїм бажанням.
+      </p>
+      <p>
+        Але для обслуговування веб-сайтів використовують фреймворки, такі як
+        Express або Коа, які візьмуть на себе частину роботи по побудові
+        веб-сервера з нуля.
+      </p>
+      <p>
+        Коа - це наступник вельми популярного каркасу Express, і це не
+        випадково: обидва написані Ті Джей Головайчуком. У Koa застосовується
+        підхід до веб-розробки більш орієнтований на ЕS6.
+      </p>
 
-<h2>Висновок</h2>
+      <h2>Висновок</h2>
 
-<p>Ми торкнулися найважливішіх моментів інтерфейсу API Node. І розглянули його на тих пакетах, які ви, ймовірно, побачите майже в кожному додатку (наприклад такі, як fs і stream).</p>
-<p>Однак існує і безліч інших пакетів, які ви повинні вивчити самостійно. Офіційна документація (<a href="https://nodejs.org/en/docs/">https://nodejs.org/en/docs/</a>) - дуже докладна і хороша для цього.</p>
-
+      <p>
+        Ми торкнулися найважливішіх моментів інтерфейсу API Node. І розглянули
+        його на тих пакетах, які ви, ймовірно, побачите майже в кожному додатку
+        (наприклад такі, як fs і stream).
+      </p>
+      <p>
+        Однак існує і безліч інших пакетів, які ви повинні вивчити самостійно.
+        Офіційна документація (<a href="https://nodejs.org/en/docs/"
+          >https://nodejs.org/en/docs/</a
+        >) - дуже докладна і хороша для цього.
+      </p>
+    </div>
   </body>
 </html>

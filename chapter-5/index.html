@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Фреймворк Koa.js</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Фреймворк Koa.js</h1>
+      <h2>Загальні відомості про фреймворк</h2>
+      <p>
+        <strong>Koa.js</strong> - це "фреймворк нового покоління" (як заявляють
+        його розробники) для додатків Node.js, який використовує новітні
+        можливості мови JavaScript на повну потужність.
+      </p>
+      <p>
+        Koa.js був створений і продовжує розвиватися знаменитим розробником TJ
+        Holowaychuk. Він так само був одним з основних ідеологів фреймворка
+        express, але з ряду причин покинув проект і створив Koa.js.
+      </p>
+      <p>
+        Для роботи з Koa.js у вас вже повинен бути встановлений Node.js. Для
+        перевірки факту установки і версії фреймворка ви можете скористатися
+        командами
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>Node --version
+<span style="color: #336699">$ </span>Npm --version
+</pre>
+      </div>
+      <p class="label">
+        Створіть каталог для свого додатка і зробіть його своїм робочим
+        каталогом.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>Mkdir myapp
+<span style="color: #336699">$ </span>Cd myapp
+</pre>
+      </div>
+      <p class="label">
+        За допомогою команди npm init створіть файл package.json для свого
+        додатка.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>npm init -y
+</pre>
+      </div>
+      <p class="label">
+        Створіть в корені файл app.js або будь-яке інше ім'я головного файлу за
+        своїм бажанням. Тепер встановіть Koa.js в каталозі myapp і збережіть
+        його в списку залежностей. наприклад:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>npm i --save koa
+</pre>
+      </div>
+      <p>
+        Примітка. Є також інший спосіб створити додаток - за допомогою окремого
+        генератора додатків
+        <a href="https://www.npmjs.com/package/generator-koa"
+          >https://www.npmjs.com/package/generator-koa</a
+        >
+        (для перших запусків рекомендується робити все самостійно, крок за
+        кроком).
+      </p>
+      <p>
+        Давайте поки створимо просте Hello World! додаток. У файл з ім'ям app.js
+        додайте наступний код:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> Koa = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;koa&#39;</span>);
+<span style="color: #008800; font-weight: bold">const</span> app = <span style="color: #008800; font-weight: bold">new</span> Koa();
+
+app.use( async(ctx, next) {
+    ctx.body = <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>;
+});
+
+app.listen(<span style="color: #0000DD; font-weight: bold">3000</span>, <span style="color: #008800; font-weight: bold">function</span>() {
+    console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Server running on https://localhost:3000&#39;</span>)
+});
+</pre>
+      </div>
+      <p class="label">
+        Що тут відбувається? Спочатку ми створюємо об'єкт, який є новим
+        екземпляром класу Koa (функція-конструктор імпортується з файлу з
+        вихідним кодом фреймворка), який буде представляти наш додаток:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> app = <span style="color: #008800; font-weight: bold">new</span> Koa();
+</pre>
+      </div>
+      <p class="label">
+        Далі ми використовуємо вбудовану функцію об'єкта app - use, яка
+        встановлює проміжне ПО. Це можуть бути як і бібліотеки від сторонніх
+        розробників, так і ваш власний код. Єдина вимога - app.use в параметри
+        приймає виключно функцію. Більш детально на проміжному ПО ми зупинимося
+        у відповідній главі, зараз же подивимося на конкретну ситуацію.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">app.use( async(ctx, next) {
+    ctx.body = <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello world!&#39;</span>;
+  });
+  </pre>
+      </div>
+      <p>
+        В даному випадку в об'єкт додатку додається проміжне ПО - функція, яка
+        буде викликана при кожному запиті до серверу, і в результаті своєї
+        роботи встановить до контексту виклику (в Koa.js це вбудований об'єкт
+        ctx) тіло відповіді 'Hello world!'.
+      </p>
+      <p>
+        Останнє, що необхідно зробити - вказати порт, на якому буде працювати
+        наш додаток. Для цього потрібно скористатися вбудованою функцією об'єкта
+        app - listen, і передати в неї номер порту. Також, щоб упевнитися, що
+        все працює коректно, в якості функції зворотного виклику деякі
+        розробники передають функцію з виведенням повідомлення в консоль. Це
+        вважається хорошим тоном і рекомендується до використання.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.listen(<span style="color: #0000DD; font-weight: bold">3000</span>, <span style="color: #008800; font-weight: bold">function</span>() {
+    console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Server running on https://localhost:3000&#39;</span>)
+  });
+  </pre>
+      </div>
+      <p class="label">
+        Залишилося запустити наш додаток за допомогою введення команди.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>Node app.js
+</pre>
+      </div>
+      <p>
+        При переході на
+        <a href="http://localhost:3000">http://localhost:3000</a> ви побачите
+        свій перший додаток на фреймворку Koa.js.
+      </p>
+      <img src="" alt="Картинка" />
+
+      <h2>Маршрутизація</h2>
+      <p>
+        На відміну від фреймворка Express в ядрі Koa.js немає функціоналу для
+        маршрутизації. Для реалізації маршрутизації необхідно додатково
+        встановити модуль Koa-router.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>npm install --save koa-router
+</pre>
+      </div>
+      <p>
+        Потім в файл додатку імпортується функція-конструктор з встановленого
+        модуля.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> Router = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;koa-router&#39;</span>);
+</pre>
+      </div>
+      <p class="label">І створюємо новий екземпляр класу Router.</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> router = <span style="color: #008800; font-weight: bold">new</span> Router();
+</pre>
+      </div>
+      <p>
+        Далі необхідно визначити логіку обробки конкретних маршрутів шляхом
+        додавання їх в об'єкт router. Важливо пам'ятати, що кожен тип запиту
+        може мати свою логіку обробки.
+      </p>
+      <p>
+        Функцію зворотного виклику найкраще описувати із застосуванням async \
+        await синтаксису (докладніше:
+        <a href="http://javascript.info/async-await"
+          >http://javascript.info/async-await</a
+        >
+        ), в параметрах вона приймає об'єкт запиту ctx і функцію next, яка
+        необхідна для послідовного виконання ассінхроних функцій.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >router.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users&#39;</span>, async (ctx, next) =&gt; { <span style="color: #888888">/* Логіка обробки. Тут може бути описана взаємодія з базою даних, обчислення розрахунків і т.д.*/</span>});
+
+router.post(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users&#39;</span>, async (ctx, next) =&gt; { <span style="color: #888888">/* Логіка обробки. Тут може бути описана взаємодія з базою даних, обчислення розрахунків і т.д.*/</span>});
+
+router.put(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users&#39;</span>, async (ctx, next) =&gt; { <span style="color: #888888">/* Логіка обробки. Тут може бути описана взаємодія з базою даних, обчислення розрахунків і т.д.*/</span>});
+
+router.<span style="color: #008800; font-weight: bold">delete</span>(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users&#39;</span>, async (ctx, next) =&gt; { <span style="color: #888888">/* Логіка обробки. Тут може бути описана взаємодія з базою даних, обчислення розрахунків і т.д.*/</span>});
+</pre>
+      </div>
+      <p class="label">
+        Для того, щоб застосувати однакову логіку обробки конкретного запиту
+        можна використовувати подібний підхід.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >router.all(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users&#39;</span>, async (ctx, next) =&gt; { <span style="color: #888888">/* Логіка обробки. Тут може бути описана взаємодія з базою даних, обчислення розрахунків і т.д.*/</span>});
+</pre>
+      </div>
+      <p class="label">
+        Для того, щоб повернути будь-який результат у відповіді на запит
+        необхідно встановити властивість body об'єкта ctx.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> users = [<span style="color: #a61717; background-color: #e3d2d2">“Саша”</span>, <span style="color: #a61717; background-color: #e3d2d2">“Вика”</span>, <span style="color: #a61717; background-color: #e3d2d2">“Леша”</span>];
+router.get(<span style="color: #a61717; background-color: #e3d2d2">‘</span>/users<span style="color: #a61717; background-color: #e3d2d2">’</span>,  async (ctx, next) =&gt; { ctx.body = users}); 
+</pre>
+      </div>
+      <p class="label">
+        І останнє, що залишається зробити для реалізації маршрутизації - це
+        вказати об'єкту app на застосовуваний router. Важливо пам'ятати, що
+        робити це треба тільки після визначення обробки всіх маршрутів додатку.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+app.use(router.routes());
+</pre
+        >
+      </div>
+      <h2>Передача параметрів в маршруті</h2>
+      <p>
+        Маршрути можуть містити параметри - іменовані сегменти URL-адреси. Назва
+        параметру має включати символи з діапазону [A-Za-z0-9_]. У визначенні
+        маршруту параметри передуються знаком двокрапки. Додамо ще один обробник
+        для наступного маршруту:
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >router.get(<span style="color: #dd2200; background-color: #fff0f0">&quot;/users/:id&quot;</span>, async (ctx, next){
+ctx.body = ctx.params.id;
+});
+</pre>
+      </div>
+
+      <p class="label">
+        Можна використовувати маршрути з декількома не визначеними складовими.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >router.get(<span style="color: #dd2200; background-color: #fff0f0">&quot;/users/:admin/:id&quot;</span>, async (ctx, next){
+  ctx.body = ctx.params.admin + ctx.params.id;
+});
+</pre>
+      </div>
+
+      <p class="label">
+        А також є функціонал для перевірки параметрів маршруту.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >router.get(<span style="color: #dd2200; background-color: #fff0f0">&quot;/users/:id([0-9]{9})&quot;</span>, async (ctx, next){
+  ctx.body = ctx.params.id;
+});
+</pre>
+      </div>
+
+      <p>
+        У даній ситуації буде оброблений тільки той запит, у якого url буде
+        відповідати формату "users / будь-які дев'ять цифр від 0 до 9",
+        наприклад, users / 123456789. Для запиту на url users / abc123456 ця
+        логіка обробки застосована не буде.
+      </p>
+      <h2>Надання статичних файлів в Koa.js</h2>
+      <p>
+        Як і у випадку з маршрутизацією, ядро Koa.js не включає в себе
+        функціонал з надання статичних файлів. Для цього використовується модуль
+        koa-static. Установка і підключення цього модуля аналогічні установки та
+        підключення модуля koa-router. Для використання необхідно вказати
+        об'єкту app на шлях до директорії зі статичними файлами.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.use(serve(<span style="color: #dd2200; background-color: #fff0f0">&#39;./public&#39;</span>) );
+</pre>
+      </div>
+
+      <p>
+        Бажано встановлювати директорію зі статичними файлами до установки
+        всього іншого проміжного програмного забезпечення.
+      </p>
+      <h2>Обробка помилок</h2>
+      <p>
+        Для обробки помилок в Koa.js використовується багатьма забута, але
+        ефективна конструкція try / catch. Використання даної конструкції,
+        наприклад, при описі логіки обробки запиту, є простим і лаконічним
+        засобом.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> users = [<span style="color: #a61717; background-color: #e3d2d2">“Саша”</span>, <span style="color: #a61717; background-color: #e3d2d2">“Вика”</span>, <span style="color: #a61717; background-color: #e3d2d2">“Леша”</span>];
+router.get(<span style="color: #dd2200; background-color: #fff0f0">&quot;/users/:id&quot;</span>, async (ctx, next){
+  <span style="color: #008800; font-weight: bold">try</span> {
+          users.find(user =&gt; user.id === ctx.params.id);
+      } <span style="color: #008800; font-weight: bold">catch</span> (err) {
+          console.log(err);
+          ctx.status = <span style="color: #0000DD; font-weight: bold">400</span>;
+          ctx.body = err;
+      }
+  });
+  </pre>
+      </div>
+      <h2>Проміжне ПЗ (middlewares)</h2>
+      <p>
+        Як і Express, Koa.js любить і вміє працювати з проміжним ПО. Причому
+        настільки сильно, що навіть частина функціоналу, яка в Express була
+        вбудована в ядро фреймворка, в Koa.js присутня лише у вигляді модулів.
+      </p>
+      <p>
+        По суті своїй проміжне ПО в Koa.js є функцією, яка "пропускає" крізь
+        себе об'єкт ctx, і так чи інакше змінює цей об'єкт. У додатку можна
+        використовувати стільки проміжного програмного забезпечення, скільки
+        буде необхідно, але важливо пам'ятати про те, що, як і в Express,
+        функції підключаються і виконуються послідовно, одна за одною, і іноді
+        це може мати суттєве значення.
+      </p>
+      <p>
+        Раніше було розглянуто як власне проміжне ПЗ, що дозволяє відповідати на
+        запити, так i проміжне ПЗ від сторонніх розробників.
+      </p>
+      <h2>Робота з даними в форматі JSON</h2>
+      <p>
+        Найчастіше, frontend і backend частини програми передають один одному
+        текстові дані в форматі JSON. Для того, щоб грамотно вибудувати
+        приведення даних з JSON формату до звичайного JavaScript-об'єкту можна
+        використовувати модуль koa-body. Необхідно встановити модуль.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install koa-body
+  </pre
+        >
+      </div>
+
+      <p class="label">
+        Імпортувати в файл з кодом і підключити до об'єкта app як проміжного
+        програмного забезпечення.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> koaBody = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;koa-body&#39;</span>);
+app.use(koaBody());
+</pre>
+      </div>
+
+      <p class="label">
+        Тепер усередині функцій обробки запитів прийняті дані будуть доступні.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> data = JSON.stringify(ctx.request.body);
+  console.log(data);
+</pre>
+      </div>
+      <h2>Прийом файлів</h2>
+      <p>
+        Проміжне ПО koa-body вміє працювати не тільки з простими строковими
+        даними, але і, наприклад, з файлами. Для цього при установці проміжного
+        програмного забезпечення в об'єкт app необхідно додати набір опцій.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">app.use(koaBody({
+          formidable: {
+            uploadDir: <span style="color: #dd2200; background-color: #fff0f0">&#39;./dist/uploads&#39;</span>, <span style="color: #888888">// директорія, куди потрібно сохранити файл</span>
+        },
+        multipart: <span style="color: #008800; font-weight: bold">true</span>
+  }))
+</pre>
+      </div>
+
+      <p>
+        Більш детально ознайомитися з опціями проміжного ПО koa-body можна в
+        описі до сховища модуля (<a href="https://github.com/dlau/koa-body"
+          >https://github.com/dlau/koa-body</a
+        >).
+      </p>
+      <p>
+        Завершуючи тему проміжного програмного забезпечення, варто відзначити,
+        що вже зараз модулів для Koa.js існує величезна кількість.
+      </p>
+      <p>
+        Одних тільки популярних аналогів koa-body є кілька (наприклад,
+        koa-better-body -
+        <a href="https://github.com/tunnckoCore/koa-better-body"
+          >https://github.com/tunnckoCore/koa-better-body</a
+        >). Кожен модуль по-своєму індивідуальний, тонкощі його підключення
+        можуть змінюватися в залежності від ситуації, інших використовуваних
+        модулів і т.д., але загальна суть залишається незмінною.
+      </p>
+      <p>
+        Завдяки цій системі, розробникам Koa.js вдалося зробити по-справжньому
+        мінімалістичний фреймворк (в ядрі Koa.js всього лише близько 600 рядків
+        коду), а розробники, що використовують Koa.js в своїх проектах отримали
+        можливість створювати вкрай гнучкі та індивідуальні програми.
+      </p>
+      <h2>Установка cookie</h2>
+      <p>
+        Дуже часто серверній частині програми необхідно встановити той чи інший
+        cookie на стороні клієнта. Найбільш часто цей прийом використовується
+        для реалізації користувальницької авторизації методом сесій. Для цього
+        при обробці запиту можна скористатися вбудованим в об'єкт ctx
+        функціоналом.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >ctx.cookies.set(<span style="color: #dd2200; background-color: #fff0f0">&#39;access_token&#39;</span>, <span style="color: #a61717; background-color: #e3d2d2">‘</span><span style="color: #0000DD; font-weight: bold">1111</span><span style="color: #a61717; background-color: #e3d2d2">’</span>, { maxAge: <span style="color: #0000DD; font-weight: bold">86400000</span> });
+</pre>
+      </div>
+
+      <p>
+        Таким чином, на клієнтській стороні буде встановлений cookie з ім'ям
+        'access_token', значенням '1111', терміном "життя" в 86400000
+        мілісекунд.
+      </p>
+      <h2>Вибір шаблонізатору</h2>
+      <p>
+        Все, що було сказано з приводу вибору шаблонізатора для фреймворка
+        Express у відповідній методичці, так само акутально і для Koa.js.
+        Способи підключення та використання різних шаблонизаторів можуть
+        відрізнятися як в дрібницях, так і досить серйозно. Розглянемо випадок з
+        підключенням шаблонізатора pug. Для початку необхідно додати його в
+        проект.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install --save pug koa-pug
+  </pre
+        >
+      </div>
+
+      <p>
+        У коді імпортувати вихідний код шаблонізатора і визначити об'єкт
+        шаблонізатора, який буде використовуватися в подальшому.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> Pug = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;koa-pug&#39;</span>) ;
+  <span style="color: #008800; font-weight: bold">const</span> pug = <span style="color: #008800; font-weight: bold">new</span> Pug({
+    viewPath: <span style="color: #dd2200; background-color: #fff0f0">&#39;./views&#39;</span>,
+    basedir: <span style="color: #dd2200; background-color: #fff0f0">&#39;./views&#39;</span>,
+    app: app <span style="color: #888888">//Equivalent to app.use(pug)</span>
+});
+</pre>
+      </div>
+
+      <p>
+        Тема синтаксису шаблонізатора вже висвітлювалася в методичці з Express,
+        тому пропустимо цей момент.
+      </p>
+      <p>
+        Коли у нас є шаблон з розширенням .pug, а в коді виконані всі підготовчі
+        моменти, залишається тільки повернути відрендерений шаблон у відповіді
+        на запит.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >router.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/&#39;</span>, async <span style="color: #008800; font-weight: bold">function</span>(ctx, next) {
+    ctx.body = ctx.render(<span style="color: #a61717; background-color: #e3d2d2">‘</span>index<span style="color: #a61717; background-color: #e3d2d2">’</span>);
+  });
+  </pre>
+      </div>
+
+      <p>
+        Ми пройшлися по основним моментам для роботи з Koa.js. Для більш
+        глибокого вивчення API зверніться до документації.
+      </p>
+      <ul>
+        <li><a href="http://koajs.com/">http://koajs.com/</a></li>
+        <li>
+          <a href="https://github.com/alexmingoia/koa-router"
+            >https://github.com/alexmingoia/koa-router</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/dlau/koa-body"
+            >https://github.com/dlau/koa-body</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/koajs/static"
+            >https://github.com/koajs/static</a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MongoDB</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>MongoDB</h1>
+      <h2>Загальні відомості</h2>
+      <p>
+        MongoDB позиціонує себе як передова NoSQL база даних. Це твердження
+        засноване на статистичних даних.
+      </p>
+      <img src="" alt="Картинка" />
+      <p>
+        MongoDB використовується зокрема в MEAN або MERN- "все в одному"
+        JS-фреймворку для розробки web-додатків. Перевага використання баз даних
+        подібних MongoDB полягає в тому, що вона дає можливість легкої роботи з
+        даними в форматі JSON в будь-якій частині вашої програми.
+      </p>
+      <p>
+        Це означає, що ви можете передавати і зберігати дані в форматі JSON на
+        на всіх рівнях: фронтенда (Angular, React.js), бекенд (Node) і, власне,
+        бази даних - MongoDB.
+      </p>
+      <p>
+        MongoDB складається з баз даних, які зберігають в собі колекції. Кожна
+        колекція складається з документів, які в свою чергу складаються з полів.
+        Поля парами ключ-значення. Колекції також можуть бути індексовані, що
+        покращує швидкість вибірки і сортування.
+      </p>
+      <p><strong>Невелике порівняння SQL з MongoDB</strong></p>
+      <img src="" alt="Картинка2" />
+      <p>
+        Також слід зауважити, що деякі фічі реляційних БД не підтримуються в
+        Mongo. Наприклад, Join-и і комплексні транзакції. Відмова від них
+        викликана специфікою платформи, так як вдвох сильно заважають
+        масштабуванню баз даних.
+      </p>
+      <p>
+        Відвідайте офіційний сайт проекту, щоб докладніше вивчити всі аспекти
+        роботи з MongoDB. Зараз же ми встановимо базу даних і проведемо
+        невеличкий екскурс.
+      </p>
+      <h2>Установка і запуск</h2>
+      <p>
+        Установка MongoDB проводиться в два простих крока, які полягають в
+        наступному:
+      </p>
+      <ul>
+        <li>Запустити інсталятор;</li>
+        <li>Вибрати директорію установки;</li>
+      </ul>
+      <p>
+        Після виконання цих простих дій, ми зможемо повноцінно працювати з базою
+        даних на локальній машині.
+      </p>
+      <p>
+        Для установки MongoDB підемо на офіційний сайт
+        <a href="https://www.mongodb.com/download-center?jmp=nav#community"
+          >https://www.mongodb.com/download-center?jmp=nav#community</a
+        >
+      </p>
+      <p>
+        Офіційний сайт надає пакети дистрибутивів для різних платформ: Windows,
+        Linux, MacOS, Solaris. Для завантаження та встановлення пакета виберемо
+        потрібну операційну систему і відповідний тип пакета:
+      </p>
+      <img src="" alt="Картинка3" />
+      <p>
+        Для ОС Windows завантажувальний пакет поставляється у вигляді файлу
+        установника з розширенням msi. Після завантаження запустимо його.
+        Приймаємо ліцензійну угоду і нам відкриється вікно вибору типу
+        налаштувань.
+      </p>
+      <p>
+        Виберемо в ньому Custom. За замовчуванням всі файли встановлюються по
+        шляху C:\Program Files\MongoDB. Але ми змінимо каталог установки. Для
+        цього на початку створимо на диску C нову папку mongo (можете вибрати
+        свою назву) і потім вкажемо її в якості місця установки. Всі інші
+        настройки залишимо за замовчуванням і запустимо установку.
+      </p>
+      <img src="" alt="Картинка4" />
+      <p>
+        Якщо після установки ми відкриємо папку C:\mongo\bin, то зможемо знайти
+        там купу додатків, які виконують певну роль.
+      </p>
+      <p><strong>Коротко розглянемо їх.</strong></p>
+      <ul>
+        <li>
+          bsondump: зчитує вміст BSON-файлів і перетворює їх в читабельний
+          формат, наприклад, в JSON.
+        </li>
+        <li>
+          mongo: представляє консольний інтерфейс для взаємодії з базами даних,
+          свого роду консольний клієнт.
+        </li>
+        <li>
+          mongod: сервер баз даних MongoDB. Він обробляє запити, управляє
+          форматом даних і виконує різні операції в фоновому режимі з управління
+          базами даних.
+        </li>
+        <li>mongodump: утиліта створення бекапа баз даних.</li>
+        <li>
+          mongoexport: утиліта для експорту даних в формати JSON, TSV або CSV.
+        </li>
+        <li>
+          mongofiles: утиліта, що дозволяє управляти файлами в системі GridFS.
+        </li>
+        <li>
+          mongoimport: утиліта, імпорірующая даних в форматах JSON, TSV або CSV
+          в базу даних MongoDB.
+        </li>
+        <li>
+          mongooplog: додаток, що дозволяє опитувати віддалені сервери на
+          наявність операцій з БД і застосовувати отримані дані до локального
+          сервера.
+        </li>
+        <li>
+          mongoperf: перевіряє продуктивність жорсткого диска на предмет
+          операцій введення-виведення.
+        </li>
+        <li>
+          mongorestore: дозволяє записувати дані з дампа, створеного mongodump,
+          в нову або існуючу базу даних.
+        </li>
+        <li>
+          mongos: служба маршрутизації MongoDB, яка допомагає обробляти запити і
+          визначати місце розташування даних в кластері MongoDB.
+        </li>
+        <li>mongorestat: представляє лічильники операцій з БД.</li>
+        <li>
+          mongotop: надає спосіб підрахунку часу, витраченого на операції
+          читання-запису в БД.
+        </li>
+      </ul>
+      <p>
+        В ОС Windows за замовчуванням MongoDB зберігає бази даних по шляху
+        C:\data\db, тому, якщо ви використовуєте Windows, вам треба створити
+        відповідний каталог. В ОС Linux і MacOS каталогом за замовчуванням буде
+        /data/db.
+      </p>
+      <p>
+        Якщо ж виникла необхідність використовувати якийсь інший шлях до файлів,
+        то його можна передати при запуску MongoDB у прапорі --dbpath. Можна
+        створити файл mongodb.config і зберігати налаштування до БД там dbpath =
+        c:\mongo\data
+      </p>
+      <p>
+        Отже, після створення каталогу для зберігання БД можна запустити сервер
+        MongoDB. Сервер являє додаток mongod, який знаходиться в папці bin. Для
+        цього запустимо командний рядок (в Windows) або консоль в Linux і там
+        введемо відповідні команди. Для ОС Windows це буде виглядати так:
+      </p>
+      <img src="" alt="Картинка5" />
+      <p>
+        Командний рядок відобразить нам ряд службової інформації, наприклад, що
+        сервер запускається на localhost на порту 27017.
+      </p>
+      <h2>Установлення з'єднання зі службою MongoDB і робота з нею</h2>
+      <p>
+        Після того, як служба запущена, нам залишається тільки підключитися до
+        неї за допомогою наступної команди:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>mongo
+</pre>
+      </div>
+      <img src="" alt="Картинка6" />
+      <p><strong>Створення бази даних</strong></p>
+      <p>
+        База даних не буде створена, поки ви не додасте в неї хоча б одне
+        значення. Трюк полягає в тому, що вам зовсім не потрібно створювати
+        ніяких баз даних. При зверненні до неіснуючої, вона буде автоматично
+        створена. Розглянемо створення документів і колекцій.
+      </p>
+      <p class="label">Показати поточну базу даних</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>db
+</pre>
+      </div>
+      <p class="label">Вибрати базу даних</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>use db_name
+</pre>
+      </div>
+      <p class="label">Всі існуючі бази</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>show dbs
+</pre>
+      </div>
+      <p><strong>СRUD команди</strong></p>
+      <p class="label">видалити БД можна командою</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">db.dropDatabase()
+
+{ <span style="color: #dd2200; background-color: #fff0f0">&quot;dropped&quot;</span> : <span style="color: #dd2200; background-color: #fff0f0">&quot;local&quot;</span>, <span style="color: #dd2200; background-color: #fff0f0">&quot;ok&quot;</span> : 1 }
+</pre>
+      </div>
+      <p><strong>Створення та видалення колекцій</strong></p>
+      <p class="label">Створення колекцій відбувається так:</p>
+      <p class="label">
+        Тут name - ім'я для колекції, а options (необов'язковий параметр)
+        зберігає опції індексації та ліміту пам'яті.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+db.createCollection(name, options)
+</pre
+        >
+      </div>
+      <p class="label">Видалення колекцій:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+db.COLLECTION_NAME.drop()
+</pre
+        >
+      </div>
+
+      <p><strong>CRUD операції</strong></p>
+      <p><em>Створення документів</em></p>
+      <p>
+        Методи insert() і save() дозволяють додавати нові документи в колекцію.
+        Також, якщо викликати вставку на неіснуючу колекцію, то вона буде
+        створена і в неї буде доданий цей документ.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">db.employees.insert({ 
+        <span style="color: #dd2200; background-color: #fff0f0">&quot;employee_id&quot;</span>:1, 
+        <span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span>:<span style="color: #dd2200; background-color: #fff0f0">&quot;employee1&quot;</span> 
+    }); 
+    
+    WriteResult({ <span style="color: #dd2200; background-color: #fff0f0">&quot;nInserted&quot;</span> : 1 })
+    </pre>
+      </div>
+      <p>Тут employees це колекція, зберігає об'єкти employee.</p>
+      <p><em>Пошук документів</em></p>
+      <p>
+        Щоб знайти потрібний документ, слід виконати метод find(). Також можна
+        опціонально додати виклик методу pretty(), що зробить виведення
+        красивіше.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">db.employees.find().pretty() 
+{ 
+  <span style="color: #dd2200; background-color: #fff0f0">&quot;_id&quot;</span> : ObjectId(<span style="color: #dd2200; background-color: #fff0f0">&quot;579c657b56c7d42812e2788c&quot;</span>), 
+  <span style="color: #dd2200; background-color: #fff0f0">&quot;employeeid&quot;</span> : 1, 
+  <span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span> : <span style="color: #dd2200; background-color: #fff0f0">&quot;sanju&quot;</span> 
+  } 
+  { 
+  <span style="color: #dd2200; background-color: #fff0f0">&quot;_id&quot;</span> : ObjectId(<span style="color: #dd2200; background-color: #fff0f0">&quot;579c67e9b87b4b49be12664b&quot;</span>),
+  <span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span> : <span style="color: #dd2200; background-color: #fff0f0">&quot;employee1&quot;</span>, 
+  <span style="color: #dd2200; background-color: #fff0f0">&quot;employee_id&quot;</span> : 2 
+  }
+  </pre>
+      </div>
+      <p>
+        Зверніть увагу на поле _id - це число в шістнадцятковій системі, воно
+        унікальне для кожного документа.
+      </p>
+      <p><em>Оновлення записів</em></p>
+      <p>
+        У mongo є два методи для оновлення документів: update() і save(). в той
+        час як update() оновлює існуючу запис, save() його замінює.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >db.employees.update({<span style="color: #dd2200; background-color: #fff0f0">&quot;employee_id&quot;</span>:2},{<span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span>:<span style="color: #dd2200; background-color: #fff0f0">&quot;Employee2&quot;</span>}) 
+WriteResult({ <span style="color: #dd2200; background-color: #fff0f0">&quot;nMatched&quot;</span> : 1, <span style="color: #dd2200; background-color: #fff0f0">&quot;nUpserted&quot;</span> : 0, <span style="color: #dd2200; background-color: #fff0f0">&quot;nModified&quot;</span> : 1 }) 
+
+db.employees.save({<span style="color: #dd2200; background-color: #fff0f0">&quot;employee_id&quot;</span>:1,<span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span>:<span style="color: #dd2200; background-color: #fff0f0">&quot;Sanjeev&quot;</span>}) 
+WriteResult({ <span style="color: #dd2200; background-color: #fff0f0">&quot;nInserted&quot;</span> : 1 }) 
+
+db.employees.find() 
+{ <span style="color: #dd2200; background-color: #fff0f0">&quot;_id&quot;</span> : ObjectId(<span style="color: #dd2200; background-color: #fff0f0">&quot;579c6efbb87b4b49be12664d&quot;</span>), <span style="color: #dd2200; background-color: #fff0f0">&quot;employee_id&quot;</span> : 1, <span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span> : <span style="color: #dd2200; background-color: #fff0f0">&quot;Sanjeev&quot;</span> }
+</pre>
+      </div>
+      <p><em>Видалення документа</em></p>
+      <p>
+        Для видалення використовується метод remove(). Він приймає два
+        параметри: критерій для вибірки, що буде видалено і прапор justOne
+        (видалити тільки перший збіг з вибірки).
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >db.employees.remove({<span style="color: #dd2200; background-color: #fff0f0">&quot;_id&quot;</span>:ObjectId(<span style="color: #dd2200; background-color: #fff0f0">&quot;579c6ecab87b4b49be12664c&quot;</span>)})
+WriteResult({ <span style="color: #dd2200; background-color: #fff0f0">&quot;nRemoved&quot;</span> : 1 })
+</pre>
+      </div>
+      <p>
+        Ми коротко пробіглися по основним командам MongoDB. У документації ви
+        знайдете вичерпну інформацію по всіх командах. Також існує інтерактивне
+        керівництво.
+      </p>
+      <p>
+        Підсумуємо все коротко у вигляді таблиць.
+      </p>
+      <p><strong>Команди CRUD</strong></p>
+      <table>
+        <tr>
+          <th><strong>Команда</strong></th>
+          <th><strong>Опис</strong></th>
+        </tr>
+        <tr>
+          <td>show dbs</td>
+          <td>Список всіх баз даних</td>
+        </tr>
+        <tr>
+          <td>use</td>
+          <td>Перейти в базу (навіть якщо бази немає</td>
+        </tr>
+        <tr>
+          <td>show collections</td>
+          <td>Список всіх колекцій в поточній базі</td>
+        </tr>
+        <tr>
+          <td>db..find ()</td>
+          <td>Список документів в колекції</td>
+        </tr>
+        <tr>
+          <td>db..find ({gender: 'f'})</td>
+          <td>Список документів з умовами</td>
+        </tr>
+      </table>
+
+      <p><strong>Команди CRUD операції</strong></p>
+      <table>
+        <tr>
+          <th><strong>Команда</strong></th>
+        </tr>
+        <tr>
+          <td>db..insert({name:’Barsik’, age: 4})</td>
+        </tr>
+        <tr>
+          <td>db..remove({age: 5})</td>
+        </tr>
+        <tr>
+          <td>db..update({age: 4},{name:’Murzik’})</td>
+        </tr>
+        <tr>
+          <td>
+            db..update({age:4},{‘$set’:{name:’Murzik’}) db..updateOne(…) (v 3.2
+            >)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            db..update({age:4’},{‘$set’:{name:’Murzik’}, {multi: true})
+            db..updateMany (…) (v 3.2 >)
+          </td>
+        </tr>
+      </table>
+
+      <h2>Підключення до бази даних Node.js</h2>
+      <p>
+        Ключовим класом для роботи з MongoDB є клас MongoClient, і через нього
+        буде йти всі взаємодії зі сховищем даних. Відповідно спочатку ми повинні
+        отримати MongoClient:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">var</span> MongoClient = require(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb&quot;</span>).MongoClient;
+</pre>
+      </div>
+      <p>
+        В даному випадку залежність - "mongodb" якраз і є драйвер по роботі з
+        базою даних. Всю необхідну довідкову інформацію конкретно з даного
+        драйверу можна знайти на
+        <a href="https://mongodb.github.io/node-mongodb-native/"
+          >https://mongodb.github.io/node-mongodb-native/</a
+        >. Щоб з'єднатися з сервером mongodb застосовується метод connect():
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> mongoClient = require(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb&quot;</span>).MongoClient;
+mongoClient.connect(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb://localhost:27017/test&quot;</span>, <span style="color: #008800; font-weight: bold">function</span>(err, db){
+
+  <span style="color: #008800; font-weight: bold">if</span>(err){
+      <span style="color: #008800; font-weight: bold">return</span> console.log(err);
+  }
+  <span style="color: #888888">// взаємодія з базою даних</span>
+  db.close();
+});
+</pre>
+      </div>
+      <p><strong>Метод connect приймає два параметри:</strong></p>
+      <ol>
+        <li>
+          Адреса сервера із зазначенням бази даних. В якості протоколу адреси
+          встановлюється "mongodb://". На локальній машині адресою буде
+          localhost, після якого вказується номер порту. За замовчуванням номер
+          порту 27017. Після номера порту вказується назва бази даних. Тут в
+          якості БД вказана база даних test, яка є на сервері mongodb за
+          замовчуванням.
+        </li>
+        <li>
+          Другий параметр представляє функцію зворотного виклику, яка спрацьовує
+          при установці підключення. Це функція приймає два параметри: err
+          (виникла помилка під час активного з'єднання) і db (посилання на
+          об'єкт бази даних).
+        </li>
+      </ol>
+      <p>
+        Якщо при підключенні виникли помилки, то ми можемо використовувати
+        значення err для отримання помилки. Якщо ж помилки немає, то ми можемо
+        взаємодіяти з базою даних через об'єкт db. В кінці завершення роботи з
+        БД нам треба закрити з'єднання за допомогою методу db.close().
+      </p>
+      <p>
+        Для додавання ми можемо використовувати різні методи. Якщо потрібно
+        додати один об'єкт, то застосовується метод insertOne(). При додаванні
+        набору об'єктів можна використовувати метод insertMany().
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> mongoClient = require(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb&quot;</span>).MongoClient;
+ 
+<span style="color: #008800; font-weight: bold">const</span> url = <span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb://localhost:27017/usersdb&quot;</span>;
+mongoClient.connect(url, <span style="color: #008800; font-weight: bold">function</span>(err, db){
+     
+    <span style="color: #008800; font-weight: bold">if</span>(err) <span style="color: #008800; font-weight: bold">return</span> console.log(err);
+     
+    db.collection(<span style="color: #dd2200; background-color: #fff0f0">&quot;users&quot;</span>).find().toArray(<span style="color: #008800; font-weight: bold">function</span>(err, results){
+             
+        console.log(results);
+        db.close();
+    });
+});
+</pre>
+      </div>
+      <p>
+        Як і insertOne(), метод insertMany() в якості першого параметра приймає
+        дані, які додаються - масив об'єктів, а в якості другого - функцію
+        зворотного виклику, яка виконується при додаванні даних. При вдалому
+        додаванні другий параметр функції - results буде містити додані дані.
+      </p>
+      <p>
+        Для отримання даних з колекції застосовується метод find(). Метод find
+        повертає спеціальний об'єкт - Cursor, і щоб отримати всі дані у цього
+        об'єкта викликається метод toArray(). У цей метод передається функція
+        зворотного виклику зі стандартними параметрами: err (інформація про
+        помилку при її наявності) і result (власне результат вибірки).
+      </p>
+      <p>
+        Метод findOne() працює аналогічно, тільки дозволяє отримати один
+        документ./p>
+      </p>
+      <p>Видаляти документи в MongoDB можна різними способами.</p>
+      <p><strong>Тут треба зазначити наступні методи колекції:</strong></p>
+      <ul>
+        <li>
+          deleteMany(): видаляє всі документи, які відповідають певному
+          критерію.
+        </li>
+        <li>
+          deleteOne (): видаляє один документ, який відповідає певному критерію.
+        </li>
+        <li>
+          findOneAndDelete (): отримує і видаляє один документ, який відповідає
+          певному критерію.
+        </li>
+        <li>drop (): видаляє всю колекцію.</li>
+      </ul>
+      <p>
+        <strong>Для оновлення елементів в MongoDB є кілька методів:</strong>
+      </p>
+      <ul>
+        <li>
+          updateOne: оновлює один документ, який відповідає критерію фільтрації,
+          і повертає інформацію про операції оновлення.
+        </li>
+        <li>
+          updateMany: оновлює всі документи, які відповідають критерію
+          фільтрації, і повертає інформацію про операції оновлення.
+        </li>
+        <li>
+          findOneAndUpdate: оновлює один документ, який відповідає критерію
+          фільтрації, і повертає оновлений документ.
+        </li>
+      </ul>
+
+      <h2>Mongoose</h2>
+      <p>
+        Mongoose представляє спеціальну ODM-бібліотеку (Object Data Modelling)
+        для роботи з MongoDB, яка дозволяє зіставляти об'єкти класів і документи
+        колекцій з бази даних. Грубо кажучи, Mongoose працює подібно
+        інструментам ORM. Офіційний сайт бібліотеки, де можна подивитися всю
+        необхідну документацію:
+        <a href="http://mongoosejs.com">http://mongoosejs.com</a>
+      </p>
+      <p class="label">
+        Для роботи з Mongoose встановимо бібліотеку за допомогою команди:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install mongoose --save
+</pre
+        >
+      </div>
+      <p class="label">Далі визначимо наступний код у файлі додатка app.js:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> mongoose = require(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongoose&quot;</span>);
+<span style="color: #008800; font-weight: bold">const</span> Schema = mongoose.Schema;
+<span style="color: #888888">// для роботи з promise</span>
+mongoose.Promise = global.Promise;
+ 
+<span style="color: #888888">// встановлення схеми</span>
+<span style="color: #008800; font-weight: bold">const</span> personScheme = <span style="color: #008800; font-weight: bold">new</span> Schema({
+    name: <span style="color: #003388">String</span>,
+    age: <span style="color: #003388">Number</span>
+});
+ 
+<span style="color: #888888">// підключення</span>
+mongoose.connect(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb://localhost:27017/personsdb&quot;</span>);
+ 
+<span style="color: #008800; font-weight: bold">const</span> Person = mongoose.model(<span style="color: #dd2200; background-color: #fff0f0">&quot;person&quot;</span>, personScheme);
+<span style="color: #008800; font-weight: bold">const</span> user = <span style="color: #008800; font-weight: bold">new</span> Person({
+    name: <span style="color: #dd2200; background-color: #fff0f0">&quot;Юрий&quot;</span>,
+    age: <span style="color: #0000DD; font-weight: bold">41</span>
+});
+ 
+user.save()
+.then(<span style="color: #008800; font-weight: bold">function</span>(doc){
+    console.log(<span style="color: #dd2200; background-color: #fff0f0">&quot;Сохранен объект&quot;</span>, doc);
+    mongoose.disconnect();  <span style="color: #888888">// відключення від бази даних</span>
+})
+.<span style="color: #008800; font-weight: bold">catch</span>(<span style="color: #008800; font-weight: bold">function</span> (err){
+    console.log(err);
+    mongoose.disconnect();
+});
+</pre>
+      </div>
+      <p class="label">Тут перш за все нам треба підключити mongoose:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> mongoose = require(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongoose&quot;</span>);
+</pre>
+      </div>
+      <p class="label">
+        Так як при зверненні до бази даних ми працюємо з об'єктами promise, то
+        необхідно спочатку встановити їх реалізацію для властивості Promise:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+mongoose.Promise = global.Promise;
+</pre
+        >
+      </div>
+      <p class="label">
+        Дані, які використовуються в Mongoose, описуються певною схемою
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> Schema = mongoose.Schema;
+ 
+<span style="color: #888888">// встановлення схеми</span>
+<span style="color: #008800; font-weight: bold">var</span> personScheme = <span style="color: #008800; font-weight: bold">new</span> Schema({
+    name: <span style="color: #003388">String</span>,
+    age: <span style="color: #003388">Number</span>
+});
+</pre>
+      </div>
+      <p>
+        Схема містить метадані об'єктів. Зокрема, тут встановлюємо, які
+        властивості матиме об'єкт і який у них буде тип даних.
+      </p>
+      <p>В якості типу даних можна вказувати одне з наступних значень:</p>
+      <ul>
+        <li>String</li>
+        <li>Number</li>
+        <li>Date</li>
+        <li>Buffer</li>
+        <li>Boolean</li>
+        <li>Mixed</li>
+        <li>Objectid</li>
+        <li>Array</li>
+      </ul>
+      <p>
+        Якщо властивість представляє складний об'єкт, то в якості типу вказуємо
+        визначення цього об'єкта:
+      </p>
+      <p class="label">Приклад:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> personScheme = <span style="color: #008800; font-weight: bold">new</span> Schema({
+      name: <span style="color: #003388">String</span>,
+      age: <span style="color: #003388">Number</span>,
+      company: {
+          name: <span style="color: #003388">String</span>,
+          employee: [<span style="color: #003388">String</span>], <span style="color: #888888">// тип - массив рядків</span>
+          date: <span style="color: #003388">Date</span>
+      }
+  });
+  </pre>
+      </div>
+      <p>
+        Mongoose має ряд вбудованих правил валідації, які ми можемо вказати в
+        схемі:
+      </p>
+      <ul>
+        <li>
+          <strong>required:</strong> вимагає обов'язкової наявності значення для
+          властивості.
+        </li>
+        <li>
+          <strong>min і max:</strong> задають мінімальне і максимальне значення
+          для числових даних.
+        </li>
+        <li>
+          <strong>minlength і maxlength:</strong> задають мінімальну і
+          максимальну довжину для рядків.
+        </li>
+        <li>
+          <strong>enum:</strong> рядок повинен бути одним із значень в
+          зазначеному масиві рядків.
+        </li>
+        <li>
+          <strong>match:</strong> рядок повинен відповідати регулярному виразу.
+        </li>
+      </ul>
+      <p>
+        Якщо ми спробуємо додати некоректні дані в БД, то запит на додавання
+        поверне помилку.
+      </p>
+      <p class="label">Приклад:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> personScheme = <span style="color: #008800; font-weight: bold">new</span> Schema({
+      name: {
+        type: <span style="color: #003388">String</span>,
+        required: <span style="color: #008800; font-weight: bold">true</span>,
+        minlength:<span style="color: #0000DD; font-weight: bold">3</span>,
+        maxlength:<span style="color: #0000DD; font-weight: bold">20</span>
+    },
+    age: {
+        type: <span style="color: #003388">Number</span>,
+        required: <span style="color: #008800; font-weight: bold">true</span>,
+        min: <span style="color: #0000DD; font-weight: bold">1</span>,
+        max:<span style="color: #0000DD; font-weight: bold">100</span>
+    }
+});
+</pre>
+      </div>
+      <p class="label">
+        Потім, використовуючи цю схему, створюємо модель користувача:
+      </p>
+      <p class="label">
+        Перший параметр в методі mongoose.model вказує на назву моделі, а другий
+        параметр, власне, схема.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> Person = mongoose.model(<span style="color: #dd2200; background-color: #fff0f0">&quot;person&quot;</span>, personScheme);
+</pre>
+      </div>
+      <p class="label">Далі ми можемо створювати об'єкти цієї моделі:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> user = <span style="color: #008800; font-weight: bold">new</span> Person({
+      name: <span style="color: #dd2200; background-color: #fff0f0">&quot;Юрий&quot;</span>,
+      age: <span style="color: #0000DD; font-weight: bold">41</span>
+  });
+  </pre>
+      </div>
+      <p class="label">
+        Для підключення до бази даних застосовується метод mongoose.connect(), в
+        який передається адреса бази даних на сервері mongo:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >mongoose.connect(<span style="color: #dd2200; background-color: #fff0f0">&quot;mongodb://localhost:27017/personsdb&quot;</span>);
+</pre>
+      </div>
+      <p class="label">
+        І в кінці у об'єкта викликається метод save. Цей метод визначений для
+        всіх створюваних моделей, він зберігає поточний об'єкт в базу даних. За
+        допомогою методу then ми можемо отримати дані, які повернув нам сервер і
+        виконати обробку результату.
+      </p>
+      <p class="label">
+        За допомогою методу mongoose.disconnect (); відбувається відключення від
+        БД.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">user.save()
+.then(<span style="color: #008800; font-weight: bold">function</span>(doc){
+  console.log(<span style="color: #dd2200; background-color: #fff0f0">&quot;Сохранен объект&quot;</span>, doc);
+  mongoose.disconnect();  <span style="color: #888888">// отключение от базы данных</span>
+})
+.<span style="color: #008800; font-weight: bold">catch</span>(<span style="color: #008800; font-weight: bold">function</span> (err){
+  console.log(err);
+  mongoose.disconnect();
+});
+</pre>
+      </div>
+      <p>
+        <strong
+          >Розглянемо, як виконувати основні операції з даними в
+          Mongoose.</strong
+        >
+      </p>
+      <p><em>Створення документів</em></p>
+      <p>
+        Крім методу save() також можна використовувати метод Person.create().
+        Перший параметр методу - зберігається об'єкт.
+      </p>
+      <p><em>Отримання даних</em></p>
+      <p>Для отримання даних можна використовувати цілий набір методів:</p>
+      <ul>
+        <li>
+          <strong>find:</strong> повертає всі об'єкти, які відповідають критерію
+          фільтрації. Метод find() в якості першого параметра приймає критерій
+          фільтрації, а другий параметр - функція зворотного виклику, в яку
+          передаються отримані з бд документи. Якщо в якості критерію фільтрації
+          передаються порожні фігурні дужки ({}), то повертаються всі об'єкти.
+        </li>
+        <li>
+          <strong>findById:</strong> повертає один об'єкт за значенням поля _id.
+          Метод повертає документ з певним ідентифікатором.
+        </li>
+        <li>
+          <strong>findOne:</strong> повертає один об'єкт, який відповідає
+          критерію фільтрації. Метод findOne() працює аналогічно методу find,
+          тільки повертає один об'єкт.
+        </li>
+      </ul>
+      <p><em>Видалення даних</em></p>
+      <p>
+        Для видалення застосовується метод remove(). У цей метод передається
+        критерій фільтрації документів на видалення. Об'єкт, який передається в
+        функцію зворотного виклику, містить інформацію про операції видалення.
+      </p>
+      <p>
+        Якщо ж нам треба видалити один документ, то ми можемо використовувати
+        метод findOneAndRemove (). На відміну від методу remove тут в функцію
+        зворотного виклику передається віддалений документ:
+      </p>
+      <p>
+        І окремий різновид цього методу - видалення по полю _id у вигляді методу
+        findByIdAndRemove ().
+      </p>
+      <p><em>Зміна даних</em></p>
+      <p>
+        Кожна модель має власний метод update(), який дозволяє оновити документи
+        в БД. Перший параметр методу - критерій фільтрації. А другий параметр
+        описує, що і як треба змінити. У функцію зворотного виклику передається
+        результат операції
+      </p>
+      <p>
+        Нерідко для оновлення використовується фільтрація по _id. І на цей
+        випадок ми можемо використовувати метод findByIdAndUpdate():
+      </p>
+      <p>
+        Перший параметр методу - значення для поля _id у оновлюваного документа,
+        а другий - набір нових значень для полів об'єкта. У функцію зворотного
+        виклику передається оновлений документ.
+      </p>
+    </div>
+  </body>
+</html>

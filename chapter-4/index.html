@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Фреймворк Express</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Фреймворк Express</h1>
+      <p>
+        У цьому розділі ми розглянемо приклад створення простого додатка за
+        допомогою фреймворка Express.
+      </p>
+      <p>
+        Express - це мінімалістичний і гнучкий веб-фреймворк для додатків
+        Node.js, що надає великий набір функцій для мобільних і веб-додатків.
+      </p>
+      <h2>Загальні відомості про фреймворк</h2>
+      <p>
+        Якщо подивитися на популярність, за кількістю завантажень, згідно з
+        сайтом
+        <a href="http://www.npmtrends.com/">http://www.npmtrends.com/</a> , ми
+        можемо побачити, що фреймворк досить сильно обходить своїх конкурентів у
+        популярності.
+      </p>
+      <img src="" alt="Картинка" />
+      <p>
+        Познайомимося з основними можливостями Express.js і встановимо його.
+      </p>
+      <p>У вас вже повинен бути встановлений Node.js.</p>
+      <p class="label">
+        Створіть каталог для свого додатка і зробіть його своїм робочим
+        каталогом.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>mkdir myapp
+<span style="color: #336699">$ </span><span style="color: #003388">cd </span>myapp
+</pre>
+      </div>
+      <p class="label">
+        За допомогою команди npm init створіть файл package.json для свого
+        застосування.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>npm init -y
+</pre>
+      </div>
+      <p class="label">
+        Створіть в корені файл app.js (або будь-яке інше ім'я головного файлу за
+        своїм бажанням). Тепер встановіть Express в каталозі myapp і збережіть
+        його в списку залежностей. Наприклад:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>npm i -S express
+</pre>
+      </div>
+      <p>
+        Примітка. Є також інший спосіб створити додаток - за допомогою
+        генератора додатків
+        <a href="http://expressjs.com/ru/starter/generator.html"
+          >http://expressjs.com/ru/starter/generator.html</a
+        >
+      </p>
+      <p>Давайте поки створимо простий Hello World! додаток.</p>
+      <p>У файл з ім'ям app.js додайте наступний код:</p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> express = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;express&#39;</span>);
+<span style="color: #008800; font-weight: bold">const</span> app = express();
+
+app.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/&#39;</span>, <span style="color: #008800; font-weight: bold">function</span> (req, res) {
+  res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;Hello World!&#39;</span>);
+});
+
+app.listen(<span style="color: #0000DD; font-weight: bold">3000</span>, <span style="color: #008800; font-weight: bold">function</span> () {
+  console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Example app listening on port 3000!&#39;</span>);
+});
+</pre>
+      </div>
+      <p class="label">
+        Що тут відбувається? Спочатку ми створюємо об'єкт, який буде
+        представляти наш додаток:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> app = express();
+</pre>
+      </div>
+      <h2>Маршрутизація</h2>
+      <p>
+        Для обробки запитів, маршрутів, в Express визначено ряд вбудованих
+        функцій. Маршрутизація визначає, як додаток відповідає на клієнтський
+        запит до конкретної адреси. Кожен маршрут може мати одну або кілька
+        функцій обробки, які виконуються при зіставленні маршруту.
+      </p>
+      <p>
+        Визначення маршруту, згідно з документацією, має наступну структуру:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+app.METHOD(PATH, HANDLER)
+</pre
+        >
+      </div>
+      <p>Де:</p>
+      <p>app - це екземпляр express.</p>
+      <p>METHOD - метод запиту HTTP (get, post, put, delete ...).</p>
+      <p>PATH - шлях на сервері, в нашому випадку це корінь сайту '/'.</p>
+      <p>HANDLER - функція, виконувана при зіставленні маршруту.</p>
+      <p>
+        У нашому випадку вона приймає два параметри, об'єкт запиту req і об'єкт
+        відповіді res.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">function</span> (req, res) {
+res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;Hello World!&#39;</span>);
+}
+</pre>
+      </div>
+      <p>
+        Для запуску сервера викликається метод app.listen(), в який передається
+        номер порту.
+      </p>
+      <p>
+        Запустимо проект і звернемося в браузері за адресою http: // localhost:
+        3000 /:
+      </p>
+      <img src="" alt="Картинка2" />
+      <p>
+        Додаток видає відповідь "Hello World!" на запити, адресовані кореневому
+        URL (/) або маршруту. Для всіх інших шляхів, наприклад,
+        http://localhost:3000/about, відповіддю буде Can not GET/about.
+      </p>
+      <p>
+        Варто відзначити, що req (запит) і res (відповідь) є тими ж об'єктами,
+        які надає Node.
+      </p>
+      <p class="label">Додамо обробник маршруту about</p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&quot;/about&quot;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res){
+      res.send(<span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;h1&gt;About&lt;/h1&gt;&quot;</span>);
+    });
+    </pre>
+      </div>
+      <img src="" alt="Картинка3" />
+      <p>
+        Як вже говорилося, коли приходить запит, Express зіставляє запитану
+        адресу з кожним з маршрутів. При збігу маршруту викликається його
+        функція обробник. Але визначення маршрутів, крім простих рядків, можуть
+        також містити регулярні вирази або спеціальні символи підстановок.
+        Зокрема, ми можемо використовувати такі символи, як ?, +, * та ().
+      </p>
+      <p>
+        Cимвол ? в маршруте указывает, что предыдущий символ может встречаться 1
+        раз или отсутствовать. Приведенный ниже путь маршрута сопоставляет acd і
+        abcd.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/ab?cd&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res) {
+res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;ab?cd&#39;</span>);
+});
+</pre>
+      </div>
+
+      <p>
+        Символ + вказує, що попередній символ може зустрічатися 1 і більше
+        разів. Цей шлях маршруту зіставляє abcd, abbcd, abbbcd і т.д.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/ab+cd&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res) {
+res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;ab+cd&#39;</span>);
+});
+</pre>
+      </div>
+      <p>
+        Символ зірочка * вказує, що на місці цього символу може бути будь-яка
+        кількість символів. Цей шлях маршруту зіставляє abcd, abxcd, abRABDOMcd,
+        ab123cd і т.д.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/ab*cd&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res) {
+res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;ab*cd&#39;</span>);
+});
+</pre>
+      </div>
+      <p>
+        Дужки () дозволяють оформити групу символів, які можуть зустрічатися в
+        запиті. Даний шлях маршруту зіставляє / abe і / abcde.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/ab(cd)?e&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res) {
+  res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;ab(cd)?e&#39;</span>);
+});
+</pre>
+      </div>
+      <h2>Передача параметрів в маршруті</h2>
+      <p>
+        Маршрути можуть містити параметри - іменовані сегменти URL-адреси. Назва
+        параметра має включати символи з діапазону [A-Za-z0-9_]. У визначенні
+        маршруту параметри передуються знаком двокрапки. Додамо ще один обробник
+        для наступного маршруту:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&quot;/about/:id&quot;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res){
+res.send(<span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;h1&gt;About&lt;/h1&gt; Параметр: &quot;</span> + req.params[<span style="color: #dd2200; background-color: #fff0f0">&#39;id&#39;</span>]);
+});
+</pre>
+      </div>
+      <img src="" alt="Картинка4" />
+      <h2>Надання статичних файлів</h2>
+      <p>
+        Розглянемо, як в Node.js + Express можна відправляти користувачеві
+        статичні файли. Для надання статичних файлів, наприклад, зображень,
+        файлів CSS і JavaScript в Express використовується функція тимчасової
+        роботи express.static.
+      </p>
+      <p>
+        Для того щоб почати безпосереднє надання файлів, необхідно передати ім'я
+        каталогу, в якому знаходяться статичні ресурси, в функцію проміжної
+        обробки express.static.
+      </p>
+      <p>
+        Створимо для статичних файлів в проекті каталог public, в який додамо
+        html-сторінку, яку назвемо about.html:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #cc0000; font-weight: bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;html&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;head&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;title&gt;</span>About<span style="color: #bb0066; font-weight: bold">&lt;/title&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">charset=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;utf-8&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;link</span> <span style="color: #336699">rel=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;stylesheet&quot;</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/css/main.css&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/head&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;body&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;h1&gt;</span>О сайте<span style="color: #bb0066; font-weight: bold">&lt;/h1&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;p&gt;</span>Сделано на фреймворке Express<span style="color: #bb0066; font-weight: bold">&lt;/p&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;script </span><span style="color: #336699">src=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/js/main.js&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;&lt;/script&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/body&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;html&gt;</span>
+</pre>
+      </div>
+      <p>У результаті наш проект буде виглядати наступним чином:</p>
+      <img src="" alt="Картинка5" />
+      <p class="label">Тепер змінимо файл app.js:</p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >var express = require(&quot;express&quot;);
+const express = require(&#39;express&#39;);
+const app = express();
+
+app.use(express.static(__dirname + &quot;/public&quot;));
+
+app.get(&#39;/&#39;, function (req, res) {
+  res.send(&#39;<span style="color: #bb0066; font-weight: bold">&lt;a</span> <span style="color: #336699">href=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;about.html&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>About<span style="color: #bb0066; font-weight: bold">&lt;/a&gt;</span>&#39;);
+});
+
+app.listen(3000, function () {
+  console.log(&#39;Example app listening on port 3000!&#39;);
+});
+</pre>
+      </div>
+      <p>
+        Щоб вбудувати компонент express.static в процес обробки запиту,
+        викликається функція app.use(). Ця функція express дозволяє додавати
+        різні компоненти (вони ще називаються middleware) до конвеєру обробки
+        запиту:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.use(express.<span style="color: #008800; font-weight: bold">static</span>(__dirname + <span style="color: #dd2200; background-color: #fff0f0">&quot;/public&quot;</span>));
+</pre>
+      </div>
+
+      <p>
+        Причому даний виклик повинен поміщатися до всіх інших викликів функції
+        app.get(), app.post() і т.д.
+      </p>
+      <p>
+        В саму функцію express.static() передається шлях до папки зі статичними
+        файлами. Спеціальна змінна Node.js __dirname дозволяє отримати повний
+        шлях до папки.
+      </p>
+      <p>
+        Якщо запустити наш додаток за адресою
+        <a href="http://localhost:3000">http://localhost:3000</a> ми побачимо
+        вікно
+      </p>
+      <img src="" alt="Картинка6" />
+      <p>
+        У вікні посилання, яке веде на шлях
+        <a href="http://localhost:3000/about.html"
+          >http://localhost:3000/about.html</a
+        >. Причому цей шлях express буде брати з статики, так як такого маршруту
+        в файлі app.js у нас немає
+      </p>
+      <img src="" alt="Картинка7" />
+      <h2>Проміжне ПЗ</h2>
+      <p>
+        На ділі проміжне ПЗ - просто функція, що приймає три аргументи: об'єкт
+        запиту, об'єкт відповіді і функцію next. Проміжне ПЗ виконується
+        способом, який називається конвеєрна обробка.
+      </p>
+      <p>
+        Уявіть собі матеріальну трубу, по якій тече вода. Вода закачується через
+        один кінець труби і проходить через манометри і клапани, перш ніж
+        потрапляє за призначенням. Важливий нюанс цієї аналогії в тому, що
+        черговість має значення.
+      </p>
+      <p>
+        Вбудуємо власне проміжне ПО в наш файл app.js перед викликом статики.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.use(<span style="color: #008800; font-weight: bold">function</span>(req, res, next) {
+  console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Наше промежуточное ПО&#39;</span>);
+  next();
+})
+</pre>
+      </div>
+      <img src="" alt="Картинка8" />
+      <p>
+        Функції проміжної обробки (middleware) - це функції, які мають доступ до
+        об'єкта запиту (req), об'єкту відповіді (res) і до наступної функції
+        проміжної обробки в циклі "запит-відповідь" додатка. Наступна функція
+        проміжної обробки, як правило, позначається змінної next.
+      </p>
+      <p>Функції проміжної обробки можуть виконувати такі завдання:</p>
+      <ul>
+        <li>Виконання будь-якого коду.</li>
+        <li>Внесення змін до об'єктів запитів і відповідей.</li>
+        <li>Завершення циклу "запит-відповідь".</li>
+        <li>Виклик наступної функції проміжної обробки з стека.</li>
+      </ul>
+      <p>
+        Якщо поточна функція проміжної обробки не завершує цикл
+        "запит-відповідь", вона повинна викликати next() для передачі управління
+        наступній функції проміжної обробки. В іншому випадку запит зависне.
+      </p>
+      <p>
+        Додаток Express може використовувати такі типи проміжних оброблювачів:
+      </p>
+      <ul>
+        <li>Проміжний обробник рівня додатка.</li>
+        <li>Проміжний обробник рівня маршрутизатора.</li>
+        <li>Проміжний обробник для обробки помилок.</li>
+        <li>Вбудовані проміжні обробники.</li>
+        <li>Проміжні обробники сторонніх постачальників ПЗ.</li>
+      </ul>
+      <p>
+        Проміжні обробники рівня додатка і рівня маршрутизатора можна
+        завантажувати за допомогою необов'язкового шляху для монтування. Також
+        можна завантажити послідовність функцій проміжного обробника одночасно,
+        в результаті чого створюється допоміжний стек системи проміжних
+        оброблювачів в точці монтування.
+      </p>
+      <p>
+        Більш детально читайте
+        <a href="http://expressjs.com/ru/guide/using-middleware.html"
+          >документацію</a
+        >.
+      </p>
+      <h2>POST-запити і відправка форм</h2>
+      <p>
+        При отправці будь-яких складних даних зазвичай використовуються форми.
+        Розглянемо, як отримувати відправлені дані в Express.
+      </p>
+      <p>
+        Для отримання даних форм із запиту необхідно використовувати спеціальний
+        пакет body-parser.
+      </p>
+      <p class="label">Додамо його в проект:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm i -S body-parser
+</pre
+        >
+      </div>
+      <p class="label">
+        Визначимо в проекті, в папці public, новий файл contact.html:
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #cc0000; font-weight: bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;html</span> <span style="color: #336699">lang=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;en&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+	
+<span style="color: #bb0066; font-weight: bold">&lt;head&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">charset=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;UTF-8&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;viewport&quot;</span> <span style="color: #336699">content=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;width=device-width, initial-scale=1.0&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">http-equiv=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;X-UA-Compatible&quot;</span> <span style="color: #336699">content=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;ie=edge&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;title&gt;</span>Document<span style="color: #bb0066; font-weight: bold">&lt;/title&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/head&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;body&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;form</span> <span style="color: #336699">action=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/contact&quot;</span> <span style="color: #336699">method=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;post&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;label&gt;</span>Имя<span style="color: #bb0066; font-weight: bold">&lt;/label&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;hr&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;label&gt;</span>email<span style="color: #bb0066; font-weight: bold">&lt;/label&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;hr&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;button&gt;</span>Отправить<span style="color: #bb0066; font-weight: bold">&lt;/button&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;/form&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/body&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;/html&gt;</span>
+</pre>
+      </div>
+      <img src="" alt="Картинка9" />
+      <p>
+        У нас є два поля. Ім'я користувача і його email. Нам потрібно отримати
+        ці два значення на сервері.
+      </p>
+      <p>
+        Перш за все для отримання відправлених даних необхідно підключити парсер
+        через проміжне ПЗ:
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #cc0000; font-weight: bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;html</span> <span style="color: #336699">lang=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;en&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+	
+<span style="color: #bb0066; font-weight: bold">&lt;head&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">charset=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;UTF-8&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;viewport&quot;</span> <span style="color: #336699">content=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;width=device-width, initial-scale=1.0&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">http-equiv=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;X-UA-Compatible&quot;</span> <span style="color: #336699">content=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;ie=edge&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;title&gt;</span>Document<span style="color: #bb0066; font-weight: bold">&lt;/title&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/head&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;body&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;form</span> <span style="color: #336699">action=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/contact&quot;</span> <span style="color: #336699">method=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;post&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;label&gt;</span>Имя<span style="color: #bb0066; font-weight: bold">&lt;/label&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;hr&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;label&gt;</span>email<span style="color: #bb0066; font-weight: bold">&lt;/label&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;hr&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;button&gt;</span>Отправить<span style="color: #bb0066; font-weight: bold">&lt;/button&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;/form&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/body&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;/html&gt;</span>
+</pre>
+      </div>
+      <p>
+        Для створення парсера застосовується функція urlencoded(). В цю функцію
+        передається об'єкт, що встановлює параметри парсинга. Значення extended:
+        false вказує, що результат парсинга буде являти собою набір пар ключ -
+        значення, а кожне значення може бути представлено у вигляді рядка або
+        масиву.
+      </p>
+      <p>
+        Так як дані відправляються за допомогою методу POST, то для обробки
+        визначаємо функцію app.post('/contact', ...). Перший параметр функції -
+        адреса, на який йде відправка даних - "/ contact". Другий параметр
+        обробник:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #cc0000; font-weight: bold">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;html</span> <span style="color: #336699">lang=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;en&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+	
+<span style="color: #bb0066; font-weight: bold">&lt;head&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">charset=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;UTF-8&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;viewport&quot;</span> <span style="color: #336699">content=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;width=device-width, initial-scale=1.0&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;meta</span> <span style="color: #336699">http-equiv=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;X-UA-Compatible&quot;</span> <span style="color: #336699">content=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;ie=edge&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;title&gt;</span>Document<span style="color: #bb0066; font-weight: bold">&lt;/title&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/head&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;body&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;form</span> <span style="color: #336699">action=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;/contact&quot;</span> <span style="color: #336699">method=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;post&quot;</span><span style="color: #bb0066; font-weight: bold">&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;label&gt;</span>Имя<span style="color: #bb0066; font-weight: bold">&lt;/label&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;name&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;hr&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;label&gt;</span>email<span style="color: #bb0066; font-weight: bold">&lt;/label&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;input</span> <span style="color: #336699">type=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #336699">name=</span><span style="color: #dd2200; background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #bb0066; font-weight: bold">/&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;hr&gt;</span>
+    <span style="color: #bb0066; font-weight: bold">&lt;button&gt;</span>Отправить<span style="color: #bb0066; font-weight: bold">&lt;/button&gt;</span>
+  <span style="color: #bb0066; font-weight: bold">&lt;/form&gt;</span>
+<span style="color: #bb0066; font-weight: bold">&lt;/body&gt;</span>
+
+<span style="color: #bb0066; font-weight: bold">&lt;/html&gt;</span>
+</pre>
+      </div>
+      <p>
+        Запустимо програму і звернемося за адресою:
+        <a href="http://localhost:3000/contact.html"
+          >http://localhost:3000/contact.html</a
+        >
+      </p>
+      <img src="" alt="Картинка10" />
+      <p>
+        Після відправки повідомлення його обробить наш маршрут
+        app.post('/contact', ...)
+      </p>
+      <img src="" alt="Картинка11" />
+      <p>
+        І ми побачимо, що відправлені дані сервер отримав і відправив назад.
+      </p>
+      <h2>Вибір шаблонізатора</h2>
+      <p>
+        Останнє, що варто розглянути, це шаблонізатор. Як правило, додатки
+        Express для визначення візуального інтерфейсу використовують не
+        стандартні файли html, а спеціальні суті - уявлення, з яких потім
+        створюються html-файли. Перевагою уявлень є те, що ми можемо визначати в
+        них деякі шаблони, замість яких потім вставляється якийсь динамічний
+        вміст за допомогою коду JavaScript.
+      </p>
+      <p>
+        Express дозволяє використовувати будь-який шаблонизатор, який ви тільки
+        побажаєте. Якщо хочете дізнатися, які існують варіанти, можете
+        спробувати ось цю забавну і зручну утиліту вибору шаблонізатора:
+        <a href="http://garann.github.io/template-chooser"
+          >http://garann.github.io/template-chooser</a
+        >
+      </p>
+      <p>
+        У той час як більшість шаблонізаторів використовує підхід з сильною
+        орієнтацією на HTML, Pug виділяється, він абстрагує від вас його
+        подробиці. Варто також відзначити, що Pug - дітище Ті Джея Головайчука,
+        того самого, хто подарував нам Express. Нічого дивного, що Pug відмінно
+        інтегрується з Express.
+      </p>
+      <p>
+        Використовуваний Pug підхід вельми шляхетний: в його основі лежить
+        твердження, що HTML - занадто переобтяжений деталями і трудомісткий для
+        написання вручну.
+      </p>
+      <p>
+        Для того щоб відображати в Express файли шаблонів, необхідно задати
+        наступні параметри додатка:
+      </p>
+      <p>views, каталог, в якому знаходяться файли шаблонів. наприклад:</p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.set(<span style="color: #dd2200; background-color: #fff0f0">&#39;views&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;./views&#39;</span>)
+</pre>
+      </div>
+      <p class="label">
+        view engine, шаблонизатор що використовується. Наприклад:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.set(<span style="color: #dd2200; background-color: #fff0f0">&#39;view engine&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;pug&#39;</span>)
+</pre>
+      </div>
+      <p class="label">Потім встановіть відповідний пакет npm-шаблонізатора:</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #336699">$ </span>npm i -S pug 
+</pre>
+      </div>
+      <p>
+        Після визначення механізму візуалізації (view engine) не потрібно
+        вказувати його або завантажувати модуль шаблонізатора в додаток; Express
+        завантажує модуль внутрішніми засобами.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.set(<span style="color: #dd2200; background-color: #fff0f0">&#39;view engine&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;pug&#39;</span>);
+</pre>
+      </div>
+      <p>
+        Створіть файл шаблону Pug з ім'ям index.pug в каталозі views з наступним
+        змістом:
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #bb0066; font-weight: bold">html</span>
+  <span style="color: #bb0066; font-weight: bold">head</span>
+  <span style="color: #bb0066; font-weight: bold">title</span>!= title
+<span style="color: #bb0066; font-weight: bold">body</span>
+  <span style="color: #bb0066; font-weight: bold">h1</span>!= message
+</pre>
+      </div>
+      <p>
+        Потім створіть маршрут для виведення файлу index.pug. Якщо властивість
+        view engine не задана, необхідно вказати розширення файлу view. В іншому
+        випадку, можна не вказувати розширення.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/&#39;</span>, <span style="color: #008800; font-weight: bold">function</span> (req, res) {
+  res.render(<span style="color: #dd2200; background-color: #fff0f0">&#39;index&#39;</span>, { title: <span style="color: #dd2200; background-color: #fff0f0">&#39;Hey&#39;</span>, message: <span style="color: #dd2200; background-color: #fff0f0">&#39;Hello there!&#39;</span>});
+});
+</pre>
+      </div>
+      <p>
+        При виконанні запиту до домашньої сторінки файл index.pug буде
+        відображатися як HTML.
+      </p>
+      <img src="" alt="Картинка12" />
+      <p>
+        Ми пройшлися по основним важливим моментам для роботи з Express. Для
+        більш глибокого вивчення API зверніться до документації.
+      </p>
+      <p>
+        <a href="http://expressjs.com/ru/4x/api.html"
+          >http://expressjs.com/ru/4x/api.html</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

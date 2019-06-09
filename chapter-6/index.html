@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Архітектура REST</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Архітектура REST</h1>
+      <p>
+        <strong>REST</strong> (REpresentational State Transfer) - це
+        архітектура, тобто принципи побудови розподілених гіпермедіа систем,
+        того що іншими словами називається World Wide Web, включаючи
+        універсальні способи обробки і передачі станів ресурсів по HTTP.
+      </p>
+      <p>Автор ідеї та терміну Рой Філдінг 2000р.</p>
+      <p>
+        REST на сьогоднішній день практично витіснив всі інші підходи, в тому
+        числі дизайн заснований на SOAP і WSDL
+      </p>
+      <h2>Ключові цілі REST включають:</h2>
+      <ul>
+        <li>Масштабованість взаємодії компонентів.</li>
+        <li>Однорідність інтерфейсів.</li>
+        <li>Незалежне впровадження компонентів.</li>
+        <li>
+          Проміжні компоненти, що знижують затримку, які посилюють безпеку і
+          інкапсулюють застарілі системи.
+        </li>
+      </ul>
+      <h2>Коли використовувати REST?</h2>
+      <ul>
+        <li>Коли є обмеження пропускної здатності з'єднання.</li>
+        <li>Якщо необхідно кешувати запити.</li>
+        <li>Якщо система передбачає значне масштабування.</li>
+        <li>У сервісах, що використовують AJAX.</li>
+      </ul>
+      <h2>Переваги REST</h2>
+      <ul>
+        <li>
+          <strong>Відсутність додаткових внутрішніх прошарків,</strong> що
+          означає передачу даних в тому ж вигляді, що і самі дані. Тобто дані не
+          обертаються в XML, як це робить SOAP і XML-RPC, не використовується
+          AMF, як це робить Flash і т.д. Просто віддаються самі дані.
+        </li>
+        <li>
+          <strong
+            >Кожна одиниця інформації (ресурс) однозначно визначається
+            URL</strong
+          >
+          - це значить, що URL по суті є первинним ключем для одиниці даних.
+          Причому абсолютно не має значення, в якому форматі знаходяться дані за
+          адресою - це може бути і HTML, і jpeg, і документ Microsoft Word.
+        </li>
+        <li>
+          <strong>Як відбувається управління інформацією ресурсу</strong> - це
+          цілком і повністю ґрунтується на протоколі передачі даних. Найбільш
+          поширений протокол звичайно ж HTTP. Для HTTP дію над даними задається
+          за допомогою методів (такий собі поліморфізм, загальні методи у різних
+          ресурсів): GET (отримати), PUT (додати, замінити), POST (додати,
+          змінити, видалити), DELETE (видалити). Таким чином, дії CRUD
+          (Create-Read-Update-Delete) можуть виконуватися як з усіма 4-ма
+          методами, так і тільки за допомогою GET і POST.
+        </li>
+      </ul>
+      <h2>RESTful</h2>
+      <p>
+        Щоб розподілена система вважалася сконструйованої по REST архітектурі
+        (Restful), необхідно, щоб вона задовольняла таким критеріям:
+      </p>
+      <ol>
+        <li>
+          <p>
+            Client-Server. Система повинна бути розділена на клієнтів і
+            серверів. Поділ інтерфейсів означає, що, наприклад, клієнти не
+            пов'язані зі зберіганням даних, які залишаються всередині кожного
+            сервера, так що мобільність коду клієнта поліпшується.
+          </p>
+          <p>
+            Сервери не пов'язані з інтерфейсом користувача або станом, так що
+            сервери можуть бути простіше і більш здатні масштабуватися. Сервери
+            та клієнти можуть замінятися і розроблятися незалежно, поки
+            інтерфейс не змінюється.
+          </p>
+        </li>
+        <li>
+          <p>
+            Stateless. Сервер не повинен зберігати будь-яку інформацію про
+            клієнтів. У запиті повинна зберігатися вся необхідна інформація для
+            обробки запиту і якщо необхідно, ідентифікації клієнта.
+          </p>
+        </li>
+        <li>
+          <p>
+            Cache. Кожна відповідь повинна бути зазначена чи є вона кешувальна,
+            чи ні, для запобігання повторного використання клієнтами застарілих
+            або некоректних даних у відповідь на подальші запити.
+          </p>
+          <p>
+            Добре спроектоване кешування частково або повністю усуває деякі
+            клієнт-серверні взаємодії, сприяючи подальшій масштабованості та
+            продуктивності.
+          </p>
+        </li>
+        <li>
+          <p>
+            Uniform Interface. Єдиний інтерфейс визначає інтерфейс між клієнтами
+            і серверами. Це спрощує і відокремлює архітектуру, яка дозволяє
+            кожній частині розвиватися самостійно.
+          </p>
+          <p>Чотири принципи єдиного інтерфейсу:</p>
+
+          <ul>
+            <li>
+              <p>Identification of resources (заснований на ресурсах)</p>
+              <p>
+                У REST ресурсом є все те, чому можна дати ім'я. Наприклад,
+                користувач, зображення, червона майка, голодна собака, поточна
+                погода і т.д. Кожен ресурс в REST повинен бути ідентифікований
+                за допомогою стабільного ідентифікатора, який не змінюється при
+                зміні стану ресурсу.
+              </p>
+              <p>
+                Ідентифікатором в REST є URI. При цьому самі ресурси
+                концептуально відокремлені від уявлень, які повертаються
+                клієнту. Наприклад, сервер не відправляє свою базу даних, а,
+                скоріше, деякі HTML, XML або JSON, які представляє деякі записи
+                в базі даних
+              </p>
+            </li>
+            <li>
+              <p>
+                Manipulation of resources through representations (маніпуляції
+                над ресурсами через представлення)
+              </p>
+              <p>
+                Представлення в REST використовується для виконання дій над
+                ресурсами. Представлення ресурсу являє собою поточний або
+                бажаний стан ресурсу.
+              </p>
+              <p>
+                Наприклад, якщо ресурсом є користувач, то представленням може
+                бути XML або HTML опис цього користувача. Коли є повне уявлення
+                про ресурс, в тому числі про пов'язані метадані, тобто і
+                достатньо інформації для зміни або видалення ресурсу на сервері,
+                якщо на це є дозвіл
+              </p>
+            </li>
+            <li>
+              <p>Self-descriptive messages (само-документовані повідомлення)</p>
+              <p>
+                Під само-описовістю мається на увазі, що запит і відповідь
+                повинні зберігати в собі всю необхідну інформацію для їх
+                обробки. Не повинні бути додаткові повідомлення чи кеші для
+                обробки одного запиту. Іншими словами відсутність стану, що
+                зберігається між запитами до ресурсів. Це дуже важливо для
+                масштабування системи.
+              </p>
+            </li>
+            <li>
+              <p>HATEOAS (hypermedia as the engine of application state)</p>
+              <p>
+                Клієнти надають статус через вміст body, параметри рядка запиту,
+                заголовки запитів і запитуваний URI (ім'я ресурсу). Це
+                називається гіпермедіа (або гіперпосилання з гіпертекстом)
+              </p>
+              <p>
+                HATEOAS також означає, що, в разі необхідності, посилання можуть
+                міститися в тілі відповіді (або заголовках) для підтримки URI,
+                вилучення самого об'єкта або запитаних об'єктів.
+              </p>
+              <p>
+                Єдиний інтерфейс також означає, що будь-який REST сервіс повинен
+                забезпечувати його фундаментальний дизайн.
+              </p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>
+            Layered System. У REST допускається розділити систему на ієрархію
+            шарів але з умовою, що кожен компонент може бачити компоненти тільки
+            безпосередньо наступного шару. Наприклад, якщо ви викликайте службу
+            PayPal, а він в свою чергу викликає службу Visa, ви про виклик
+            служби Visa нічого не повинні знати.
+          </p>
+          <p>
+            Проміжний сервер може поліпшити масштабованість системи,
+            забезпечуючи балансування навантаження і надаючи загальний кеш. Шари
+            також можуть відповідати за політику безпеки.
+          </p>
+        </li>
+        <li>
+          <p>
+            Code-On-Demand (опціонально). У REST дозволяється завантаження і
+            виконання коду або програми на стороні клієнта.
+          </p>
+          <p>
+            Сервери можуть тимчасово розширювати або кастомізувати функціонал
+            клієнта, передаючи йому логіку, яку він може виконувати. Наприклад,
+            це можуть бути скомпільовані Java-аплети або клієнтські скрипти на
+            Javascript.
+          </p>
+          <p>
+            Це дозволяє розподіленій системі будь-якого типу мати такі
+            властивості як: продуктивність, розширюваність, простота,
+            оновлюваність, зрозумілість, портативність і надійність.
+          </p>
+        </li>
+      </ol>
+      <p>
+        Таким чином, якщо необхідно представити дані як RESTful API, вам
+        необхідно створити набір ресурсів, а всі операції над цією інформацією
+        висловити через набір визначених операцій. Ключовий момент у тому, що в
+        багатьох задачах цих зумовлених операцій цілком достатньо, головне
+        правильно визначити ресурси.
+      </p>
+      <p>
+        Повторимо, що сама архітектура REST не прив'язана до конкретних
+        технологій і протоколів, але в реаліях сучасного Веб, побудова RESTful
+        API майже завжди має на увазі використання HTTP і будь-яких поширених
+        форматів представлення ресурсів, наприклад JSON, або, менш популярного
+        сьогодні, XML.
+      </p>
+      <h2>Ідемпотентність</h2>
+      <p>
+        З точки зору RESTful-сервісу, операція (або виклик сервісу) ідемпотентна
+        тоді, коли клієнти можуть робити один і той же виклик неодноразово при
+        одному і тому ж результаті. Іншими словами, створення великої кількості
+        ідентичних запитів має такий же ефект, як і один запит. Зауважте, що в
+        той час, як ідемпотентні операції виробляють один і той же результат на
+        сервері (побічні ефекти), відповідь сама по собі може не бути тією ж
+        самою (наприклад, стан ресурсу може змінитися між запитами).
+      </p>
+      <p>
+        Методи PUT і DELETE за визначенням ідемпотентні. Проте, є один нюанс з
+        методом DELETE. Проблема в тому, що успішний DELETE-запит повертає
+        статус 200 (OK) або 204 (No Content), але для подальших запитів буде
+        весь час повертати 404 (Not Found), якщо тільки сервіс не налаштований
+        так, щоб "позначати" ресурс як видалений без його фактичного видалення.
+        Як би там не було, коли сервіс насправді видаляє ресурс, наступний
+        виклик не знайде цей ресурс і поверне 404. Стан на сервері після кожного
+        виклику DELETE той же самий, але відповіді різні.
+      </p>
+      <p>
+        Методи GET, HEAD, OPTIONS і TRACE визначені як безпечні. Це означає, що
+        вони призначені тільки для отримання інформації та не повинні змінювати
+        стан сервера. Вони не повинні мати побічних ефектів, за винятком
+        нешкідливих ефектів, таких як: логування, кешування, показ банерної
+        реклами або збільшення веб-лічильника. Створений довільний GET-запит,
+        який не враховує контекст стану програми, слід вважати безпечним.
+      </p>
+      <p>
+        За визначенням, безпечні операції ідемпотентні, так як вони призводять
+        до одного і того ж результату на сервері.
+      </p>
+      <p>
+        Безпечні методи реалізовані як операції тільки для читання. Однак
+        безпека не означає, що сервер повинен повертати той же самий результат
+        кожного разу.
+      </p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >app.use(serve(<span style="color: #dd2200; background-color: #fff0f0">&#39;./public&#39;</span>) );
+</pre>
+      </div>
+      <p>
+        Бажано встановлювати директорію зі статичними файлами до установки
+        всього іншого проміжного програмного забезпечення.
+      </p>
+      <h2>HTTP методи для створення RESTful сервісів</h2>
+      <p>
+        HTTP дієслова становлять основну частину "єдиного інтерфейсу", яка
+        обмежує і надає можливість здійснювати дії над іменником-ресурсом.
+      </p>
+      <p>
+        HTTP метод GET використовується для отримання (або читання) уявлення
+        ресурсу. У разі "вдалої" (або не містить помилок) адреси, GET повертає
+        уявлення ресурсу у форматі XML або JSON в поєднанні з кодом стану HTTP
+        200 (OK). У разі наявності помилок зазвичай повертається код 404 (NOT
+        FOUND) або 400 (BAD REQUEST).
+      </p>
+      <ul>
+        <li>
+          GET
+          <a href="http://www.example.com/api/v1.0/users"
+            >http://www.example.com/api/v1.0/users</a
+          >
+        </li>
+        <li>
+          GET
+          <a href="http://www.example.com/api/v1.0/users/12345"
+            >http://www.example.com/api/v1.0/users/12345</a
+          >
+        </li>
+        <li>
+          GET
+          <a href="http://www.example.com/api/v1.0/users/12345/orders"
+            >http://www.example.com/api/v1.0/users/12345/orders</a
+          >
+        </li>
+      </ul>
+      <p>
+        HTTP метод PUT зазвичай використовується для надання можливості
+        оновлення ресурсу. Тіло запиту при відправленні PUT-запиту до існуючого
+        ресурсу URI має містити оновлені дані оригінального ресурсу (повністю,
+        або тільки оновлювану частину).
+      </p>
+      <p>
+        Для створення нових екземплярів ресурсу переважніше використання POST
+        запиту. В даному випадку, при створенні екземпляра буде надано коректний
+        ідентифікатор екземпляра ресурсу в повернутих даних про екземпляр.
+      </p>
+      <p>
+        При успішному оновленні за допомогою виконання PUT запиту повертається
+        код 200 (або 204 якщо не був переданий будь-який контент в тілі
+        відповіді). Якщо PUT використовується для створення екземпляра -
+        зазвичай повертають HTTP код 201 при успішному створенні. Повертати дані
+        у відповідь на запит не обов'язково. Також не обов'язково повертати
+        посилання на екземпляр ресурсу за допомогою заголовка Location через те,
+        що клієнт і так володіє ідентифікатором екземпляра ресурсу.
+      </p>
+      <p>
+        PUT небезпечна операція, так як внаслідок її виконання відбувається
+        модифікація (або створення) екземплярів ресурсу на стороні сервера, але
+        цей метод ідемпотентний. Іншими словами, створення або оновлення ресурсу
+        за допомогою відправки PUT запиту - ресурс не зникне, буде розташований
+        там же, де і був при першому зверненні, а також, багаторазове виконання
+        одного і того ж PUT запиту не змінить загального стану системи.
+      </p>
+      <ul>
+        <li>
+          PUT
+          <a href="http://www.example.com/api/v1.0/users/12345"
+            >http://www.example.com/api/v1.0/users/12345</a
+          >
+        </li>
+        <li>
+          PUT
+          <a href="http://www.example.com/api/v1.0/users/12345/orders"
+            >http://www.example.com/api/v1.0/users/12345/orders</a
+          >
+        </li>
+      </ul>
+      <p>
+        HTTP метод POST запит найбільш часто використовується для створення
+        нових ресурсів. На практиці він використовується для створення вкладених
+        ресурсів. Іншими словами, при створенні нового ресурсу, POST запит
+        відправляється до батьківського ресурсу і, таким чином, сервіс бере на
+        себе відповідальність на встановлення зв'язку створюваного ресурсу з
+        батьківським ресурсом, призначення нового ресурсу ID і т.п.
+      </p>
+      <p>
+        При успішному створенні ресурсу повертається HTTP код 201, а також в
+        заголовку Location передається адреса створеного ресурсу.
+      </p>
+      <p>
+        POST не є безпечним або ідемпотентним запитом. Тому рекомендується його
+        використання для не ідемпотентних запитів. В результаті виконання
+        ідентичних POST запитів надаються сильно схожі, але не ідентичні дані.
+      </p>
+      <ul>
+        <li>
+          POST
+          <a href="http://www.example.com/api/v1.0/customers"
+            >http://www.example.com/api/v1.0/customers</a
+          >
+        </li>
+        <li>
+          POST
+          <a href="http://www.example.com/api/v1.0/customers/12345/orders"
+            >http://www.example.com/api/v1.0/customers/12345/orders</a
+          >
+        </li>
+      </ul>
+      <p>
+        HTTP метод DELETE використовується для видалення ресурсу,
+        ідентифікованого конкретним URI (ID).
+      </p>
+      <p>
+        При успішному видаленні повертається 200 (OK) код HTTP, спільно з тілом
+        відповіді, що містить дані видаленого ресурсу. Також можливе
+        використання HTTP коду 204 (NO CONTENT) без тіла відповіді.
+      </p>
+      <p>
+        Згідно зі специфікацією HTTP, DELETE запит ідемпотентний. Якщо ви
+        виконуєте DELETE запит до ресурсу, він видаляється. Повторний DELETE
+        запит до ресурсу закінчиться також: ресурс видалений. Якщо DELETE запит
+        використовується для декремента лічильника, DELETE запит не є
+        ідемпотентним. Використовуйте POST для не ідемпотентних операцій.
+      </p>
+      <p>
+        Проте, існує застереження про ідемпотентність DELETE. Повторний DELETE
+        запит до ресурсу часто супроводжується 404 (NOT FOUND) кодом HTTP через
+        те, що ресурс вже видалений (наприклад з бази даних) і більше не
+        доступний. Це робить DELETE операцію не Ідемпотентною, але це
+        загальноприйнятий компроміс на той випадок, якщо ресурс був вилучений з
+        бази даних, а не позначений, як віддалений.
+      </p>
+      <ul>
+        <li>
+          DELETE
+          <a href="http://www.example.com/api/v1.0/customers/12345"
+            >http://www.example.com/api/v1.0/customers/12345</a
+          >
+        </li>
+        <li>
+          DELETE
+          <a href="http://www.example.com/api/v1.0/customers/12345/orders"
+            >http://www.example.com/api/v1.0/customers/12345/orders</a
+          >
+        </li>
+      </ul>
+      <h2>Коди станів HTTP</h2>
+      <p>
+        Основні групи кодів станів: (<a
+          href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP"
+          >link</a
+        >)
+      </p>
+      <p><strong>1xx: Information</strong></p>
+      <p>100: Continue</p>
+      <p><strong>2xx: Success</strong></p>
+      <p>200: OK</p>
+      <p>201: Created</p>
+      <p>202: Accepted</p>
+      <p>204: No Content</p>
+      <p><strong>3xx: Redirect</strong></p>
+      <p>301: Moved Permanently</p>
+      <p>307: Temporary Redirect</p>
+      <p><strong>4xx: Client Error</strong></p>
+      <p>400: Bad Request</p>
+      <p>401: Unauthorized</p>
+      <p>403: Forbidden</p>
+      <p>404: Not Found</p>
+      <p><strong>5xx: Server Error</strong></p>
+      <p>500: Internal Server Error</p>
+      <p>501: Not Implemented</p>
+      <p>502: Bad Gateway</p>
+      <p>503: Service Unavailable</p>
+      <p>504: Gateway Timeout</p>
+      <h2>Приклад REST API c використанням Node.js і Express.js</h2>
+      <p>(Функціонал роботи з базою даних представлений схематично)</p>
+      <p class="label"><strong>Основний файл сервера</strong></p>
+      <p class="label">server.js</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #888888">// Основні пакети</span>
+<span style="color: #008800; font-weight: bold">var</span> express    = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;express&#39;</span>);       
+<span style="color: #008800; font-weight: bold">var</span> app        = express();
+<span style="color: #008800; font-weight: bold">var</span> bodyParser = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;body-parser&#39;</span>);
+
+<span style="color: #888888">// Використовуємо bodyParser для обробки POST запросів</span>
+app.use(bodyParser.urlencoded({ extended: <span style="color: #008800; font-weight: bold">true</span> }));
+app.use(bodyParser.json());
+<span style="color: #008800; font-weight: bold">var</span> port = process.env.PORT || <span style="color: #0000DD; font-weight: bold">8080</span>;        <span style="color: #888888">// порт сервера</span>
+<span style="color: #888888">// Підключення роутеру</span>
+<span style="color: #008800; font-weight: bold">var</span> router = express.Router();              
+<span style="color: #888888">// Обробка стандартного запросу</span>
+router.get(<span style="color: #dd2200; background-color: #fff0f0">&#39;/&#39;</span>, <span style="color: #008800; font-weight: bold">function</span>(req, res) {
+    res.json({ message: <span style="color: #dd2200; background-color: #fff0f0">&#39;hello api&#39;</span> });   
+});
+</pre>
+      </div>
+      <p class="label">API маршрути</p>
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #888888">//маршрут api/v1.0/users</span>
+router.route(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users&#39;</span>) 
+<span style="color: #888888">// Створити користувача (POST http://localhost:8080/api/v1.0/users)</span>
+    .post(<span style="color: #008800; font-weight: bold">function</span>(req, res) 
+<span style="color: #a61717; background-color: #e3d2d2">`</span>        <span style="color: #888888">// логіка роботи з базою даних</span>
+        <span style="color: #008800; font-weight: bold">var</span> user= <span style="color: #008800; font-weight: bold">new</span> User();            
+        user.save(<span style="color: #008800; font-weight: bold">function</span>(err) {
+            <span style="color: #008800; font-weight: bold">if</span> (err)
+                res.send(err);
+            res.json({ message: <span style="color: #dd2200; background-color: #fff0f0">&#39;User created!&#39;</span> });
+        });
+
+    })
+
+
+<span style="color: #888888">// Вивести список користувачів (GET http://localhost:8080/api/v1.0/users)</span>
+    .get(<span style="color: #008800; font-weight: bold">function</span>(req, res) {
+           <span style="color: #888888">// логіка роботи з базою даних</span>
+        User.find(<span style="color: #008800; font-weight: bold">function</span>(err, users) {
+            <span style="color: #008800; font-weight: bold">if</span> (err)
+                res.send(err);
+            res.json(users);
+        });
+    });
+<span style="color: #888888">// маршрут (http://localhost:8080/api/v1.0/users/1)</span>
+
+
+<span style="color: #888888">// Обробка конкретного користувача</span>
+ 
+router.route(<span style="color: #dd2200; background-color: #fff0f0">&#39;/users/:user_id&#39;</span>)
+
+        .get(<span style="color: #008800; font-weight: bold">function</span>(req, res) { <span style="color: #888888">// отримати дані конкретного користувача</span>
+          <span style="color: #888888">// логіка роботи з базою даних  </span>
+          User.findById(req.params.user_id, <span style="color: #008800; font-weight: bold">function</span>(err, user) {
+                <span style="color: #008800; font-weight: bold">if</span> (err)
+                    res.send(err);
+                res.json(user);
+            });
+        });
+ 
+
+        .put(<span style="color: #008800; font-weight: bold">function</span>(req, res) { <span style="color: #888888">// оновити дані конкретного користувача</span>
+            <span style="color: #888888">// логіка роботи з базою даних</span>
+            User.findById(req.params.user_id, <span style="color: #008800; font-weight: bold">function</span>(err, user) {
+               <span style="color: #008800; font-weight: bold">if</span> (err)
+                 res.send(err);
+            user.name = req.body.name;  
+            user.save(<span style="color: #008800; font-weight: bold">function</span>(err) {
+                <span style="color: #008800; font-weight: bold">if</span> (err)
+                    res.send(err);
+                res.json({ message: <span style="color: #dd2200; background-color: #fff0f0">&#39;User updated!&#39;</span> });
+            });
+        });
+
+
+        .<span style="color: #008800; font-weight: bold">delete</span>(<span style="color: #008800; font-weight: bold">function</span>(req, res) { <span style="color: #888888">// видалити конкретного користувача</span>
+           <span style="color: #888888">// логіка роботи з базою даних  </span>
+           User.remove({ 
+               _id: req.params.user_id
+           }, <span style="color: #008800; font-weight: bold">function</span>(err, user) {
+               <span style="color: #008800; font-weight: bold">if</span> (err)
+                   res.send(err);
+
+               res.json({ message: <span style="color: #dd2200; background-color: #fff0f0">&#39;Successfully deleted&#39;</span> });
+           });
+         });
+
+<span style="color: #888888">// підключаємо api, який доступний за  http://localhost:8080/api/v1.0/</span>
+app.use(<span style="color: #dd2200; background-color: #fff0f0">&#39;/api/v1.0&#39;</span>, router);
+
+
+<span style="color: #888888">// Запуск сервера</span>
+app.listen(port);
+console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Server is running on port &#39;</span> + port);
+</pre>
+      </div>
+      <h2>Література</h2>
+      <ol>
+        <li>
+          <a href="https://ru.wikipedia.org/wiki/REST"
+            >https://ru.wikipedia.org/wiki/REST</a
+          >
+        </li>
+        <li>
+          <a href="https://habrahabr.ru/post/38730/"
+            >https://habrahabr.ru/post/38730/</a
+          >
+        </li>
+        <li>
+          <a href="http://www.restapitutorial.ru/"
+            >http://www.restapitutorial.ru/</a
+          >
+        </li>
+        <li>
+          <a href="http://blogger.sapronov.me/2014/02/rest.html"
+            >http://blogger.sapronov.me/2014/02/rest.html</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.ibm.com/developerworks/ru/library/ws-restfu/index.html"
+            >https://www.ibm.com/developerworks/ru/library/ws-restfu/index.html</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4"
+            >https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4</a
+          >
+        </li>
+      </ol>
+    </div>
+  </body>
+</html>
