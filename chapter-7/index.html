@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PostgreSQL та ORM Sequelize</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>PostgreSQL та ORM Sequelize</h1>
+      <h2>База даних</h2>
+      <p>
+        <strong>База даних</strong> - це інформаційна модель, що дозволяє
+        упорядковано зберігати дані про групу об'єктів, що володіють однаковим
+        набором властивостей.
+      </p>
+      <p>
+        Створюючи базу даних, користувач прагне впорядкувати інформацію за
+        різними ознаками і швидко робити вибірку з довільним поєднанням ознак.
+        При цьому дуже важливо вибрати правильну модель даних. Модель даних - це
+        формалізоване представлення основних категорій сприйняття реального
+        світу, представлених його об'єктами, зв'язками, властивостями, а також
+        їх взаємодіями. Інформація в базах даних зберігається в упорядкованому
+        вигляді. Групу пов'язаних між собою елементів даних називають зазвичай
+        записом.
+      </p>
+      <p>
+        Як приклад найпростіших БД можна назвати телефонний довідник, розклад
+        руху поїздів, відомості про співробітників підприємства, список цін на
+        товари, алфавітний або предметний каталог книг в бібліотеці, словник
+        іншомовних слів, результати здачі сесії студентами, каталог
+        відеозаписів, список кулінарних рецептів, каталог товарів (Прайс лист).
+      </p>
+      <p>
+        <strong>Головна перевага електронних БД</strong> - можливість швидкого
+        пошуку і відбору інформації, а також проста генерація (створення) звіту
+        за заданою формою. Наприклад, за номерами залікових книжок легко
+        визначити прізвища студентів або на прізвище письменника скласти список
+        його творів.
+      </p>
+      <p>
+        В сучасних умовах найбільш широке застосування в розробці програмного
+        забезпечення знаходили реляційні і нереляційні бази даних. Останнім
+        часом з'явилося багато нереляційних баз даних. Це говорить про те, що
+        якщо вам потрібна практично необмежена масштабованість на вимогу, вам
+        потрібна нереляційних база даних.
+      </p>
+      <p>
+        Але варто також відзначити одну важливу обставину - реляційні бази даних
+        існують вже близько 30 років. За цей час спалахувало кілька революцій,
+        які повинні були покласти край реляційним сховищам. Звичайно, жодна з
+        цих революцій не відбулася, і жодна з них ні на йоту не похитнула
+        позиції реляційних БД.
+      </p>
+      <h2>Реляційні бази даних</h2>
+      <p>
+        <strong>Реляційна база даних</strong> - це сукупність відносин, що
+        містять всю інформацію, яка повинна зберігатися в БД. Однак користувачі
+        можуть сприймати таку базу даних як сукупність таблиць. Слід зазначити:
+      </p>
+      <ul>
+        <li>
+          Кожна таблиця складається з однотипних рядків і має унікальне ім'я.
+          Рядки мають фіксоване число полів (стовпців) і значень (множинні поля
+          і повторювані групи неприпустимі). Інакше кажучи, в кожній позиції
+          таблиці на перетині рядка і стовпця завжди є в точності одне значення
+          або нічого.
+        </li>
+        <li>
+          Рядки таблиці обов'язково відрізняються один від одного хоча б одним
+          значенням, що дозволяє однозначно ідентифікувати будь-який рядок такої
+          таблиці.
+        </li>
+        <li>
+          Стовпчикам таблиці однозначно присвоюються імена, і в кожному з них
+          розміщуються однорідні значення даних (дати, прізвища, цілі числа або
+          грошові суми).
+        </li>
+      </ul>
+      <p>
+        Говорячи про реляційні бази даних не можна не зупинитися на двох дуже
+        важливих моментах:
+      </p>
+      <ol>
+        <li>
+          <strong>SQL</strong> (structured query language, мова структурованих
+          запитів) - це мова програмування, яка застосовується для створення,
+          модифікації та управління даними в реляційній базі даних, що керується
+          відповідною системою управління базами даних.
+        </li>
+        <li>
+          <strong>СУБД</strong> (система управління базою даних) - пакет
+          програм, що забезпечують створення БД і організацію даних. СУБД
+          дозволяють вводити, відбирати і редагувати дані. СУБД надають кошти
+          для отримання даних за певним критерієм (вимогу, правилом). СУБД дають
+          можливість кінцевим користувачам здійснювати безпосереднє управління
+          даними, а програмістам і системним аналітикам швидко розробляти більш
+          досконалі програмні засоби їх обробки.
+        </li>
+      </ol>
+      <p>
+        <strong>Повернемося до самої бази даних</strong>. Як ми вже говорили,
+        реляційна база даних являє собою набір таблиць (сутностей). Таблиці
+        складаються з колонок і рядків (кортежів). Всередині таблиць можуть бути
+        визначені обмеження, між таблицями існують відносини. За допомогою SQL
+        можна виконувати запити, які повертають набори даних, одержуваних з
+        однієї або декількох таблиць. В рамках одного запиту дані виходять з
+        декількох таблиць шляхом їх з'єднання (JOIN), найчастіше для з'єднання
+        використовуються ті ж колонки, які визначають відносини між таблицями.
+      </p>
+      <p>
+        Варто також відзначити, що реляційні бази даних неймовірно складні
+        всередині. Наприклад, простий SELECT запит може мати сотні потенційних
+        шляхів виконання, які оптимізатор оцінить безпосередньо під час
+        виконання запиту. Все це приховано від користувачів, проте всередині
+        система управління базою даних створює план виконання, що грунтується на
+        речах начебто алгоритмів оцінки вартості і найкращим чином відповідає
+        запиту.
+      </p>
+      <p>
+        З цього випливає, що хоча реляційні бази даних і забезпечують найкращу
+        суміш простоти, стійкості, гнучкості, продуктивності, масштабованості і
+        сумісності, їх показники по кожному з цих пунктів не обов'язково вище,
+        ніж у аналогічних систем, орієнтованих на якусь одну особливість. Це не
+        було великою проблемою, оскільки загальне домінування реляційних систем
+        управління базами даних переважало будь-які недоліки. Проте, якщо
+        звичайні реляційні бази даних не відповідали потребам, завжди існували
+        альтернативи.
+      </p>
+      <p>
+        Реляційна модель баз даних гарантує атомарность, узгодженість,
+        ізольованість, надійність (ACID) операції маніпулювання даними, що
+        заважає забезпечити високу доступність і швидкодію в разі, коли дані
+        розподілені серед кількох сервісів через їх значний обсяг. Для вирішення
+        проблеми забезпечення високої швидкодії при розподіленому способі
+        зберігання інформації був розроблений спеціальний різновид баз даних
+        NoSQL (Not only SQL). Більш докладно вони будуть розглянуті в наступному
+        розділі.
+      </p>
+      <h2>PostgreSQL</h2>
+      <img src="" alt="Картинка" />
+      <p>
+        <strong>PostgreSQL</strong> - це об'єктно-реляційна система управління
+        базами даних, заснована на POSTGRES, Version 4.2 - програмою,
+        розробленою на факультеті комп'ютерних наук Каліфорнійського
+        університету в Берклі. У POSTGRES з'явилося безліч нововведень, які були
+        реалізовані в деяких комерційних системах управління базами даних
+        набагато пізніше. Вона підтримує більшу частину стандарту SQL і пропонує
+        безліч сучасних функцій:
+      </p>
+      <ul>
+        <li>складні запити</li>
+        <li>зовнішні ключі</li>
+        <li>тригери</li>
+        <li>змінювані уявлення</li>
+        <li>транзакційна цілісність</li>
+        <li>Багатоверсійність</li>
+      </ul>
+      <p>
+        Крім того, користувачі можуть всіляко розширювати можливості PostgreSQL,
+        наприклад створюючи свої типи даних, функції, оператори, агрегатні
+        функції, методи індексування, процедурні мови. А завдяки вільній
+        ліцензії, PostgreSQL дозволяється безкоштовно використовувати, змінювати
+        і поширювати всім і для будь-яких цілей - особистих, комерційних чи
+        навчальних.
+      </p>
+      <p>
+        Завантажити та встановити PostgreSQL ви можете з офіційного сайту -
+        <a href="https://www.postgresql.org/download/"
+          >https://www.postgresql.org/download/</a
+        >.
+      </p>
+      <p>
+        Також рекомендується завантажити та встановити безкоштовний
+        інструмент-інтерфейс для роботи з PostgreSQL - PgAdmin -
+        <a href="https://www.pgadmin.org/download/"
+          >https://www.pgadmin.org/download/</a
+        >. Після установки вам буде потрібно ввести пароль, запам'ятайте його,
+        він стане в нагоді для підключення до локального сервера.
+      </p>
+      <p>
+        Так само для роботи зв'язки node.js і postgreSQL вам знадобиться
+        встановлюється модуль pg (документація
+        <a href="https://node-postgres.com/">https://node-postgres.com/</a>).
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install --save pg
+  </pre
+        >
+      </div>
+      <p class="label">
+        Тепер ви можете налаштувати підключення до бази даних.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> { Client } = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;pg&#39;</span>);
+
+	<span style="color: #008800; font-weight: bold">const</span> db = <span style="color: #008800; font-weight: bold">new</span> Client({
+	  user: <span style="color: #dd2200; background-color: #fff0f0">&#39;postgres&#39;</span>,
+	  host: <span style="color: #dd2200; background-color: #fff0f0">&#39;localhost&#39;</span>,
+	  database: <span style="color: #dd2200; background-color: #fff0f0">&#39;webinar&#39;</span>,
+	  password: <span style="color: #dd2200; background-color: #fff0f0">&#39;1234&#39;</span>,
+	  port: <span style="color: #0000DD; font-weight: bold">5432</span>
+	});
+	db.connect();
+
+	db.query(<span style="color: #dd2200; background-color: #fff0f0">&#39;SELECT NOW()&#39;</span>, (err, res) =&gt; {
+	  console.log(err, res);
+	  db.end();
+	});
+</pre>
+      </div>
+      <p class="label">
+        Той же приклад з використанням синтаксису async \ await.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> { Client } = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;pg&#39;</span>)
+  <span style="color: #008800; font-weight: bold">const</span> db = <span style="color: #008800; font-weight: bold">new</span> Client({
+    user: <span style="color: #dd2200; background-color: #fff0f0">&#39;postgres&#39;</span>,
+    host: <span style="color: #dd2200; background-color: #fff0f0">&#39;localhost&#39;</span>,
+    database: <span style="color: #dd2200; background-color: #fff0f0">&#39;webinar&#39;</span>,
+    password: <span style="color: #dd2200; background-color: #fff0f0">&#39;1234&#39;</span>,
+    port: <span style="color: #0000DD; font-weight: bold">5432</span>,
+});
+async <span style="color: #008800; font-weight: bold">function</span> connect() {
+    await db.connect();
+    <span style="color: #008800; font-weight: bold">const</span> res = await db.query(<span style="color: #dd2200; background-color: #fff0f0">&#39;SELECT NOW()&#39;</span>);
+    await db.end();
+};
+
+connect();
+</pre>
+      </div>
+      <p>
+        Гарним тоном вважається винесення параметрів підключення до бази даних в
+        окремий конфігураційний файл. Цей момент ми розглянемо трохи пізніше.
+      </p>
+      <p>
+        Модуль pg надає нам не найбільше API для взаємодії з базою даних, але
+        цілком достатнє для того, щоб реалізовувати речі будь-якої складності за
+        рахунок гнучкості мови SQL.
+      </p>
+      <p>
+        Таким способом ми можемо створити Connection Pool, який вигідно
+        відрізняється від класичного підключення (докладніше трохи нижче).
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> { Pool } = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;pg&#39;</span>);
+	<span style="color: #008800; font-weight: bold">const</span> pool = <span style="color: #008800; font-weight: bold">new</span> Pool();
+<span style="color: #a61717; background-color: #e3d2d2">Классическое</span> <span style="color: #a61717; background-color: #e3d2d2">подключение</span>. 
+<span style="color: #008800; font-weight: bold">const</span> { Client } = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;pg&#39;</span>);
+	<span style="color: #008800; font-weight: bold">const</span> client = <span style="color: #008800; font-weight: bold">new</span> Client();
+</pre>
+      </div>
+      <p>
+        Клієнт і пулл володіють практично ідентичним API. Вони можуть реагувати
+        на деякі події, наприклад, підключення \ закриття доступу окремим
+        користувачам, обробляти помилки т т.д. Так само вони обидва мають метод
+        query - основний метод модуля, який приймає рядок з SQL-кодом. За
+        допомогою цього методу і будується практично вся робота з базою даних.
+      </p>
+      <p>
+        Також варто відзначити, що в коді вище у змінній res міститься результат
+        роботи методу query, який повертає новий екземпляр класу pg.Result
+      </p>
+      <h2>Connection Pool</h2>
+      <p>
+        Переважна більшість сучасних веб-додатків використовує бази даних для
+        зберігання інформації. Додаток може обмінюватися інформацією з базою
+        даних, використовуючи з'єднання (database connection). Якщо створювати
+        при кожному зверненні до БД, виходить програш в часі: виконання
+        транзакції може зайняти кілька мілісекунд, в той час як на створення
+        з'єднання може піти до кількох секунд.
+      </p>
+      <p>
+        З іншого боку, можна створити одне-єдине з'єднання (наприклад,
+        використовуючи шаблон "Singleton") і звертатися до бази даних тільки
+        через нього. Але це рішення може спричинити проблеми, в разі високого
+        навантаження: якщо одночасно сто користувачів спробує отримати доступ до
+        бази даних використовуючи одне з'єднання, утворюється черга, що також
+        згубно позначається на продуктивності додатка.
+      </p>
+      <p>
+        <strong>Database Connection Pool (dbcp)</strong> - це спосіб вирішення
+        викладеної вище проблеми. Він має на увазі, що в нашому розпорядженні є
+        деякий набір ( «пул») з'єднань до бази даних. Коли новий користувач
+        запитує доступ до БД, йому видається вже відкрите з'єднання з цього
+        пулу. Якщо все відкриті з'єднання вже зайняті, створюється нове. Як
+        тільки користувач звільняє одне з уже існуючих з'єднань, воно стає
+        доступно для інших користувачів. Якщо з'єднання довго не
+        використовується, воно закривається.
+      </p>
+      <h2>Object-Relational Mapping (ORM)</h2>
+      <p>
+        <strong>Object-Relational Mapping</strong> (ORM, об'єктно-реляційне
+        відображення, або перетворення) - технологія програмування, яка зв'язує
+        бази даних з концепціями об'єктно-орієнтованих мов програмування,
+        створюючи «віртуальну об'єктну базу даних».
+      </p>
+      <p>
+        Для ORM є одне дуже важливе завдання - необхідно забезпечити роботу з
+        даними в термінах класів, а не таблиць даних і в той же час, перетворити
+        терміни і дані класів в дані, придатні для зберігання в системах
+        управління базами даних. Необхідно також забезпечити інтерфейс для
+        CRUD-операцій над даними. Загалом, необхідно позбутися від необхідності
+        писати SQL-код для взаємодії в системах управління базами даних. Грубо
+        кажучи, ORM дозволяють працювати з даними, як зі звичайним
+        javascript-об'єктом, у якого є власні властивості і методи для взаємодії
+        з базами даних.
+      </p>
+      <p>
+        Деякі реалізації ORM автоматично синхронізують завантажені в пам'ять
+        об'єкти з базою даних. Для того щоб це було можливим, після створення
+        об'єкт-в-SQL-перетворюючого SQL-запиту (класу, що реалізує зв'язок з DB)
+        отримані дані копіюються в поля об'єкта, як у всіх інших реалізаціях
+        ORM. Після цього об'єкт повинен стежити за змінами цих значень і
+        записувати їх в базу даних.
+      </p>
+      <p>
+        З точки зору програміста система повинна виглядати як постійне сховище
+        об'єктів. Він може просто створювати об'єкти і працювати з ними як
+        зазвичай, а вони автоматично будуть зберігатися в реляційній базі даних.
+      </p>
+      <p>
+        На практиці все не так просто та очевидно. Всі системи ORM зазвичай
+        виявляють себе в тому чи іншому вигляді, зменшуючи в деякому роді
+        можливість ігнорування бази даних. Більш того, шар транзакцій може бути
+        повільним і неефективним (особливо в термінах згенерованого SQL). Все це
+        може привести до того, що програми будуть працювати повільніше і
+        використовувати більше пам'яті, ніж програми, написані «вручну».
+      </p>
+      <p>
+        Але ORM позбавляє програміста від написання великої кількості коду,
+        часто одноманітного і схильного до помилок, тим самим значно підвищуючи
+        швидкість розробки. Крім того, більшість сучасних реалізацій ORM
+        дозволяють програмісту при необхідності самому жорстко поставити код
+        SQL-запитів, який буде використовуватися при тих чи інших діях
+        (збереження в базу даних, завантаження, пошук і т. Д.) з постійним
+        об'єктом.
+      </p>
+      <h2>Sequelize</h2>
+      <img src="" alt="Картинка2" />
+      <p>
+        <strong>Бібліотека Sequelize</strong> - це Node.js ORM система для
+        роботи з такими базами даних, як PostgreSQL, MySQL, SQLite і MSSQL.
+        Давайте почнемо працювати з Sequelize. Нам потрібно встановити дану
+        бібліотеку.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install --save sequelize
+</pre
+        >
+      </div>
+      <p class="label">
+        Після цього потрібно встановити одну з бібліотек. Наприклад, якщо ви
+        хочете працювати з PostgreSQL, то потрібно встановити pg-hstore.
+        PostgreSQL, pg можна не встановлювати знову, якщо він вже був
+        встановлений в результаті вашої роботи.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install --save pg pg-hstore 
+</pre
+        >
+      </div>
+
+      <p class="label">
+        Додатково наведено приклад установки модулів для інших реляційних баз
+        даних.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+npm install --save mysql2  // MySQL
+npm install --save sqlite3  // SQLite
+npm install --save tedious  // MSSQL
+</pre
+        >
+      </div>
+      <p>
+        Далі необхідно підключитися до бази даних., Де database - ім'я вашої
+        бази, username і password - відповідно, ім'я вашого користувача в
+        pgAdmin, host - адреса підключення, dialect - система управління базою
+        даних, з якою ви працюєте (наприклад, якщо ви працюєте з PostgreSQL, то
+        потрібно вказати postgres) і pool - відповідно, параметри для connection
+        pool.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">const</span> Sequelize = require(<span style="color: #dd2200; background-color: #fff0f0">&#39;sequelize&#39;</span>);
+	<span style="color: #008800; font-weight: bold">const</span> sequelize = <span style="color: #008800; font-weight: bold">new</span> Sequelize(<span style="color: #dd2200; background-color: #fff0f0">&#39;database&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;username&#39;</span>, <span style="color: #dd2200; background-color: #fff0f0">&#39;password&#39;</span>, {
+	  host: <span style="color: #dd2200; background-color: #fff0f0">&#39;localhost&#39;</span>,
+	  dialect: <span style="color: #dd2200; background-color: #fff0f0">&#39;postgres&#39;</span>,
+	  pool: {
+	    max: <span style="color: #0000DD; font-weight: bold">5</span>,
+	    min: <span style="color: #0000DD; font-weight: bold">0</span>,
+	    idle: <span style="color: #0000DD; font-weight: bold">10000</span>
+	  }
+	});
+</pre>
+      </div>
+
+      <p>
+        Існують і інші параметри для підключення, в даному випадку, можна
+        обійтися і без них. Для більш детального вивчення цього питання
+        зверніться до документації.
+      </p>
+      <p>
+        У константі (змінної) sequelize міститься екземпляр з'єднання, створений
+        за допомогою імпортованого конструктора Sequelize, і ми можемо з ним
+        працювати. Sequelize має функцію (метод) authenticate, за допомогою
+        якого можна перевірити стан з'єднання.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">sequelize
+  	.authenticate()
+	  .then(() =&gt; {
+	    console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;Соединение установлено.&#39;</span>);
+ 	 })
+	  .<span style="color: #008800; font-weight: bold">catch</span>(err =&gt; {
+ 	   console.error(<span style="color: #dd2200; background-color: #fff0f0">&#39;Ошибка соединения:&#39;</span>, err);
+	  });
+</pre>
+      </div>
+      <p>
+        Після настройки підключення ми можемо створювати необхідні нам моделі.
+        Модель являє собою схематичне відображення майбутньої рядки таблиці у
+        вигляді javascript-об'єкта, де кожна властивість суворо типізована. Всі
+        можливі типи (а їх досить багато), ви можете подивитися в документації.
+      </p>
+      <p>
+        Крім властивостей, ви також можете створювати для ваших моделей нові
+        методи, наприклад, для конкатенації повного імені, або приведення дати в
+        необхідний формат з подальшим записом в базу даних. Гарним тоном
+        вважається створення моделей в окремій папці (по аналогії з маршрутами),
+        де під кожну модель визначено окремий файл.
+      </p>
+      <p class="label">Модель користувача (файл ./models/User.js)</p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >module.exports = (sequelize, DataTypes) =&gt; {
+  	  <span style="color: #008800; font-weight: bold">const</span> User = sequelize.define(<span style="color: #dd2200; background-color: #fff0f0">&quot;user&quot;</span>, {
+        name: {
+      type: DataTypes.STRING
+    }
+  });
+<span style="color: #008800; font-weight: bold">return</span> User ;
+};
+</pre>
+      </div>
+      <p>
+        Залишається тільки підключити модель до примірника з'єднання, і тоді
+        можна буде скористатися вбудованими методами моделі. Існують декілька
+        підходів до підключення, одним з найбільш оптимальних вважається цей (в
+        основний файл необхідно підключити модулі fs і path, так як вони
+        знадобляться для пошуку моделей):
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >fs.readdirSync(<span style="color: #a61717; background-color: #e3d2d2">‘</span>./models<span style="color: #a61717; background-color: #e3d2d2">’</span>)
+ .filter(<span style="color: #008800; font-weight: bold">function</span> (file) {
+  <span style="color: #008800; font-weight: bold">return</span> (file.indexOf(<span style="color: #a61717; background-color: #e3d2d2">‘</span>.<span style="color: #a61717; background-color: #e3d2d2">’</span>) !== <span style="color: #0000DD; font-weight: bold">0</span>) &amp;&amp; (file !== <span style="color: #a61717; background-color: #e3d2d2">‘</span>index.js<span style="color: #a61717; background-color: #e3d2d2">’</span>)
+})
+.forEach(<span style="color: #008800; font-weight: bold">function</span> (file) {
+  sequelize.<span style="color: #008800; font-weight: bold">import</span>(path.join(__dirname, <span style="color: #a61717; background-color: #e3d2d2">‘</span>./models<span style="color: #a61717; background-color: #e3d2d2">’</span>, file))
+})
+
+<span style="color: #003388">Object</span>.keys(sequelize.models).forEach(<span style="color: #008800; font-weight: bold">function</span> (modelName) {
+<span style="color: #008800; font-weight: bold">if</span> (<span style="color: #a61717; background-color: #e3d2d2">‘</span>associate<span style="color: #a61717; background-color: #e3d2d2">’</span> <span style="color: #008800; font-weight: bold">in</span> sequelize.models[modelName]) {
+  sequelize.models[modelName].associate(sequelize)
+}
+})
+</pre>
+      </div>
+      <p>
+        В даному коді ми переглядаємо директорію з моделями, і якщо вони є, то
+        імпортуємо їх в наш екземпляр з'єднання, потім переглядаємо кожну модель
+        окремо на предмет наявності у неї методу associate, який дозволяє
+        будувати зв'язки між моделями, і, в разі його наявності, викликаємо його
+        для створення зв'язків між моделями.
+      </p>
+      <p><strong>Типи зв'язків, підтримуваних ORM Sequelize:</strong></p>
+      <ol>
+        <li>
+          <strong>One-to-One</strong> (Один до одного) - це означає, що кожного
+          запису в одній таблиці відповідає не більше одного запису в пов'язаної
+          таблиці. Цей вид зв'язку зустрічається досить рідко. В основному, в
+          тих випадках, коли частина інформації про об'єкт або рідко
+          використовується, або є конфіденційною (така інформація зберігається в
+          окремій таблиці, яка захищена від несанкціонованого доступу).
+          Наприклад, анкетні дані студента (ПІБ, факультет, курс, група, дата
+          народження і т.п.) можуть зберігатися в одній таблиці БД, а відомості
+          про батьків цього студента - в інший, тому що ця інформація
+          використовується досить рідко і може бути відділена від основної.
+        </li>
+        <li>
+          <strong>One-to-Many</strong> (Один до багатьох) - при такому типі
+          зв'язку кожному запису в одній таблиці відповідає одна або більше
+          записів в пов'язаної таблиці. Для реалізації такого ставлення
+          використовуються дві таблиці. Одна з них представляє сторону «один»,
+          інша - сторону «багато». Наприклад, потрібно мати інформацію про
+          студентів і результати складання ними іспитів (дата здачі, предмет,
+          оцінка і т.д.). Якщо все це зберігати в одній таблиці, то її обсяг
+          невиправдано зросте, тому що в ній для кожного запису про черговий
+          іспит повинні повторюватися всі анкетні відомості про студента.
+          Оскільки Студент та Іспити - це різні сутності, то і атрибути їх
+          повинні зберігатися в різних таблицях. Але ці сутності пов'язані між
+          собою, тому що іспити складає певний студент. Причому один студент
+          може здавати кілька іспитів, тобто в наявності тип відносини
+          «один-до-багатьох».
+        </li>
+        <li>
+          <strong>Belongs-to-Many</strong> (Відноситься до багатьох) - При цьому
+          типі зв'язку безлічі записів в одній таблиці відповідає безліч записів
+          в пов'язаної таблиці.
+        </li>
+      </ol>
+      <p class="label">
+        Давайте створимо нову модель, наприклад, модель підписки на абстрактну
+        розсилку.
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >module.exports = (sequelize, DataTypes) =&gt; {
+  	  <span style="color: #008800; font-weight: bold">const</span> Subscription= sequelize.define(<span style="color: #dd2200; background-color: #fff0f0">&quot;subscription&quot;</span>, {
+        name: {
+      type: DataTypes.STRING
+    }
+  });
+<span style="color: #008800; font-weight: bold">return</span> Subscription;
+};
+</pre>
+      </div>
+      <p>
+        Як бачите, моделі досить прості, але цього вистачить, щоб встановити між
+        ними зв'язок. Для цього перед тим, як повернути об'єкт моделі, нам
+        необхідно розширити його методом associate для створення зв'язку.
+      </p>
+      <p class="label">
+        Уявімо, що користувач може мати тільки одну підписку, в такому випадку
+        модель користувача буде виглядати так:
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >module.exports = (sequelize, DataTypes) =&gt; {
+  	  <span style="color: #008800; font-weight: bold">const</span> User = sequelize.define(<span style="color: #dd2200; background-color: #fff0f0">&quot;user&quot;</span>, {
+        name: {
+      type: DataTypes.STRING
+    }
+  });
+User.associate = <span style="color: #008800; font-weight: bold">function</span> (models) {
+        User.belongsTo(models.subscription);
+     };
+<span style="color: #008800; font-weight: bold">return</span> User ;
+};
+</pre>
+      </div>
+      <p class="label">
+        Для того, щоб дати користувачеві можливість мати кілька підписок, нам
+        досить замінити тип зв'язку:
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        >User.associate = <span style="color: #008800; font-weight: bold">function</span> (models) {
+        User.hasMany(models.subscription);
+      };
+</pre>
+      </div>
+      <p>
+        Для того, щоб взаємодіяти з даними, не обов'язково писати SQL-запити
+        (хоча така можливість у ORM присутня). взаємодія з даними будується по
+        CRUD (create, read, update, delete) -шаблону, і у кожної моделі є
+        відповідні методи.
+      </p>
+      <p class="label">Наприклад, виклик</p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">
+ User.findAll();
+</pre
+        >
+      </div>
+      <p>
+        Еквівалентний читанню, будуть прочитані і передані всі записи в базі
+        даних, відповідні моделі користувача (тобто занесені в таблицю
+        користувачів, якщо абстрагуватися від використання ORM).
+      </p>
+      <p>
+        Точно так само можна взаємодіяти з базою даних в решті випадків - при
+        створенні, оновленні та видаленні. Для кожного випадоку є відповідний
+        метод, який приймає набір параметрів (як правило, це відмінні ознаки
+        об'єкта (тобто рядки таблиці), за якими буде проведена вибірка і
+        подальша дія. Ви можете редагувати або видаляти як одну, так і декілька
+        моделей відразу , головне - коректно передані параметри для вибірки.
+      </p>
+      <p>
+        Параметри можуть приймати будь-яку властивість об'єкта. Рекомендується
+        якомога частіше використовувати автоматично створюваний __id, а не
+        будь-які інші властивості, тому що висока ймовірність їх повторення або
+        перевизначення.
+      </p>
+      <p class="label">
+        Для створення запису використовується метод create, який приймає об'єкт
+        з даними (він повинен відповідати моделі)
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre style="margin: 0; line-height: 125%">db.models.user.create(data, {
+          include: [{
+            all: <span style="color: #008800; font-weight: bold">true</span>
+        }]
+    });
+</pre>
+      </div>
+      <p>
+        Параметр include позволяет связать все необходимые модели. Вы можете
+        связывать только некоторые модели, а можете не связывать их вовсе. Для
+        обновления и удаления алгоритм немного сложнее — сначала вам необходимо
+        найти конкретную запись (data в данном случае — id изменяемой записи, а
+        newData — новые данные модели).
+      </p>
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"
+      >
+        <pre
+          style="margin: 0; line-height: 125%"
+        ><span style="color: #008800; font-weight: bold">let</span> findedUser = await sequelize.models.user.findOne({ where: { id: data } });
+findedUser.update(newData); <span style="color: #888888">// Оновлення</span>
+findedUser.destroy(); <span style="color: #888888">// Видалення</span>
+</pre>
+      </div>
+      <p><strong>Корисні посилання</strong></p>
+      <ul>
+        <li>
+          <a href="https://www.postgresql.org/">https://www.postgresql.org/</a>
+          - офіційний сайт PostrgeSQL.
+        </li>
+        <li>
+          <a href="https://node-postgres.com/">https://node-postgres.com/</a> -
+          документація модуля pg для роботи node.js разом з postgreSQL.
+        </li>
+        <li>
+          <a href="https://www.pgadmin.org/">https://www.pgadmin.org/</a> -
+          офіційний сайт PgAdmin.
+        </li>
+        <li>
+          <a href="http://docs.sequelizejs.com/"
+            >http://docs.sequelizejs.com/</a
+          >
+          - офіційний сайт ORM Sequeilize.
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
