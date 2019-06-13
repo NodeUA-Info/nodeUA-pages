@@ -26,7 +26,10 @@
         можемо побачити, що фреймворк досить сильно обходить своїх конкурентів у
         популярності.
       </p>
-      <img src="" alt="Картинка" />
+      <div class="img_container">
+        <img src="../images/chapter-4/1.png" alt="Картинка" />
+      </div>
+      
       <p>
         Познайомимося з основними можливостями Express.js і встановимо його.
       </p>
@@ -154,7 +157,9 @@ res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;Hello Worl
         Запустимо проект і звернемося в браузері за адресою http: // localhost:
         3000 /:
       </p>
-      <img src="" alt="Картинка2" />
+      <div class="img_container">
+      <img src="../images/chapter-4/2.png" alt="Картинка2" />
+    </div>
       <p>
         Додаток видає відповідь "Hello World!" на запити, адресовані кореневому
         URL (/) або маршруту. Для всіх інших шляхів, наприклад,
@@ -176,7 +181,8 @@ res.send(<span style="color: #dd2200; background-color: #fff0f0">&#39;Hello Worl
     });
     </pre>
       </div>
-      <img src="" alt="Картинка3" />
+      <div class="img_container">
+      <img src="../images//chapter-4/3.png" alt="Картинка3" /></div>
       <p>
         Як вже говорилося, коли приходить запит, Express зіставляє запитану
         адресу з кожним з маршрутів. При збігу маршруту викликається його
@@ -261,7 +267,8 @@ res.send(<span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;h1&gt
 });
 </pre>
       </div>
-      <img src="" alt="Картинка4" />
+      <div class="img_container">
+      <img src="../images/chapter-4/4.png" alt="Картинка4" /></div>
       <h2>Надання статичних файлів</h2>
       <p>
         Розглянемо, як в Node.js + Express можна відправляти користувачеві
@@ -299,7 +306,8 @@ res.send(<span style="color: #dd2200; background-color: #fff0f0">&quot;&lt;h1&gt
 </pre>
       </div>
       <p>У результаті наш проект буде виглядати наступним чином:</p>
-      <img src="" alt="Картинка5" />
+      <div class="img_container"><img src="../images/chapter-4/5.png" alt="Картинка5" /></div>
+      
       <p class="label">Тепер змінимо файл app.js:</p>
       <!-- HTML generated using hilite.me -->
       <div
@@ -351,7 +359,8 @@ app.listen(3000, function () {
         <a href="http://localhost:3000">http://localhost:3000</a> ми побачимо
         вікно
       </p>
-      <img src="" alt="Картинка6" />
+      <div class="img_container"><img src="../images/chapter-4/6.png" alt="Картинка6" /></div>
+      
       <p>
         У вікні посилання, яке веде на шлях
         <a href="http://localhost:3000/about.html"
@@ -359,7 +368,8 @@ app.listen(3000, function () {
         >. Причому цей шлях express буде брати з статики, так як такого маршруту
         в файлі app.js у нас немає
       </p>
-      <img src="" alt="Картинка7" />
+      <div class="img_container"><img src="../images/chapter-4/7.png" alt="Картинка7" /></div>
+      
       <h2>Проміжне ПЗ</h2>
       <p>
         На ділі проміжне ПЗ - просто функція, що приймає три аргументи: об'єкт
@@ -386,7 +396,9 @@ app.listen(3000, function () {
 })
 </pre>
       </div>
-      <img src="" alt="Картинка8" />
+      <div class="img_container">
+      <img src="../images/chapter-4/8.png" alt="Картинка8" />
+    </div>
       <p>
         Функції проміжної обробки (middleware) - це функції, які мають доступ до
         об'єкта запиту (req), об'єкту відповіді (res) і до наступної функції
@@ -480,7 +492,8 @@ npm i -S body-parser
 <span style="color: #bb0066; font-weight: bold">&lt;/html&gt;</span>
 </pre>
       </div>
-      <img src="" alt="Картинка9" />
+      <div class="img_container">
+      <img src="../images/chapter-4/9.png" alt="Картинка9" /></div>
       <p>
         У нас є два поля. Ім'я користувача і його email. Нам потрібно отримати
         ці два значення на сервері.
@@ -569,12 +582,16 @@ npm i -S body-parser
           >http://localhost:3000/contact.html</a
         >
       </p>
-      <img src="" alt="Картинка10" />
+      <div class="img_container"> <img src="../images/chapter-4/10.png" alt="Картинка10" /></div>
+     
       <p>
         Після відправки повідомлення його обробить наш маршрут
         app.post('/contact', ...)
       </p>
-      <img src="" alt="Картинка11" />
+      <div class="img_container">
+        <img src="../images/chapter-4/11.png" alt="Картинка  11" />
+      </div>
+      
       <p>
         І ми побачимо, що відправлені дані сервер отримав і відправив назад.
       </p>
@@ -690,7 +707,9 @@ npm i -S body-parser
         При виконанні запиту до домашньої сторінки файл index.pug буде
         відображатися як HTML.
       </p>
-      <img src="" alt="Картинка12" />
+      <div class="img_container">
+      <img src="../images/chapter-4/12.png" alt="Картинка12" />
+    </div>
       <p>
         Ми пройшлися по основним важливим моментам для роботи з Express. Для
         більш глибокого вивчення API зверніться до документації.

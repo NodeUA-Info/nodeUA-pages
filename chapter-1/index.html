@@ -449,9 +449,9 @@ fs.writeFile(path.join(__dirname, <span style="color: #dd2200; background-color:
       </div>
 
       <p>Якщо запустити цей приклад, то результат буде не зовсім очікуваним:</p>
-
-      <img src="#" alt="Picture 1" />
-
+<div class="img_container">
+      <img src="../images/chapter-1/1.png" alt="Picture 1" />
+</div>
       <p>
         Проблема в тому, що якщо при виклику методу fs.readFile ви не вкажете,
         яку саме кодування потрібно використовувати, то він поверне буфер, що
@@ -480,9 +480,9 @@ fs.readFile(path.join(__dirname, <span style="color: #dd2200; background-color: 
   console.log(data);
 });</pre>
       </div>
-
-      <img src="#" alt="Picture 2" />
-
+<div class="img_container"> 
+      <img src="../images/chapter-1/2.png" alt="Picture 2" />
+</div>   
       <p>
         Майже у всіх функцій модуля fs є синхронні еквіваленти (їх імена
         завершуються суфіксом "Sync"). У write.js ми можемо використовувати
@@ -553,8 +553,9 @@ fs.readdir(__dirname, (err, files) =&gt; {
   })
 })</pre>
       </div>
-
-      <img src="#" alt="Picture 3" />
+<div class="img_container">
+      <img src="../images/chapter-1/3.png" alt="Picture 3" />
+    </div>
       <p>
         У модулі fs міститься досить багато функцій файлової системи; ви можете
         видаляти файли (fs.unlink), переміщати або перейменовувати їх
@@ -564,7 +565,6 @@ fs.readdir(__dirname, (err, files) =&gt; {
           >https://nodejs.org/api/fs.html</a
         >).
       </p>
-      >
 
       <h2>Змінна process</h2>
       <p>
@@ -627,9 +627,9 @@ console.log(process.argv);
         Поряд з параметрами ви повинні побачити кілька додаткових елементів на
         початку масиву:
       </p>
-
-      <img src="#" alt="Picture 4" />
-
+<div class="img_container">
+      <img src="../images/chapter-1/4.png" alt="Picture 4" />
+</div>
       <p>
         Перший елемент - це інтерпретатор або програма, яка інтерпретує файл
         вихідного коду (в даному випадку - node).
@@ -666,9 +666,9 @@ counts.forEach(item =&gt; {
   onsole.log(item);
 })</pre>
       </div>
-
-      <img src="#" alt="Picture 5" />
-
+<div class="img_container">
+      <img src="../images/chapter-1/5.png" alt="Picture 5" />
+</div>
       <p>
         Об'єкт process дозволяє також звертатися до змінних середовища оточення
         через об'єкт process.env. Змінні середовища оточення називають
@@ -742,9 +742,9 @@ debug(<span style="color: #dd2200; background-color: #fff0f0">&#39;Выводи�
   console.log(<span style="color: #a61717; background-color: #e3d2d2">`Вільно</span> <span style="color: #a61717; background-color: #e3d2d2">памяті</span>: ${(os.freemem()/<span style="color: #0000DD; font-weight: bold">1</span>e9).toFixed(<span style="color: #0000DD; font-weight: bold">2</span>)} <span style="color: #a61717; background-color: #e3d2d2">Гб`</span>);
   </pre>
       </div>
-
-      <img src="#" alt="Picture 6" />
-
+<div class="img_container">
+      <img src="../images/chapter-1/6.png" alt="Picture 6" />
+</div>
       <h2>Потоки</h2>
 
       <p>
@@ -808,8 +808,9 @@ rs.on(<span style="color: #dd2200; background-color: #fff0f0">&#39;end&#39;</spa
   console.log(<span style="color: #dd2200; background-color: #fff0f0">&#39;The end&#39;</span>);
 })</pre>
       </div>
-
-      <img src="#" alt="Picture 7" />
+<div class="img_container">
+      <img src="../images/chapter-1/7.png" alt="Picture 7" />
+    </div>
       <p>
         У цьому прикладі ми просто виводимо вміст файлу stream.txt на консоль.
       </p>
@@ -893,8 +894,9 @@ server.listen(port, () =&gt; {
         порти вище 1024 і вибирають такі номери, як 3000, 8000, 3030 і 8080,
         оскільки їх легше запам'ятати:
       </p>
+<div class="img_container"><img src="../images/chapter-1/8.png" alt="Picture 8" /></div>
 
-      <img src="#" alt="Picture 8" />
+      
 
       <p>
         Якщо ви запустите цю програму і перейдете в браузер за адресою http: //
@@ -904,7 +906,7 @@ server.listen(port, () =&gt; {
         запити:
       </p>
 
-      <img src="#" alt="Picture 9" />
+ <div class="img_container"><img src="../images/chapter-1/9.png" alt="Picture 9" /></div>     
 
       <p>
         Більшість браузерів неявно запитують піктограму, яку вони потім
